@@ -1,0 +1,155 @@
+/* 전체 프레임  */
+.Frame {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* Umanda 로고 디자인 */
+.h3 {
+  text-align: center;
+  color: #ef455a;
+  margin-top: 120px;
+  margin-bottom: 80px;
+  font: normal normal 900 45px/25px Noto Sans Myanmar;
+}
+
+/* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 데스크탑 버전 */
+.desktopInput {
+  width: 400px;
+  height: 40px;
+  border-radius: 38px;
+  margin-top: 20px;
+  margin-left: 60px;
+  border-radius: 100px;
+  border: 1px solid gray;
+  padding-left: 20px;
+}
+
+/* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 모바일 버전 */
+.mobileInput {
+  width: 350px;
+  height: 40px;
+  border-radius: 100px;
+  border: 1px solid gray;
+  margin-top: 30px;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+/* input 디자인 */
+input::placeholder {
+  font-size: 18px;
+  text-align: left;
+}
+
+/* 로그인 유지 버튼 */
+.stillLogin {
+  box-shadow: 0px 3px 6px #a7999a3d;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ef455a 0% 0% no-repeat padding-box;
+  opacity: 1;
+  width: 13px;
+  height: 12px;
+  border: #808080;
+}
+
+/* 아이디 / 비밀번호 찾기 */
+.findIdPass {
+  flex-direction: column;
+  margin-top: 50px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+/* 아이디 또는 비밀번호를 잊으셨나요? 글씨 */
+.label_with_margin {
+  color: #ef455a;
+  margin-left: 40px;
+  max-width: 550px;
+}
+
+/* 로그인 박스 - 데스크탑 버전 */
+.desktopLoginBox {
+  background: #ef455a 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  margin-top: 100px;
+  max-width: 550px;
+  margin-left: 170px;
+  width: 200px;
+  height: 50px;
+  border-radius: 100px;
+  border: 1px solid white;
+}
+
+.mobileLoginBox {
+  background: #ef455a 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  margin-top: 100px;
+  max-width: 550px;
+  margin-left: 105px;
+  width: 200px;
+  height: 50px;
+  border-radius: 100px;
+  border: 1px solid white;
+}
+/* 로그인 박스 안에 "로그인" 텍스트 */
+.loginBoxText {
+  font-size: 25px;
+  text-align: center;
+  color: white;
+}
+
+/* 회원가입 큰 창*/
+.RegisterBox {
+  // margin-left: 140px;
+  margin-top: 30px;
+}
+
+/* 회원가입 */
+.Register {
+  text-decoration: none;
+  color: #a0a0a0;
+  max-width: 550px;
+}
+
+/* SNS 로그인 박스 사이 디자인*/
+.snsLoginMargin {
+  margin-top: 50px;
+  // margin-left: 130px;
+  max-width: 550px;
+}
+
+/* SNS 로그인 */
+.KAKAOLogin {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-image: url("../../resources/kakaoLogo.png");
+  background-size: cover;
+  border: #f6e24b;
+  margin-right: 30px;
+}
+.NAVERLogin {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-image: url("../../resources/naverLogo.png");
+  background-size: cover;
+  border: #00c300;
+}
+.GOOGLELogin {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-image: url("../../resources/googleLogo.png");
+  background-size: cover;
+  border: #ededed;
+  margin-left: 30px;
+}
+
+.asd {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
