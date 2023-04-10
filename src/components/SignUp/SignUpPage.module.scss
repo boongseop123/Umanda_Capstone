@@ -1,0 +1,93 @@
+/* 전체 프레임 */
+.Container {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.Container2 {
+  margin-top: 20px;
+}
+
+/* 회원가입 글자 디자인 */
+.register {
+  margin-left: 10px;
+}
+
+/* 아이디 글자 */
+.id {
+  margin: 10px;
+  margin-top: 20px;
+}
+
+/* 아이디 입력 + 중복확인*/
+.duplicateId {
+  flex-direction: column;
+}
+
+/* 아이디 입력 박스 */
+.inputId {
+  width: 300px;
+  height: 40px;
+  color: #111;
+  border-radius: 100px;
+  border: 1px solid black;
+  padding-left: 20px;
+}
+
+.inputId::placeholder {
+  font-size: 13px;
+  text-align: left;
+}
+
+/* 중복 확인 */
+.duplicateButton {
+  width: 100px;
+  height: 40px;
+  background-color: #ef455a;
+  border-radius: 100px;
+  border: #f0f0f0;
+  color: white;
+  margin-left: 17px;
+}
+
+/* 생년월일 박스 */
+.Birth {
+  width: 80px;
+  height: 30px;
+  margin-right: 44px;
+  border: 1px solid black;
+  border-radius: 100px;
+}
+.Birth::placeholder {
+  font-size: 14px;
+  text-align: center;
+  padding-left: 10px;
+}
+
+/* 남성 여성 선택 lable */
+.label {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.maleLabel {
+  margin-right: 30px;
+}
+
+.malelabel:focus {
+  background-color: #ef455a;
+  border-color: #ef455a;
+  color: #ffffff;
+}
+
+/* 회원가입 버튼 */
+.registerButton {
+  margin-top: 30px;
+  margin-left: 40px;
+  width: 350px;
+  height: 40px;
+  background-color: #ef455a;
+  border-radius: 100px;
+  border: #f0f0f0;
+  color: white;
+}
