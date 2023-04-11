@@ -118,7 +118,7 @@ const LoginMain = () => {
         </div>
         <div className={styles.RegisterBox}>
           <label>
-            <Link to="/sign-up" className={styles.Register}>
+            <Link to="/register" className={styles.Register}>
               Umanda가 처음이신가요? 회원가입
             </Link>
           </label>

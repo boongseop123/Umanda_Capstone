@@ -1,7 +1,7 @@
 import styles from "../LoginPage.module.scss";
-import { KAKAO_AUTH_URL } from "../../social/KakaoOauth";
-import { NAVER_AUTH_URL } from "../../social/NaverOauth";
-import { GOOGLE_LOGIN_URL } from "../../social/GoogleOauth";
+import { KAKAO_AUTH_URL } from "../../Social/KakaoOauth";
+import { NAVER_AUTH_URL } from "../../Social/NaverOauth";
+import { GOOGLE_LOGIN_URL } from "../../Social/GoogleOauth";
 
 const SocialLoginButton = () => {
   const kakaoLogin = () => {
