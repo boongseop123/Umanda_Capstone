@@ -50,50 +50,19 @@ const SignUpMain = () => {
   /* 유효성 검사 */
   const handleRegister = (event) => {
     event.preventDefault();
-    let errors = {};
-    if (!username.trim()) {
-      errors.username = "아이디를 입력하세요.";
-    } else if (username.length < 6 || username.length > 20) {
-      errors.username = "아이디는 6자에서 20자 사이여야 합니다.";
-    }
-    if (!password.trim()) {
-      errors.password = "비밀번호를 입력하세요.";
-    } else if (
-      !/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})/.test(password)
-    ) {
-      errors.password =
-        "비밀번호는 문자, 숫자, 특수문자를 포함한 8~20자여야 합니다.";
-    }
-    if (!password1.trim()) {
-      errors.password1 = "비밀번호 확인을 입력하세요.";
-    } else if (password !== password1) {
-      errors.password1 = "비밀번호가 일치하지 않습니다.";
-    }
-    if (!name.trim()) {
-      errors.name = "이름을 입력하세요.";
-    }
-    if (!birthdate.trim()) {
-      errors.birthdate = "생년월일을 입력하세요.";
-    } else if (isNaN(birthdate) || birthdate.length !== 4) {
-      errors.birthdate = "생년월일은 4자리 숫자로 입력하세요.";
-    }
-    if (!gender.trim()) {
-      errors.gender = "성별을 선택하세요.";
-    }
-    // 유효성 검사에 실패한 경우, 에러 메시지 출력
-    if (Object.keys(errors).length > 0) {
-      setErrors(errors);
-      return;
-    }
+
     axios
-      .post("http://localhost:3000/register", {
-        username: username,
-        password: password,
-        password1: password1,
-        name: name,
-        birthdate: birthdate,
-        gender: gender,
-      })
+      .post(
+        "http://ec2-13-125-237-47.ap-northeast-2.compute.amazonaws.com:8080/register",
+        {
+          username: username,
+          password: password,
+          password1: password1,
+          name: name,
+          birthdate: birthdate,
+          gender: gender,
+        }
+      )
       .then((response) => {
         console.log(response);
         alert("회원가입이 완료되었습니다.");
@@ -125,14 +94,14 @@ const SignUpMain = () => {
             onChange={handleUsernameChange}
           />
           {/* <button
-            className={styles.duplicateButton}
-            onClick={handleDuplicateCheck}
-          >
-            중복 확인
-          </button>
-          {isDuplicate && (
-            <p className={styles.duplicate}>이미 사용 중인 아이디입니다.</p>
-          )} */}
+              className={styles.duplicateButton}
+              onClick={handleDuplicateCheck}
+            >
+              중복 확인
+            </button>
+            {isDuplicate && (
+              <p className={styles.duplicate}>이미 사용 중인 아이디입니다.</p>
+            )} */}
         </div>
         <div>
           <p className={styles.id}>패스워드</p>
@@ -206,8 +175,8 @@ const SignUpMain = () => {
             <input
               type="radio"
               name="gender"
-              value="MALE"
-              checked={gender === "MALE"}
+              value="MAN"
+              checked={gender === "MAN"}
               onChange={handleGenderChange}
             />
             남성
@@ -216,8 +185,8 @@ const SignUpMain = () => {
             <input
               type="radio"
               name="gender"
-              value="FEMALE"
-              checked={gender === "FEMALE"}
+              value="WOMEN"
+              checked={gender === "WOMEN"}
               onChange={handleGenderChange}
             />
             여성

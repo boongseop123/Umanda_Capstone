@@ -1,5 +1,5 @@
 import { useMediaQuery } from "react-responsive";
-
+import styles from "./PageRatio.module.scss";
 function PageRatio() {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const isTablet = useMediaQuery({
