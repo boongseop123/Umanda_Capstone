@@ -9,6 +9,9 @@ app.post("/register", (req, res) => {
   const { username, password, password1, name, birthdate, gender } = req.body;
 
   console.log(req.body);
+  console.log(typeof birthdate);
+  const birthInt = parseInt(birthdate, 10); // 10진수로 변환
+  console.log(typeof birthInt);
 
   res.send("회원가입이 완료되었습니다.");
 });
