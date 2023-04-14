@@ -1,11 +1,14 @@
 /* 전체 프레임  */
 .Frame {
   max-width: 550px;
-  height: 100%;
+  height: 100vh;
   margin: 0 auto;
-  border: 1px solid rgba(239, 69, 90, 0.05);
+  border: 1px solid rgba(239, 69, 90, 0.02);
   position: relative;
-  background: rgba(239, 69, 90, 0.05) 0% 0% no-repeat padding-box;
+  background: rgba(239, 69, 90, 0.02) 0% 0% no-repeat padding-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Umanda 로고 데스크탑 버전 디자인 */
@@ -14,7 +17,7 @@
   color: #ef455a;
   margin-top: 100px;
   margin-bottom: 80px;
-  font: normal normal 900 45px/25px Noto Sans Myanmar;
+  font-family: "NanumSquare", sans-serif;
 }
 
 /* Umanda 로고 모바일 버전 디자인 */
@@ -28,10 +31,11 @@
 
 /* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 데스크탑 버전 */
 .desktopInput {
+  font-family: "Happy", sans-serif;
+
   margin-top: 20px;
   width: 450px;
   height: 50px;
-  margin-left: 45px;
   padding-left: 10px;
   border-radius: 138px;
   background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
@@ -47,14 +51,14 @@
   width: 350px;
   height: 40px;
   margin-top: 10px;
-  margin-left: 16px;
-  padding-left: 20px;
+  padding-left: 30px;
   border-radius: 100px;
   background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
   border-radius: 38px;
   opacity: 1;
   border: none;
+  font-family: "Happy", sans-serif;
 }
 /* input 디자인 */
 input::placeholder {
@@ -62,19 +66,25 @@ input::placeholder {
   text-align: left;
 }
 
-/* 로그인 유지 버튼 */
 .stillLogin {
-  box-shadow: 0px 3px 6px #a7999a3d;
-  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-  background: #ef455a 0% 0% no-repeat padding-box;
-  opacity: 1;
+  margin-right: 8px;
+  border-radius: 50%;
   width: 13px;
-  height: 12px;
-  border: #808080;
+  height: 13px;
+  border: 1px solid #ef455a;
+  outline: none;
+  appearance: none;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.stillLogin:checked {
+  background-color: #ef455a;
 }
 
 /* 아이디 / 비밀번호 찾기 */
 .findIdPass {
+  font-family: "Happy", sans-serif;
   flex-direction: column;
   margin-top: 50px;
   margin-bottom: 74.5px;
@@ -87,6 +97,8 @@ input::placeholder {
 .label_with_margin {
   color: #ef455a;
   margin-left: 40px;
+  letter-spacing: -0.45px;
+  font-family: "Happy", sans-serif;
   max-width: 550px;
 }
 
@@ -94,13 +106,9 @@ input::placeholder {
 .desktopLoginBox {
   width: 450px;
   height: 50px;
-  margin-left: 45px;
-  padding-left: 10px;
   border-radius: 138px;
   max-width: 550px;
   margin-top: 80px;
-  margin-left: 45px;
-  padding-left: 20px;
   border: 1px solid white;
   box-shadow: 0px 3px 6px #a7999a3e;
   background: #ef455a 0% 0% no-repeat padding-box;
@@ -110,7 +118,6 @@ input::placeholder {
   width: 300px;
   height: 50px;
   max-width: 550px;
-  margin-left: 60px;
   margin-top: 100px;
   border-radius: 100px;
   border: 1px solid white;
@@ -119,11 +126,11 @@ input::placeholder {
 }
 /* 로그인 박스 안에 "로그인" 텍스트 */
 .loginBoxText {
+  font-family: "Happy", sans-serif;
   font-size: 20px;
   color: rgba(255, 255, 255, 1);
   letter-spacing: -0.75px;
   text-align: center;
-  font: normal normal 600 30px/20px Noto Sans Myanmar;
 }
 
 /* 회원가입 큰 창*/

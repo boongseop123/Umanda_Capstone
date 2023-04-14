@@ -7,12 +7,6 @@
   margin-left: 30px;
   margin-bottom: 70px;
   max-width: 550px;
-  display: flex;
-  margin: 0 auto;
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 0;
 }
 
 .mobileUmanda {
@@ -22,9 +16,6 @@
   margin-right: 40px;
   margin-left: 30px;
   margin-bottom: 80px;
-  max-width: 550px;
-  display: flex;
-  margin: 0 auto;
 }
 
 /* 홈 글자 디자인 */
@@ -47,5 +38,5 @@
   background: #ef455a 0% 0% no-repeat padding-box;
   display: flex; /* Flex Container로 설정 */
   align-items: center; /* 세로 중앙 정렬 */
-  height: 130px;
+  height: 100px;
 }

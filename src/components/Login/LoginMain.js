@@ -8,17 +8,19 @@ import PageRatio from "../Global/PageRatio";
 import { useMediaQuery } from "react-responsive";
 
 const LoginMain = () => {
-  let [isInputClicked, setIsInputClicked] = useState(false);
-  let [isInputClicked_1, setIsInputClicked_1] = useState(false);
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
   const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
+  };
+
+  const handleCheck = () => {
+    setIsChecked(!isChecked);
   };
 
   const handleLogin = () => {
@@ -33,7 +35,7 @@ const LoginMain = () => {
       .then((response) => {
         console.log(response.data);
         alert("로그인이 성공적으로 완료되었습니다.");
-        navigate("/main"); // 로그인 성공시 MainScreen으로 이동
+        navigate("/main");
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -46,11 +48,11 @@ const LoginMain = () => {
 
   return (
     <div
+      style={{ display: "flex", flexDirection: "column" }}
       className={`${styles.Frame} ${
         isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
       }`}
     >
-      {/* Umanda 로고 */}
       <h3
         className={`${
           isDesktop ? styles.desktopH3 : isMobile ? styles.mobileH3 : ""
@@ -58,46 +60,35 @@ const LoginMain = () => {
       >
         Umanda
       </h3>
-      <div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <input
-          onFocus={() => {
-            setIsInputClicked(true);
-          }}
-          onBlur={() => {
-            setIsInputClicked(false);
-          }}
           className={`${styles.desktopInput} ${
             isDesktop ? styles.desktopInput : styles.mobileInput
           }`}
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder={isInputClicked === true ? "" : "이메일 주소 또는 아이디"}
+          placeholder="이메일 주소 또는 아이디"
         />
         <input
-          onFocus={() => {
-            setIsInputClicked_1(true);
-          }}
-          onBlur={() => {
-            setIsInputClicked_1(false);
-          }}
           className={`${styles.desktopInput} ${
             isDesktop ? styles.desktopInput : styles.mobileInput
           }`}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder={isInputClicked_1 === true ? "" : "패스워드"}
+          placeholder="패스워드"
         />
       </div>
       <div className={styles.findIdPass}>
         <div>
-          <label>
+          <label htmlFor="keepLogin">
             <input
-              type="radio"
+              type="checkbox"
+              id="keepLogin"
+              checked={isChecked}
+              onChange={handleCheck}
               className={styles.stillLogin}
-              checked={rememberMe}
-              onChange={handleRememberMe}
             />
             로그인 유지
           </label>
@@ -106,19 +97,20 @@ const LoginMain = () => {
               to="/forgot-password"
               style={{ textDecoration: "none", color: "#ef455a" }}
             >
-              아이디 또는 비밀번호를 잊으셨나요? {">>"}
+              아이디 또는 비밀번호를 잊으셨나요?
             </Link>
           </label>
         </div>
-        <button
-          onClick={handleLogin}
-          className={`${styles.desktopLoginBox} ${
-            isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
-          }`}
-        >
-          <text className={styles.loginBoxText}>로그인</text>
-        </button>
-
+        <div>
+          <button
+            onClick={handleLogin}
+            className={`${styles.desktopLoginBox} ${
+              isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
+            }`}
+          >
+            <text className={styles.loginBoxText}>로그인</text>
+          </button>
+        </div>
         <div className={styles.RegisterBox}>
           <label>
             <Link to="/sign-up" className={styles.Register}>
@@ -126,7 +118,9 @@ const LoginMain = () => {
             </Link>
           </label>
         </div>
-        <SocialLoginButton />
+        <div>
+          <SocialLoginButton />
+        </div>
       </div>
     </div>
   );

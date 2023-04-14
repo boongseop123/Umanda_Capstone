@@ -1,5 +1,4 @@
 import React from "react";
-
 import Main from "../Main/Pages/Main";
 import Header from "../Main/Pages/Header";
 import { useMediaQuery } from "react-responsive";
