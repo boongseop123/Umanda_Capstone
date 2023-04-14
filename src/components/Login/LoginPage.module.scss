@@ -1,114 +1,147 @@
-.mobile_view {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+/* 전체 프레임  */
+.Frame {
+  max-width: 550px;
+  height: 100%;
+  margin: 0 auto;
+  border: 1px solid rgba(239, 69, 90, 0.05);
+  position: relative;
+  background: rgba(239, 69, 90, 0.05) 0% 0% no-repeat padding-box;
 }
 
-.h3 {
+/* Umanda 로고 데스크탑 버전 디자인 */
+.desktopH3 {
+  text-align: center;
+  color: #ef455a;
   margin-top: 100px;
-  margin-bottom: 50px;
-  font-size: 32px;
-  font-weight: 800;
-  color: #000;
+  margin-bottom: 80px;
+  font: normal normal 900 45px/25px Noto Sans Myanmar;
 }
 
+/* Umanda 로고 모바일 버전 디자인 */
+.mobileH3 {
+  text-align: center;
+  color: #ef455a;
+  margin-top: 100px;
+  margin-bottom: 80px;
+  font: normal normal 900 45px/25px Noto Sans Myanmar;
+}
+
+/* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 데스크탑 버전 */
 .desktopInput {
-  padding: 10px 0;
-  margin-bottom: 30px;
-  width: 40vw;
-  border: none;
-  border-bottom: 1px solid #d9d9d9;
-  font-size: 16px;
-  font-weight: 500;
-  color: #000;
-  transition: all 0.3s ease-in-out;
-}
-
-.mobileInput {
-  padding: 10px 0;
-  margin-bottom: 20px;
-  width: 80vw;
-  border: none;
-  border-bottom: 1px solid #d9d9d9;
-  font-size: 16px;
-  font-weight: 500;
-  color: #000;
-  transition: all 0.3s ease-in-out;
-}
-
-.desktopInput:focus,
-.mobileInput:focus {
-  outline: none;
-  border-bottom: 1px solid #ef455a;
-}
-
-.label_with_margin1 {
-  margin-right: 30px;
-}
-
-.label_with_margin {
-  margin-left: 30px;
-}
-
-.desktopLoginBox {
-  margin-top: 50px;
-  width: 40vw;
+  margin-top: 20px;
+  width: 450px;
   height: 50px;
+  margin-left: 45px;
+  padding-left: 10px;
+  border-radius: 138px;
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
+  border-radius: 38px;
+  opacity: 1;
   border: none;
-  border-radius: 30px;
-  background-color: #ef455a;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  color: var(---d8d8d8);
+}
+
+/* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 모바일 버전 */
+.mobileInput {
+  width: 350px;
+  height: 40px;
+  margin-top: 10px;
+  margin-left: 16px;
+  padding-left: 20px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
+  border-radius: 38px;
+  opacity: 1;
+  border: none;
+}
+/* input 디자인 */
+input::placeholder {
+  font-size: 18px;
+  text-align: left;
+}
+
+/* 로그인 유지 버튼 */
+.stillLogin {
+  box-shadow: 0px 3px 6px #a7999a3d;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: #ef455a 0% 0% no-repeat padding-box;
+  opacity: 1;
+  width: 13px;
+  height: 12px;
+  border: #808080;
+}
+
+/* 아이디 / 비밀번호 찾기 */
+.findIdPass {
+  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 74.5px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+/* 아이디 또는 비밀번호를 잊으셨나요? 글씨 */
+.label_with_margin {
+  color: #ef455a;
+  margin-left: 40px;
+  max-width: 550px;
+}
+
+/* 로그인 박스 - 데스크탑 버전 */
+.desktopLoginBox {
+  width: 450px;
+  height: 50px;
+  margin-left: 45px;
+  padding-left: 10px;
+  border-radius: 138px;
+  max-width: 550px;
+  margin-top: 80px;
+  margin-left: 45px;
+  padding-left: 20px;
+  border: 1px solid white;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  background: #ef455a 0% 0% no-repeat padding-box;
 }
 
 .mobileLoginBox {
-  margin-top: 40px;
-  width: 80vw;
+  width: 300px;
   height: 50px;
-  border: none;
-  border-radius: 30px;
-  background-color: #ef455a;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  max-width: 550px;
+  margin-left: 60px;
+  margin-top: 100px;
+  border-radius: 100px;
+  border: 1px solid white;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  background: #ef455a 0% 0% no-repeat padding-box;
 }
-
+/* 로그인 박스 안에 "로그인" 텍스트 */
 .loginBoxText {
   font-size: 20px;
-  font-weight: 700;
-  color: #fff;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: -0.75px;
+  text-align: center;
+  font: normal normal 600 30px/20px Noto Sans Myanmar;
 }
 
-.findIdPass {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
+/* 회원가입 큰 창*/
 .RegisterBox {
-  margin-top: 30px;
-  margin-right: 20px;
-}
-
-.Register {
-  font-size: 16px;
-  font-weight: 600;
-  color: #000;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-}
-
-.Register:hover {
-  color: #ef455a;
-}
-
-.snsLoginMargin {
+  // margin-left: 140px;
   margin-top: 50px;
-  // margin-left: 130px;
+}
+
+/* 회원가입 */
+.Register {
+  text-decoration: none;
+  color: #a0a0a0;
+  max-width: 550px;
+}
+
+/* SNS 로그인 박스 사이 디자인*/
+.snsLoginMargin {
+  margin-top: 30px;
   max-width: 550px;
 }
 

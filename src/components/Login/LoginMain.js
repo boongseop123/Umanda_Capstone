@@ -24,7 +24,7 @@ const LoginMain = () => {
   const handleLogin = () => {
     axios
       .post(
-        "https://virtserver.swaggerhub.com/PJH575157/EUROPlanner/1.0.0/login ",
+        "http://ec2-13-125-237-47.ap-northeast-2.compute.amazonaws.com:8080/login",
         {
           username: username,
           password: password,
@@ -89,20 +89,7 @@ const LoginMain = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder={isInputClicked_1 === true ? "" : "패스워드"}
         />
-        <button
-          onClick={handleLogin}
-          className={`${styles.desktopLoginBox} ${
-            isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
-          }`}
-        >
-          <text className={styles.loginBoxText}>로그인</text>
-        </button>
       </div>
-      {/* <div>
-          <button>
-            <Link to="/main">메인 스크린으로 가는 테스트 버튼</Link>
-          </button>
-        </div> */}
       <div className={styles.findIdPass}>
         <div>
           <label>
@@ -123,6 +110,15 @@ const LoginMain = () => {
             </Link>
           </label>
         </div>
+        <button
+          onClick={handleLogin}
+          className={`${styles.desktopLoginBox} ${
+            isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
+          }`}
+        >
+          <text className={styles.loginBoxText}>로그인</text>
+        </button>
+
         <div className={styles.RegisterBox}>
           <label>
             <Link to="/sign-up" className={styles.Register}>
