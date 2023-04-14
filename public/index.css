@@ -2,3 +2,10 @@ body {
   top: 0px;
   left: 0px;
 }
+
+@font-face {
+  font-family: "Happy";
+  src: url("/fonts/Happiness-Sans-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}

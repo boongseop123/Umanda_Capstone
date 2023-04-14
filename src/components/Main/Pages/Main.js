@@ -11,7 +11,7 @@ const Main = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   return (
-    <div style={{ height: "100%" }}>
+    <div className={styles.Up}>
       <div>
         <h3
           className={`${styles.desktopTravel} ${

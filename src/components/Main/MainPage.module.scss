@@ -8,15 +8,15 @@
   background: rgba(239, 69, 90, 0.05) 0% 0% no-repeat padding-box;
 }
 
-.Up {
-  position: relative;
-  top: 0;
-  left: 0;
-  z-index: 0;
+.header {
+  padding-top: 10px; /*헤더 높이만큼 여백 추가*/
 }
 
-.Down {
-  position: absolute;
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1;
 }
 
