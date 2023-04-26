@@ -1,15 +1,22 @@
 /* 전체 프레임 */
-.Container {
-  max-width: 550px;
+.Frame {
+  max-width: 600px;
+  height: 100vh;
   margin: 0 auto;
-}
-
-.Container2 {
-  margin-top: 20px;
+  border: 1px solid rgba(239, 69, 90, 0.02);
+  position: relative;
+  background: rgba(239, 69, 90, 0.02) 0% 0% no-repeat padding-box;
+  display: flex;
+  justify-content: center;
+  //align-items: center;
 }
 
 /* 회원가입 글자 디자인 */
 .register {
+  text-align: left;
+  font-family: "Happy", sans-serif;
+  letter-spacing: -0.6px;
+  color: #1d1f22;
   margin-left: 10px;
 }
 
@@ -17,31 +24,157 @@
 .id {
   margin: 10px;
   margin-top: 20px;
+  font-family: "Happy", sans-serif;
+  margin-left: 10px;
+}
+
+.stillLogin {
+  margin-right: 8px;
+  border-radius: 50%;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #ef455a;
+  outline: none;
+  appearance: none;
+  background-color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+
+.loginBoxText {
+  font-family: "Happy", sans-serif;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 1);
+  letter-spacing: -0.75px;
+  text-align: center;
+}
+
+.stillLogin:checked {
+  background-color: #ef455a;
 }
 
 /* 아이디 입력 + 중복확인*/
 .duplicateId {
   flex-direction: column;
+  color: var(--unnamed-color-ffffff);
+  text-align: center;
+  font-family: "Happy", sans-serif;
+  background: #a7999a 0% 0% no-repeat padding-box;
+  border-radius: 38px;
+}
+
+.desktopInput {
+  font-family: "Happy", sans-serif;
+  margin-left: 20px;
+  margin-top: 10px;
+  width: 550px;
+  height: 50px;
+  padding-left: 10px;
+  border-radius: 138px;
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
+  border-radius: 38px;
+  opacity: 1;
+  border: none;
+  color: var(---d8d8d8);
+}
+
+.desktopLoginBox {
+  width: 450px;
+  height: 50px;
+  border-radius: 138px;
+  max-width: 550px;
+  margin-top: 80px;
+  border: 1px solid white;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  background: #ef455a 0% 0% no-repeat padding-box;
+}
+
+.mobileLoginBox {
+  width: 300px;
+  height: 50px;
+  max-width: 550px;
+  margin-top: 100px;
+  border-radius: 100px;
+  border: 1px solid white;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  background: #ef455a 0% 0% no-repeat padding-box;
+}
+
+/* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 모바일 버전 */
+.mobileInput {
+  width: 350px;
+  height: 40px;
+  margin-top: 10px;
+  padding-left: 20px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
+  border-radius: 38px;
+  opacity: 1;
+  border: none;
+  font-family: "Happy", sans-serif;
+}
+
+.custom-datepicker {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  font-family: "Happy", sans-serif;
+}
+
+.desktopInput1 {
+  font-family: "Happy", sans-serif;
+  margin-top: 20px;
+  width: 460px;
+  height: 50px;
+  padding-left: 10px;
+  border-radius: 138px;
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
+  border-radius: 38px;
+  opacity: 1;
+  border: none;
+  color: var(---d8d8d8);
+}
+
+/* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 모바일 버전 */
+.mobileInput1 {
+  width: 300px;
+  height: 40px;
+  margin-top: 10px;
+  padding-left: 20px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
+  border-radius: 38px;
+  opacity: 1;
+  border: none;
+  font-family: "Happy", sans-serif;
+}
+/* input 디자인 */
+input::placeholder {
+  font-size: 15px;
+  text-align: left;
 }
 
 /* 아이디 입력 박스 */
 .inputId {
+  font-family: "Happy", sans-serif;
   width: 300px;
   height: 40px;
   color: #111;
   border-radius: 100px;
   border: 1px solid black;
   padding-left: 20px;
-}
-
-.inputId::placeholder {
-  font-size: 13px;
-  text-align: left;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 38px;
+  opacity: 1;
 }
 
 /* 중복 확인 */
 .duplicateButton {
-  width: 100px;
+  width: 80px;
   height: 40px;
   background-color: #ef455a;
   border-radius: 100px;
@@ -52,6 +185,7 @@
 
 /* 생년월일 박스 */
 .Birth {
+  font-family: "Happy", sans-serif;
   width: 80px;
   height: 30px;
   margin-right: 44px;
@@ -73,6 +207,13 @@
 .maleLabel {
   margin-right: 30px;
 }
+.malefont {
+  font-family: "Happy", sans-serif;
+  font-size: 15px;
+  text-align: center;
+  padding-left: 10px;
+  font-weight: 550;
+}
 
 .malelabel:focus {
   background-color: #ef455a;
@@ -82,6 +223,7 @@
 
 /* 회원가입 버튼 */
 .registerButton {
+  font-family: "Happy", sans-serif;
   margin-top: 30px;
   margin-left: 40px;
   width: 350px;
