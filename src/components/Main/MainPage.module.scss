@@ -1,23 +1,161 @@
-.Frame1 {
-  position: relative;
-  max-width: 550px;
-  height: 100%;
+.Frame {
+  max-width: 600px;
+  height: 100vh;
   margin: 0 auto;
-  border-radius: 45px 45px 0px 0px;
-  border: 1px solid rgba(239, 69, 90, 0.05);
-  background: rgba(239, 69, 90, 0.05) 0% 0% no-repeat padding-box;
+  border: 1px solid rgba(239, 69, 90, 0.02);
+  position: relative;
+  background: rgba(239, 69, 90, 0.02) 0% 0% no-repeat padding-box;
+  //background-color: rgb(255, 249, 249);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* 하단 정렬을 위해 추가 */
 }
 
 .header {
-  padding-top: 10px; /*헤더 높이만큼 여백 추가*/
+  background: #ef455a;
+  top: 0;
+  left: 0px;
+  height: 50%;
+  width: 100%;
+  z-index: 0;
+}
+
+/* Umanda 글자 디자인 */
+.desktopUmanda {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-right: 40px;
+  margin-left: 30px;
+  margin-bottom: 70px;
+  max-width: 550px;
+}
+
+.mobileUmanda {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-right: 40px;
+  margin-left: 30px;
+  margin-bottom: 80px;
+}
+
+/* 홈 글자 디자인 */
+.home1 {
+  color: white;
+  margin-right: 10px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  font-family: "Happy", sans-serif;
+  font-size: 28px;
+  margin-left: 35px;
+}
+
+.home {
+  color: white;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+  font-family: "Happy", sans-serif;
+  font-size: 15px;
+  margin-left: 20px;
+}
+
+/* 떠나기 좋은 여행 추천 데스크탑 버전 */
+.desktopTravel {
+  font-family: "Happy", sans-serif;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+
+/* 떠나기 좋은 여행 추천 모바일 버전 */
+.mobileTravel {
+  font-family: "Happy", sans-serif;
+  margin-top: 40px;
+  margin-left: 16px;
+  margin-bottom: 30px;
+}
+/* Q & A 글자 디자인 */
+
+.img1 {
+  margin-top: -20px;
+  position: relative;
+  text-align: center;
+}
+
+.img {
+  left: 0;
+  border-radius: 30px;
+  width: 530px;
+  height: 320px;
+  margin-top: 20px;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+  //background-size: cover;
+  text-align: center;
+  //vertical-align: middle;
+  /* 이미지를 적절한 크기로 지정합니다. */
+}
+
+.imgtext {
+  position: absolute;
+  z-index: 1;
+  font-family: "Happy", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+.button.pressed {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+button:active {
+  background-color: #f6e0e0;
+}
+.span1 {
+  font-family: "Happy", sans-serif;
+  color: white;
+  margin-left: 70px;
+  font-size: 25px;
+  font-weight: 680px;
+}
+/* 슬라이드 규격 mobile 버전 */
+.mobileImgSlide {
+  border-radius: 30px;
+  width: 400px;
+  height: 200px;
+  margin-left: 12px;
+  background-image: url("../../resources/London.jpeg");
+}
+.QnA {
+  color: white;
+  margin-right: 40px;
+  margin-bottom: 60px;
+}
+
+/* header 가로 설정 */
+.headerColumn {
+  background: #ef455a 0% 0% no-repeat padding-box;
+  display: flex; /* Flex Container로 설정 */
+  align-items: center; /* 세로 중앙 정렬 */
+  height: 100px;
 }
 
 .main {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  justify-content: center;
+  height: calc(100vh - 200px);
+  border-radius: 45px 45px 0px 0px;
+  background: rgba(255, 249, 249, 01);
+  position: relative;
   z-index: 1;
+  width: 100%; /* 가로 폭을 100%로 지정 */
+  margin-bottom: -20px; /* 아래쪽을 20px만큼 가림 */
+}
+
+.main1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .Round {
@@ -51,4 +189,137 @@
   // background-color: white;
   // border-top-left-radius: 45px;
   // border-top-right-radius: 45px;
+}
+
+/* 떠나기 좋은 여행 추천 데스크탑 버전 */
+.desktopTravel {
+  //margin-top: 40px;
+  //margin-left: 30px;
+  //margin-bottom: 30px;
+}
+
+/* 떠나기 좋은 여행 추천 모바일 버전 */
+.mobileTravel {
+  margin-top: 40px;
+  margin-left: 16px;
+  margin-bottom: 30px;
+}
+
+/* 슬라이드 규격 desktop 버전 */
+.desktopImgSlide {
+  border-radius: 30px;
+  width: 500px;
+  height: 280px;
+  margin-left: 25px;
+  margin-top: 20px;
+  background-image: url("../../resources/London.jpeg");
+  background-size: cover;
+}
+
+/* 슬라이드 규격 mobile 버전 */
+.mobileImgSlide {
+  border-radius: 30px;
+  width: 400px;
+  height: 200px;
+  margin-left: 12px;
+}
+
+/* 버튼 큰 틀 프레임 */
+.desktopFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.mobileFrame {
+  margin-top: 50px;
+}
+
+/* 동행 버튼 디자인 */
+.desktopAccompany {
+  width: 140px;
+  height: 180px;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  border: 0px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.mobileAccompany {
+  width: 120px;
+  height: 150px;
+  margin-right: 10px;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  border-radius: 20px;
+  background-color: white;
+}
+
+/* Ai 경로 추천 */
+.desktopAI {
+  width: 140px;
+  height: 180px;
+  margin-left: 36px;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  border: 0px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.mobileAI {
+  width: 120px;
+  height: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  border: 0px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+/* 만남 버튼 디자인 */
+.desktopMeet {
+  box-shadow: 0px 3px 6px #a7999a3e;
+  width: 140px;
+  height: 180px;
+  margin-left: 36px;
+  border: 0px;
+  border-radius: 20px;
+  background-color: white;
+  background-size: cover;
+}
+
+.mobileMeet {
+  width: 120px;
+  height: 150px;
+  margin-left: 10px;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.desktopImg {
+  width: 110px;
+  margin-top: 2px;
+}
+
+.mobileImg {
+  width: 90px;
+  margin-top: 20px;
+}
+
+.with {
+  font-family: "Happy", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+/* 맨 밑 문구 디자인 */
+.friend {
+  font-family: "Happy", sans-serif;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 36px;
 }

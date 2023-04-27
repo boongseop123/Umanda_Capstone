@@ -40,3 +40,15 @@
   align-items: center; /* 세로 중앙 정렬 */
   height: 100px;
 }
+
+.Frame {
+  z-index: -1;
+  background: #ef455a 0% 0% no-repeat padding-box;
+  top: 0px;
+  left: 0px;
+  //width: 649px;
+  height: 250px;
+  top: 0; /* 상단에 위치하도록 지정 */
+  position: relative;
+  margin-bottom: 20px;
+}
