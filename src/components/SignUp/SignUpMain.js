@@ -4,10 +4,9 @@ import axios from "axios";
 import styles from "./SignUpPage.module.scss";
 import { useNavigate } from "react-router";
 import { useMediaQuery } from "react-responsive";
-import BirthdatePicker from "./Pages/birthComponent";
 
 const SignUpMain = () => {
-  const [responseData, setResponseData] = useState(null);
+  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   let [isIdClicked, setisIdClicked] = useState(false);
   let [isPassClicked, setisPassClicked] = useState(false);
@@ -18,13 +17,8 @@ const SignUpMain = () => {
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
   const [name, setName] = useState("");
-  const [birthdate, setBirthdate] = useState(0);
+  const [birthdate, setBirthdate] = useState("");
   const [gender, setGender] = useState("");
-
-  const [errors, setErrors] = useState({});
-
-  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -52,13 +46,11 @@ const SignUpMain = () => {
 
   const navigate = useNavigate();
 
-  /* 유효성 검사 */
   const handleRegister = (event) => {
-    event.preventDefault();
-
     axios
       .post(
-        "http://ec2-13-125-237-47.ap-northeast-2.compute.amazonaws.com:8080/register",
+        // "http://ec2-43-201-98-213.ap-northeast-2.compute.amazonaws.com:7070/register",
+        "http://localhost:3000/register",
         {
           username: username,
           password: password,
@@ -69,9 +61,9 @@ const SignUpMain = () => {
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         alert("회원가입이 완료되었습니다.");
-        navigate("/login");
+        navigate("./login");
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -80,18 +72,17 @@ const SignUpMain = () => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column" }}
-      className={`${styles.Frame} ${
-        isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
-      }`}
-    >
-      <h4 className={styles.register}>회원가입</h4>
-      <br></br>
-      <br></br>
-      <div>
-        <label>
-          <h5 className={styles.register}>아이디</h5>
+    <div className={styles.Container}>
+      <h2
+        className={isDesktop ? styles.registerDesktop : styles.registerMobile}
+      >
+        회원가입
+      </h2>
+      <div className={styles.Container2}>
+        <div>
+          <p className={isDesktop ? styles.idDesktop : styles.idMobile}>
+            아이디
+          </p>
           <input
             onFocus={() => {
               setisIdClicked(true);
@@ -99,133 +90,120 @@ const SignUpMain = () => {
             onBlur={() => {
               setisIdClicked(false);
             }}
-            className={`${styles.desktopInput1} ${
-              isDesktop ? styles.desktopInput : styles.mobileInput1
-            }`}
+            className={isDesktop ? styles.inputIdDesktop : styles.inputIdMobile}
             type="string"
             placeholder={isIdClicked === true ? "" : "아이디 입력 (6 ~ 20자)"}
             value={username}
             onChange={handleUsernameChange}
           />
-          <button className={styles.duplicateButton}>중복확인</button>
-        </label>
-      </div>
-      <div>
-        <h5 className={styles.id}>패스워드</h5>
-        <input
-          onFocus={() => {
-            setisPassClicked(true);
-          }}
-          onBlur={() => {
-            setisPassClicked(false);
-          }}
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
-          type="password"
-          placeholder={
-            isPassClicked === true
-              ? ""
-              : "패스워드 입력 (문자, 숫자, 특수문자 포함 8 ~ 20자)"
-          }
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </div>
-      <div>
-        <h5 className={styles.id}>패스워드 확인</h5>
-        <input
-          onFocus={() => {
-            setisPassClicked_1(true);
-          }}
-          onBlur={() => {
-            setisPassClicked_1(false);
-          }}
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
-          type="password"
-          placeholder={
-            isPassClicked_1 === true
-              ? ""
-              : "패스워드 입력 (문자, 숫자, 특수문자 포함 8 ~ 20자)"
-          }
-          value={password1}
-          onChange={handlePassword1Change}
-        />
-      </div>
-      <div>
-        <h5 className={styles.id}>이름</h5>
-        <input
-          onFocus={() => {
-            setisNameClicked(true);
-          }}
-          onBlur={() => {
-            setisNameClicked(false);
-          }}
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
-          type="string"
-          placeholder={isNameClicked === true ? "" : "이름을 입력해주세요"}
-          value={name}
-          onChange={handleNameChange}
-        />
-      </div>
-      <div>
-        <h5 className={styles.id}>생년월일</h5>
-        {/*<input
-        className={styles.Birth}
-        type="number"
-        placeholder="연도"
-        value={birthdate}
-        onChange={handleBirthChange}
-        /> */}
-
-        <BirthdatePicker className="custom-datepicker" />
-      </div>
-      <div className={styles.label}>
-        <h5>성별</h5>
-        <label className={styles.maleLabel}>
+        </div>
+        <div>
+          <p className={isDesktop ? styles.idDesktop : styles.idMobile}>
+            패스워드
+          </p>
           <input
-            type="radio"
-            name="gender"
-            value="MAN"
-            checked={gender === "MAN"}
-            className={styles.stillLogin}
-            onChange={handleGenderChange}
+            onFocus={() => {
+              setisPassClicked(true);
+            }}
+            onBlur={() => {
+              setisPassClicked(false);
+            }}
+            className={isDesktop ? styles.inputIdDesktop : styles.inputIdMobile}
+            type="password"
+            placeholder={
+              isPassClicked === true
+                ? ""
+                : "패스워드 입력 (문자, 숫자, 특수문자 포함 8 ~ 20자)"
+            }
+            value={password}
+            onChange={handlePasswordChange}
           />
-          <text className={styles.malefont}>남성</text>
-        </label>
-        <label>
+        </div>
+        <div>
+          <p className={isDesktop ? styles.idDesktop : styles.idMobile}>
+            패스워드 확인
+          </p>
           <input
-            type="radio"
-            name="gender"
-            value="WOMEN"
-            checked={gender === "WOMEN"}
-            className={styles.stillLogin}
-            onChange={handleGenderChange}
+            onFocus={() => {
+              setisPassClicked_1(true);
+            }}
+            onBlur={() => {
+              setisPassClicked_1(false);
+            }}
+            className={isDesktop ? styles.inputIdDesktop : styles.inputIdMobile}
+            type="password"
+            placeholder={
+              isPassClicked_1 === true
+                ? ""
+                : "패스워드 입력 (문자, 숫자, 특수문자 포함 8 ~ 20자)"
+            }
+            value={password1}
+            onChange={handlePassword1Change}
           />
-          <text className={styles.malefont}>여성</text>
-        </label>
+        </div>
+        <div>
+          <p className={isDesktop ? styles.idDesktop : styles.idMobile}>이름</p>
+          <input
+            onFocus={() => {
+              setisNameClicked(true);
+            }}
+            onBlur={() => {
+              setisNameClicked(false);
+            }}
+            className={isDesktop ? styles.inputIdDesktop : styles.inputIdMobile}
+            type="string"
+            placeholder={isNameClicked === true ? "" : "이름을 입력해주세요"}
+            value={name}
+            onChange={handleNameChange}
+          />
+        </div>
+        <div>
+          <p className={isDesktop ? styles.idDesktop : styles.idMobile}>
+            생년월일
+          </p>
+          <input
+            className={isDesktop ? styles.BirthDesktop : styles.BirthMobile}
+            type="number"
+            placeholder="연도"
+            value={birthdate}
+            onChange={handleBirthChange}
+          />
+        </div>
+        <div className={isDesktop ? styles.labelDesktop : styles.labelMobile}>
+          <p>성별</p>
+          <label className={styles.maleLabel}>
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              checked={gender === "male"}
+              onChange={handleGenderChange}
+            />
+            남성
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              checked={gender === "female"}
+              onChange={handleGenderChange}
+            />
+            여성
+          </label>
+        </div>
       </div>
-      <div
-        div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
+      <div>
         <button
           onClick={handleRegister}
-          className={`${styles.desktopLoginBox} ${
-            isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
-          }`}
+          className={
+            isDesktop
+              ? styles.registerButtonDesktop
+              : styles.registerButtonMobile
+          }
         >
-          <text className={styles.loginBoxText}>회원가입</text>
+          회원가입
         </button>
-        {responseData && <div>{responseData}</div>}
       </div>
     </div>
   );

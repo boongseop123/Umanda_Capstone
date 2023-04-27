@@ -1,0 +1,36 @@
+/* 맨 밑 문구 디자인 */
+.friendDesktop {
+  width: 550px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  position: fixed;
+  margin-bottom: 0px;
+  bottom: 0;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));
+}
+
+/* 맨 밑 문구 디자인 */
+.friendMobile {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  position: fixed;
+  margin-bottom: 0px;
+  bottom: 0;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  text-align: center;
+  filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.5));
+}
+
+span {
+  margin-right: 5px;
+}

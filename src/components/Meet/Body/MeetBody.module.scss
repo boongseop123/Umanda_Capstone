@@ -1,0 +1,39 @@
+.ChatListDesktop {
+  width: 500px;
+  height: 80px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: 1px solid white;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.ChatListMobile {
+  width: 380px;
+  height: 80px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: 1px solid white;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileDesktop {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 400px;
+}
+
+.profileMobile {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin-right: 400px;
+}

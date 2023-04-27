@@ -1,14 +1,10 @@
 /* 전체 프레임  */
 .Frame {
   max-width: 550px;
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
-  border: 1px solid rgba(239, 69, 90, 0.02);
-  position: relative;
-  background: rgba(239, 69, 90, 0.02) 0% 0% no-repeat padding-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: 1px solid lightgray;
+  box-shadow: 0px 3px 6px #a7999a3e;
 }
 
 /* Umanda 로고 데스크탑 버전 디자인 */
@@ -16,8 +12,8 @@
   text-align: center;
   color: #ef455a;
   margin-top: 100px;
-  margin-bottom: 80px;
-  font-family: "NanumSquare", sans-serif;
+  margin-bottom: 70px;
+  font: normal normal 900 45px/25px Noto Sans Myanmar;
 }
 
 /* Umanda 로고 모바일 버전 디자인 */
@@ -31,60 +27,58 @@
 
 /* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 데스크탑 버전 */
 .desktopInput {
-  font-family: "Happy", sans-serif;
-
-  margin-top: 20px;
-  width: 450px;
-  height: 50px;
-  padding-left: 10px;
+  width: 470px;
+  height: 60px;
+  margin-top: 10px;
+  padding-left: 30px;
   border-radius: 138px;
-  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
-  border-radius: 38px;
-  opacity: 1;
-  border: none;
-  color: var(---d8d8d8);
+  border: 1px gray;
+  box-shadow: 0px 3px 6px #a7999a3e;
 }
 
 /* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 모바일 버전 */
 .mobileInput {
-  width: 350px;
+  width: 370px;
   height: 40px;
   margin-top: 10px;
-  padding-left: 30px;
-  border-radius: 100px;
-  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 6px rgba(167, 153, 154, 0.24);
-  border-radius: 38px;
-  opacity: 1;
-  border: none;
-  font-family: "Happy", sans-serif;
+  padding-left: 20px;
+  border-radius: 138px;
+  border: 1px solid lightgray;
+  box-shadow: 0px 3px 6px #a7999a3e;
 }
+
 /* input 디자인 */
 input::placeholder {
   font-size: 18px;
   text-align: left;
 }
 
-.stillLogin {
-  margin-right: 8px;
-  border-radius: 50%;
-  width: 13px;
-  height: 13px;
-  border: 1px solid #ef455a;
-  outline: none;
+/* 로그인 유지 버튼 */
+// .stillLogin {
+//   box-shadow: 0px 3px 6px #a7999a3d;
+//   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+//   background: #ef455a 0% 0% no-repeat padding-box;
+//   opacity: 1;
+//   width: 13px;
+//   height: 12px;
+//   border: #808080;
+// }
+
+[type="radio"] {
+  vertical-align: middle;
   appearance: none;
-  background-color: #ffffff;
-  transition: all 0.3s ease-in-out;
+  border: max(2px, 1.6px) solid gray;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
 }
 
-.stillLogin:checked {
-  background-color: #ef455a;
+[type="radio"]:checked {
+  border: 0.4em solid #ef455a;
 }
 
 /* 아이디 / 비밀번호 찾기 */
 .findIdPass {
-  font-family: "Happy", sans-serif;
   flex-direction: column;
   margin-top: 50px;
   margin-bottom: 74.5px;
@@ -96,29 +90,34 @@ input::placeholder {
 /* 아이디 또는 비밀번호를 잊으셨나요? 글씨 */
 .label_with_margin {
   color: #ef455a;
-  margin-left: 40px;
-  letter-spacing: -0.45px;
-  font-family: "Happy", sans-serif;
+  margin-left: 150px;
+  margin-top: 30px;
+  max-width: 550px;
+}
+
+.label_with_margin_mobile {
+  color: #ef455a;
+  margin-left: 50px;
   max-width: 550px;
 }
 
 /* 로그인 박스 - 데스크탑 버전 */
 .desktopLoginBox {
-  width: 450px;
-  height: 50px;
-  border-radius: 138px;
+  width: 500px;
+  height: 60px;
   max-width: 550px;
   margin-top: 80px;
+  border-radius: 100px;
   border: 1px solid white;
-  box-shadow: 0px 3px 6px #a7999a3e;
+  // box-shadow: 0px 3px 6px #a7999a3e;
   background: #ef455a 0% 0% no-repeat padding-box;
 }
 
 .mobileLoginBox {
-  width: 300px;
+  width: 400px;
   height: 50px;
   max-width: 550px;
-  margin-top: 100px;
+  margin-top: 80px;
   border-radius: 100px;
   border: 1px solid white;
   box-shadow: 0px 3px 6px #a7999a3e;
@@ -126,17 +125,15 @@ input::placeholder {
 }
 /* 로그인 박스 안에 "로그인" 텍스트 */
 .loginBoxText {
-  font-family: "Happy", sans-serif;
-  font-size: 20px;
-  color: rgba(255, 255, 255, 1);
-  letter-spacing: -0.75px;
+  font-size: 25px;
   text-align: center;
+  color: white;
 }
 
 /* 회원가입 큰 창*/
 .RegisterBox {
   // margin-left: 140px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 /* 회원가입 */
@@ -160,7 +157,7 @@ input::placeholder {
   background-image: url("../../resources/kakaoLogo.png");
   background-size: cover;
   border: #f6e24b;
-  margin-right: 30px;
+  margin-right: 50px;
 }
 .NAVERLogin {
   width: 40px;
@@ -177,5 +174,5 @@ input::placeholder {
   background-image: url("../../resources/googleLogo.png");
   background-size: cover;
   border: #ededed;
-  margin-left: 30px;
+  margin-left: 50px;
 }

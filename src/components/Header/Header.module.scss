@@ -1,0 +1,70 @@
+/* Umanda 글자 디자인 */
+.desktopUmanda {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-right: 50px;
+  margin-left: 30px;
+  margin-bottom: 70px;
+}
+
+.mobileUmanda {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 76px;
+}
+
+/* 홈 글자 디자인 */
+.main,
+.meet,
+.ai,
+.accompany {
+  color: white;
+  margin-right: 20px;
+  margin-bottom: 38px;
+  text-decoration: none;
+}
+
+/* header 가로 설정 */
+.headerColumnDesktop {
+  width: 550px;
+  height: 110px;
+  position: fixed;
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  flex-direction: row;
+  background-color: #ef455a;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.25));
+}
+
+.headerColumnMobile {
+  width: 550px;
+  height: 120px;
+  position: fixed;
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  flex-direction: row;
+  background-color: #ef455a;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.25));
+}
+
+.hamburgerDesktop {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 40px;
+  margin-left: 80px;
+}
+
+.hamburgerMobile {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 40px;
+  margin-left: 8px;
+}

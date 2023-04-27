@@ -1,32 +1,34 @@
 import React, { useState } from "react";
+
 import axios from "axios";
+import { Link } from "react-router-dom";
 import styles from "./LoginPage.module.scss";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import SocialLoginButton from "./socialLogin/SocialLoginButton";
-import PageRatio from "../Global/PageRatio";
 import { useMediaQuery } from "react-responsive";
+import SocialLoginButton from "./socialLogin/SocialLoginButton";
 
 const LoginMain = () => {
+  let [isInputClicked, setIsInputClicked] = useState(false);
+  let [isInputClicked_1, setIsInputClicked_1] = useState(false);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMeClicked, setRememberMeClicked] = useState(false);
 
   const navigate = useNavigate();
-  const [isChecked, setIsChecked] = useState(false);
 
   const handleRememberMe = () => {
-    setRememberMe(!rememberMe);
-  };
-
-  const handleCheck = () => {
-    setIsChecked(!isChecked);
+    if (rememberMeClicked) {
+      setRememberMe(!rememberMe);
+    }
+    setRememberMeClicked(true);
   };
 
   const handleLogin = () => {
     axios
       .post(
-        "http://ec2-13-125-237-47.ap-northeast-2.compute.amazonaws.com:8080/login",
+        "https://virtserver.swaggerhub.com/PJH575157/EUROPlanner/1.0.0/login",
         {
           username: username,
           password: password,
@@ -35,7 +37,7 @@ const LoginMain = () => {
       .then((response) => {
         console.log(response.data);
         alert("로그인이 성공적으로 완료되었습니다.");
-        navigate("/main");
+        navigate("/main"); // 로그인 성공시 MainScreen으로 이동
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -44,73 +46,87 @@ const LoginMain = () => {
   };
 
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column" }}
-      className={`${styles.Frame} ${
-        isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
-      }`}
-    >
-      <h3
-        className={`${
-          isDesktop ? styles.desktopH3 : isMobile ? styles.mobileH3 : ""
-        }`}
-      >
+    <div className={styles.Frame}>
+      {/* Umanda 로고 */}
+      <h3 className={`${isDesktop ? styles.desktopH3 : styles.mobileH3}`}>
         Umanda
       </h3>
-      <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <input
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
+          onFocus={() => {
+            setIsInputClicked(true);
+          }}
+          onBlur={() => {
+            setIsInputClicked(false);
+          }}
+          className={`${isDesktop ? styles.desktopInput : styles.mobileInput}`}
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="이메일 주소 또는 아이디"
+          placeholder={isInputClicked === true ? "" : "이메일 주소 또는 아이디"}
         />
         <input
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
+          onFocus={() => {
+            setIsInputClicked_1(true);
+          }}
+          onBlur={() => {
+            setIsInputClicked_1(false);
+          }}
+          className={`${isDesktop ? styles.desktopInput : styles.mobileInput}`}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="패스워드"
+          placeholder={isInputClicked_1 === true ? "" : "패스워드"}
         />
-      </div>
-      <div className={styles.findIdPass}>
-        <div>
-          <label htmlFor="keepLogin">
+        <div style={{ marginTop: "50px" }}>
+          <label className={styles.stillLoginLabel}>
             <input
-              type="checkbox"
-              id="keepLogin"
-              checked={isChecked}
-              onChange={handleCheck}
+              type="radio"
               className={styles.stillLogin}
+              checked={rememberMe}
+              onChange={handleRememberMe}
             />
             로그인 유지
           </label>
-          <label className={styles.label_with_margin}>
+          <label
+            className={`${
+              isDesktop
+                ? styles.label_with_margin
+                : styles.label_with_margin_mobile
+            }`}
+          >
             <Link
               to="/forgot-password"
               style={{ textDecoration: "none", color: "#ef455a" }}
             >
-              아이디 또는 비밀번호를 잊으셨나요?
+              아이디 또는 비밀번호를 잊으셨나요? {">>"}
             </Link>
           </label>
         </div>
-        <div>
-          <button
-            onClick={handleLogin}
-            className={`${styles.desktopLoginBox} ${
-              isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
-            }`}
-          >
-            <text className={styles.loginBoxText}>로그인</text>
-          </button>
-        </div>
+        <button
+          onClick={handleLogin}
+          className={`${
+            isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
+          }`}
+        >
+          <text className={styles.loginBoxText}>로그인</text>
+        </button>
+      </div>
+      {/* <div>
+        <button>
+          <Link to="/main">메인 스크린으로 가는 테스트 버튼</Link>
+        </button>
+      </div> */}
+      <div className={styles.findIdPass}>
         <div className={styles.RegisterBox}>
           <label>
             <Link to="/sign-up" className={styles.Register}>
@@ -118,9 +134,7 @@ const LoginMain = () => {
             </Link>
           </label>
         </div>
-        <div>
-          <SocialLoginButton />
-        </div>
+        <SocialLoginButton />
       </div>
     </div>
   );

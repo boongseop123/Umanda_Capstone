@@ -1,0 +1,51 @@
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  background-color: #fff;
+  max-width: 450px;
+  height: 670px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.containerDesktop {
+  width: 80px;
+  height: 30px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  margin-right: 10px;
+  border: 1px solid lightgray;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Calender {
+  display: flex;
+  justify-content: center;
+}
+
+.submitButton {
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  background-color: white;
+}
