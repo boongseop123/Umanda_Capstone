@@ -7,8 +7,19 @@ import Accompany30 from "../../resources/Accompany30.jpeg";
 import Meet30 from "../../resources/Meet30.jpeg";
 import Route30 from "../../resources/Route30.jpeg";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const MainPage = () => {
+  const navigate = useNavigate();
+  const moveToAi = () => {
+    navigate("/ai");
+  };
+  const moveToMeet = () => {
+    navigate("/meet");
+  };
+  const moveToAccompany = () => {
+    navigate("/accompany");
+  };
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
@@ -95,13 +106,14 @@ const MainPage = () => {
           }`}
         >
           <button
-            className={`button ${isButtonPressed ? "pressed" : ""} ${
+            onClick={moveToAccompany}
+            className={`${styles.desktopAccompany} ${
               isDesktop
                 ? styles.desktopAccompany
                 : isMobile
                 ? styles.mobileAccompany
                 : ""
-            }`}
+            } button${isButtonPressed ? " pressed" : ""}`}
             onMouseDown={handleButtonPress}
             onMouseUp={handleButtonRelease}
             onMouseLeave={handleButtonRelease}
