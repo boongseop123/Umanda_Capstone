@@ -35,7 +35,7 @@ const AccompanyBody = () => {
     console.log("확인했습니다.");
   };
   return (
-    <div style={{ height: "100%" }}>
+    <div style={{ height: "100%" }} className={styles.fonts}>
       <div
         className={`${
           isDesktop ? styles.CategoryDesktop : styles.CategoryMobile
@@ -52,7 +52,9 @@ const AccompanyBody = () => {
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
-              <option value="">성별</option>
+              <option value="" className={styles.fonts}>
+                성별
+              </option>
               <option value="male">남성</option>
               <option value="female">여성</option>
             </select>

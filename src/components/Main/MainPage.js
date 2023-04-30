@@ -127,6 +127,7 @@ const MainPage = () => {
             <p className={styles.with}>동행</p>
           </button>
           <button
+            onClick={moveToAi}
             className={`${styles.desktopAI} ${
               isDesktop ? styles.desktopAI : isMobile ? styles.mobileAI : ""
             } button${isButtonPressed ? " pressed" : ""}`}
