@@ -8,7 +8,6 @@ import BirthdatePicker from "./Pages/birthComponent";
 
 const SignUpMain = () => {
   const [responseData, setResponseData] = useState(null);
-
   let [isIdClicked, setisIdClicked] = useState(false);
   let [isPassClicked, setisPassClicked] = useState(false);
   let [isPassClicked_1, setisPassClicked_1] = useState(false);
@@ -18,14 +17,23 @@ const SignUpMain = () => {
   const [password, setPassword] = useState("");
   const [password1, setPassword1] = useState("");
   const [name, setName] = useState("");
-  const [birthdate, setBirthdate] = useState(0);
   const [gender, setGender] = useState("");
+  const [birthdate, setBirthdate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const [errors, setErrors] = useState({});
 
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
+  const handleBirthdateChange = (birthdate) => {
+    if (birthdate instanceof Date && !isNaN(birthdate)) {
+      const isoString = birthdate.toISOString();
+      setBirthdate(isoString.substring(0, 10));
+    } else {
+      setBirthdate("");
+    }
+  };
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -42,10 +50,6 @@ const SignUpMain = () => {
     setName(e.target.value);
   };
 
-  const handleBirthChange = (e) => {
-    setBirthdate(e.target.value);
-  };
-
   const handleGenderChange = (e) => {
     setGender(e.target.value);
   };
@@ -57,17 +61,14 @@ const SignUpMain = () => {
     event.preventDefault();
 
     axios
-      .post(
-        "http://ec2-13-125-237-47.ap-northeast-2.compute.amazonaws.com:8080/register",
-        {
-          username: username,
-          password: password,
-          password1: password1,
-          name: name,
-          birthdate: birthdate,
-          gender: gender,
-        }
-      )
+      .post("http://localhost:3000/register", {
+        username: username,
+        password: password,
+        password1: password1,
+        name: name,
+        birthdate: birthdate,
+        gender: gender,
+      })
       .then((response) => {
         console.log(response);
         alert("회원가입이 완료되었습니다.");
@@ -174,15 +175,10 @@ const SignUpMain = () => {
       </div>
       <div>
         <h5 className={styles.id}>생년월일</h5>
-        {/*<input
-        className={styles.Birth}
-        type="number"
-        placeholder="연도"
-        value={birthdate}
-        onChange={handleBirthChange}
-        /> */}
-
-        <BirthdatePicker className="custom-datepicker" />
+        <BirthdatePicker
+          className="custom-datepicker"
+          onBirthdateChange={handleBirthdateChange}
+        />
       </div>
       <div className={styles.label}>
         <h5>성별</h5>
