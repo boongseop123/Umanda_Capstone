@@ -26,7 +26,7 @@ const LoginMain = () => {
   const handleLogin = () => {
     axios
       .post(
-        "http://ec2-13-125-237-47.ap-northeast-2.compute.amazonaws.com:8080/login",
+        "http://ec2-43-201-73-70.ap-northeast-2.compute.amazonaws.com:8080/login",
         {
           username: username,
           password: password,
