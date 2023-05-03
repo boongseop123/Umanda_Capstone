@@ -42,13 +42,13 @@ const MainHeader = () => {
         동행
       </Link>
       <Link
-        to="/ai"
+        to="/aitravel"
         className={`${styles.ai} ${
           selectedLink === "ai" ? styles.selected : ""
         }`}
         onClick={() => setSelectedLink("ai")}
       >
-        AI 경로추천
+        AI경로추천
       </Link>
       <Link
         to="/meet"

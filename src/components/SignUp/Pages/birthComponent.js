@@ -17,11 +17,14 @@ function BirthdatePicker(props) {
 
   const handleChange = (date) => {
     setSelectedDate(date);
-    props.onBirthdateChange(
-      date instanceof Date && !isNaN(date)
-        ? date.toISOString().substring(0, 10)
-        : ""
-    );
+    const year = date?.getFullYear() ?? "";
+    const month = date?.getMonth() + 1 ?? "";
+    const day = date?.getDate() ?? "";
+    const birthdate = `${year}-${month < 10 ? "0" + month : month}-${
+      day < 10 ? "0" + day : day
+    }`;
+    props.onBirthdateChange(birthdate);
+    console.log(typeof birthdate);
   };
 
   const handleYearChange = (e) => {

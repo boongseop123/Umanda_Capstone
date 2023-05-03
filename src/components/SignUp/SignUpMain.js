@@ -27,13 +27,14 @@ const SignUpMain = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   const handleBirthdateChange = (birthdate) => {
-    if (birthdate instanceof Date && !isNaN(birthdate)) {
-      const isoString = birthdate.toISOString();
-      setBirthdate(isoString.substring(0, 10));
+    if (birthdate) {
+      //const isoString = birthdate.toISOString();
+      setBirthdate(birthdate);
     } else {
       setBirthdate("");
     }
   };
+
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
   };
@@ -61,17 +62,21 @@ const SignUpMain = () => {
     event.preventDefault();
 
     axios
-      .post("http://localhost:3000/register", {
-        username: username,
-        password: password,
-        password1: password1,
-        name: name,
-        birthdate: birthdate,
-        gender: gender,
-      })
+      .post(
+        "http://ec2-43-201-9-212.ap-northeast-2.compute.amazonaws.com:8080/register",
+        {
+          username: username,
+          password: password,
+          password1: password1,
+          name: name,
+          birthdate: birthdate,
+          gender: gender,
+        }
+      )
       .then((response) => {
         console.log(response);
         alert("회원가입이 완료되었습니다.");
+        console.log(birthdate);
         navigate("/login");
       })
       .catch((error) => {
