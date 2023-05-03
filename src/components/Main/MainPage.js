@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 const MainPage = () => {
   const navigate = useNavigate();
   const moveToAi = () => {
-    navigate("/ai");
+    navigate("/aitravel");
   };
   const moveToMeet = () => {
     navigate("/meet");
