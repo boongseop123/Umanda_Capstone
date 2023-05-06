@@ -6,6 +6,7 @@ import SignUpPage from "./components/SignUp/SignUpPage";
 import MainPage from "./components/Main/MainPage";
 import AccompanyPage from "./components/Accompany/AccompanyPage";
 import AiTravelPage from "./components/AiTravel/AiTravelPage";
+import AiTravelPage2 from "./components/AiTravel/AiTravelPage2";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/main" element={<MainPage />} />
           <Route path="/accompany" element={<AccompanyPage />} />
           <Route path="/aitravel" element={<AiTravelPage />} />
+          <Route path="/aitravel2" element={<AiTravelPage2 />} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

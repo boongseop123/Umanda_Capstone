@@ -63,7 +63,7 @@ const SignUpMain = () => {
 
     axios
       .post(
-        "http://ec2-43-201-9-212.ap-northeast-2.compute.amazonaws.com:8080/register",
+        "http://ec2-13-209-21-62.ap-northeast-2.compute.amazonaws.com:8080/register",
         {
           username: username,
           password: password,
