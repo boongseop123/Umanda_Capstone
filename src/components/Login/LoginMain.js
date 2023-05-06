@@ -6,6 +6,12 @@ import { Link } from "react-router-dom";
 import SocialLoginButton from "./socialLogin/SocialLoginButton";
 import PageRatio from "../Global/PageRatio";
 import { useMediaQuery } from "react-responsive";
+import { atom, useRecoilState } from "recoil";
+
+const accessTokenState = atom({
+  key: "accessTokenState",
+  default: localStorage.getItem("accessToken") || "",
+});
 
 const LoginMain = () => {
   const [username, setUsername] = useState("");
@@ -14,6 +20,7 @@ const LoginMain = () => {
 
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
@@ -34,6 +41,8 @@ const LoginMain = () => {
       )
       .then((response) => {
         console.log(response.data);
+        localStorage.setItem("accessToken", response.data.accessToken);
+        setAccessToken(response.data.accessToken);
         alert("로그인이 성공적으로 완료되었습니다.");
         navigate("/main");
       })

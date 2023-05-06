@@ -24,7 +24,7 @@ function BirthdatePicker(props) {
       day < 10 ? "0" + day : day
     }`;
     props.onBirthdateChange(birthdate);
-    console.log(typeof birthdate);
+    console.log(birthdate);
   };
 
   const handleYearChange = (e) => {

@@ -1,6 +1,5 @@
 /* 동행 버튼 누르면 이동되는 페이지 */
 import React from "react";
-
 import { useMediaQuery } from "react-responsive";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
