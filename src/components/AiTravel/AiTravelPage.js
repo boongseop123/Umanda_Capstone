@@ -5,6 +5,7 @@ import button from "../Accompany/Body/resources/button.png";
 import Header from "../Header/Header";
 import AiTravelProgress from "./AiTravelProgress";
 import AiTravelSelect from "./AiTravelSelect";
+import AiTravelTrait from "./AiTravelTrait";
 
 const AiTravelPage = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
@@ -18,6 +19,7 @@ const AiTravelPage = () => {
       >
         <AiTravelProgress />
         <AiTravelSelect />
+        <AiTravelTrait />
       </div>
     </div>
   );
