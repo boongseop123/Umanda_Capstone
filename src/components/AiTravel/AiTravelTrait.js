@@ -18,10 +18,19 @@ const AiTravelTrait = () => {
         return [...prevSelectedOptions, selectedOption];
       }
     });
+
+    const data = {
+      id: 0,
+      countryName: "string",
+      days: 0,
+      attractions: selectedOptions,
+    };
+
     axios.post(
-      "http://ec2-54-180-104-81.ap-northeast-2.compute.amazonaws.com:8080/api/countty",
-      { selectedOptions }
-    ); // 데이터 전송
+      "http://ec2-54-180-128-148.ap-northeast-2.compute.amazonaws.com:5000/country",
+      data,
+      { mode: "no-cors" }
+    );
   };
 
   return (

@@ -3,8 +3,14 @@ import { useMediaQuery } from "react-responsive";
 import styles from "./AiTravelSelect.module.scss";
 import refresh from "./resource/refresh.png";
 import right_arrow from "./resource/right_arrow.png";
+import AiTravelPage2 from "./AiTravelPage2";
+import { useNavigate } from "react-router";
 
 const AiTravelSelect = () => {
+  const navigate = useNavigate();
+  const moveToAi2 = () => {
+    navigate("/aitravel2");
+  };
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   return (
@@ -31,7 +37,9 @@ const AiTravelSelect = () => {
                 style={{ width: "16px" }}
               />
             </span>
-            <div className={styles.next_step}>다음 단계</div>
+            <div className={styles.next_step} onClick={moveToAi2}>
+              다음 단계
+            </div>
             <span style={{ display: "flex", alignItems: "center" }}>
               <img
                 src={right_arrow}
@@ -48,7 +56,6 @@ const AiTravelSelect = () => {
         </label>
         <br></br>
         <br></br>
-        <div className={styles.refresh}>여행 테마</div>
       </div>
     </div>
   );

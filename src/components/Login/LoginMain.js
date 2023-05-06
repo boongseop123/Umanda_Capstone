@@ -6,21 +6,19 @@ import { Link } from "react-router-dom";
 import SocialLoginButton from "./socialLogin/SocialLoginButton";
 import PageRatio from "../Global/PageRatio";
 import { useMediaQuery } from "react-responsive";
-import { atom, useRecoilState } from "recoil";
-
-const accessTokenState = atom({
-  key: "accessTokenState",
-  default: localStorage.getItem("accessToken") || "",
-});
+import { useSetRecoilState } from "recoil";
+import { tokenState } from "../../Recoils/Recoil";
 
 const LoginMain = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
+  const setToken = useSetRecoilState(tokenState);
+  // tokenState atom의 값을 읽어옴
+
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
@@ -33,7 +31,7 @@ const LoginMain = () => {
   const handleLogin = () => {
     axios
       .post(
-        "http://ec2-54-180-104-81.ap-northeast-2.compute.amazonaws.com:8080/login",
+        "http://ec2-13-209-21-62.ap-northeast-2.compute.amazonaws.com:8080/login",
         {
           username: username,
           password: password,
@@ -41,9 +39,9 @@ const LoginMain = () => {
       )
       .then((response) => {
         console.log(response.data);
-        localStorage.setItem("accessToken", response.data.accessToken);
-        setAccessToken(response.data.accessToken);
+        setToken(response.data.jwtToken);
         alert("로그인이 성공적으로 완료되었습니다.");
+        console.log(response.data.jwtToken);
         navigate("/main");
       })
       .catch((error) => {
