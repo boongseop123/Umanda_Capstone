@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styles from "./AiTravelSelect.module.scss";
 import refresh from "./resource/refresh.png";
-import arrow from "./resource/arrow.png";
+import right_arrow from "./resource/right_arrow.png";
 
 const AiTravelSelect = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
@@ -34,14 +34,21 @@ const AiTravelSelect = () => {
             <div className={styles.next_step}>다음 단계</div>
             <span style={{ display: "flex", alignItems: "center" }}>
               <img
-                src={arrow}
+                src={right_arrow}
+                alt="your-image-description-here"
+                style={{ width: "16px", filter: "hue-rotate(340deg)" }}
+              />
+              <img
+                src={right_arrow}
                 alt="your-image-description-here"
                 style={{ width: "16px", filter: "hue-rotate(340deg)" }}
               />
             </span>
           </div>
         </label>
-        <div>123</div>
+        <br></br>
+        <br></br>
+        <div className={styles.refresh}>여행 테마</div>
       </div>
     </div>
   );

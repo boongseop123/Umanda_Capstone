@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import styles from "./AccompanyBody.module.scss";
 import { useMediaQuery } from "react-responsive";
 import button from "./resources/button.png";

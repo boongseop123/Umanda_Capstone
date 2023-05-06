@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styles from "./AiTravelMain.module.scss";
 
-const AiTravelMain = () => {
+const AiTravelProgress = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   return (
@@ -88,7 +88,6 @@ const AiTravelMain = () => {
       </div>
     </div>
   );
-  /* 모달 창 */
 };
 
-export default AiTravelMain;
+export default AiTravelProgress;
