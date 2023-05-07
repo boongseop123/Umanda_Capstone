@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./AiTravelTrait.module.scss";
 
@@ -18,20 +18,11 @@ const AiTravelTrait = () => {
         return [...prevSelectedOptions, selectedOption];
       }
     });
-
-    const data = {
-      id: 0,
-      countryName: "string",
-      days: 0,
-      attractions: selectedOptions,
-    };
-
-    axios.post(
-      "http://ec2-54-180-128-148.ap-northeast-2.compute.amazonaws.com:5000/country",
-      data,
-      { mode: "no-cors" }
-    );
   };
+
+  useEffect(() => {
+    console.log(selectedOptions);
+  }, [selectedOptions]);
 
   return (
     <div className={styles.container}>
