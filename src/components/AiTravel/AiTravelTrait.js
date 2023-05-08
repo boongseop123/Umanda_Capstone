@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./AiTravelTrait.module.scss";
-
+import AiTravelCountry from "./AiTravelCounrty";
+import { useRecoilValue } from "recoil";
+import { selectedCountriesState } from "../../recoils/Recoil";
+import { API_URL_AI } from "../Constant";
 const AiTravelTrait = () => {
+  const selectedCountries = useRecoilValue(selectedCountriesState);
+
+  console.log(selectedCountries);
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOptionChange = (e) => {
@@ -23,6 +29,28 @@ const AiTravelTrait = () => {
   useEffect(() => {
     console.log(selectedOptions);
   }, [selectedOptions]);
+
+  const handleSubmit = async () => {
+    try {
+      // 선택된 국가와 옵션을 JSON 형식으로 변환하여 서버에 보낸다.
+      const data = JSON.stringify({
+        countryName: selectedCountries,
+        features: selectedOptions,
+      });
+      console.log(data);
+      await axios.post(`${API_URL_AI}/getURI`, data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log("성공적으로 서버에 데이터를 보냈습니다!");
+    } catch (error) {
+      console.error(
+        "데이터를 서버에 보내는 도중에 에러가 발생했습니다:",
+        error
+      );
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -120,6 +148,7 @@ const AiTravelTrait = () => {
           </label>
         </div>
       </div>
+      <button onClick={handleSubmit}>서버에 데이터 전송</button>
     </div>
   );
 };

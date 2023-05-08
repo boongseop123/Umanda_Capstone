@@ -5,6 +5,7 @@ import styles from "./SignUpPage.module.scss";
 import { useNavigate } from "react-router";
 import { useMediaQuery } from "react-responsive";
 import BirthdatePicker from "./Pages/birthComponent";
+import { API_URL } from "../Constant";
 
 const SignUpMain = () => {
   const [responseData, setResponseData] = useState(null);
@@ -62,17 +63,14 @@ const SignUpMain = () => {
     event.preventDefault();
 
     axios
-      .post(
-        "http://ec2-3-35-49-243.ap-northeast-2.compute.amazonaws.com:8080/register",
-        {
-          username: username,
-          password: password,
-          password1: password1,
-          name: name,
-          birthdate: birthdate,
-          gender: gender,
-        }
-      )
+      .post(`${API_URL}/register`, {
+        username: username,
+        password: password,
+        password1: password1,
+        name: name,
+        birthdate: birthdate,
+        gender: gender,
+      })
       .then((response) => {
         console.log(response);
         alert("회원가입이 완료되었습니다.");
