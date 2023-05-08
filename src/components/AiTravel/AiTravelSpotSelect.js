@@ -48,7 +48,7 @@ const AiTravelSpotSelect = () => {
 
   return (
     <>
-      <h1>시발 사진이 왜이리 적노?</h1>
+      <h1>시발 사진이 왜이리 적노??</h1>
       <div
         className={styles.spots}
         style={{ display: "flex", flexWrap: "wrap" }}
