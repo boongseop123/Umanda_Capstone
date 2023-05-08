@@ -5,7 +5,11 @@ import AiTravelCountry from "./AiTravelCounrty";
 import { useRecoilValue } from "recoil";
 import { selectedCountriesState } from "../../recoils/Recoil";
 import { API_URL_AI } from "../Constant";
+import { useNavigate } from "react-router";
 const AiTravelTrait = () => {
+  const navigate = useNavigate();
+  const [response, setResponse] = useState(null); // 응답데이터를 저장할 상태
+
   const selectedCountries = useRecoilValue(selectedCountriesState);
 
   console.log(selectedCountries);
@@ -38,12 +42,16 @@ const AiTravelTrait = () => {
         features: selectedOptions,
       });
       console.log(data);
-      await axios.post(`${API_URL_AI}/getURI`, data, {
+      const response = await axios.post(`${API_URL_AI}/getURI`, data, {
         headers: {
           "Content-Type": "application/json",
         },
       });
+      setResponse(response.data); // 응답데이터를 상태로 저장
       console.log("성공적으로 서버에 데이터를 보냈습니다!");
+      navigate("/ai-travel-spot-select", {
+        state: { response: response.data },
+      }); // 이동할 경로를 지정
     } catch (error) {
       console.error(
         "데이터를 서버에 보내는 도중에 에러가 발생했습니다:",
