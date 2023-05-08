@@ -8,8 +8,8 @@ import { useNavigate } from "react-router";
 
 const AiTravelSelect = () => {
   const navigate = useNavigate();
-  const moveToAi2 = () => {
-    navigate("/aitravel2");
+  const moveToAi = () => {
+    navigate("/aitravel");
   };
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
@@ -37,7 +37,7 @@ const AiTravelSelect = () => {
                 style={{ width: "16px" }}
               />
             </span>
-            <div className={styles.next_step} onClick={moveToAi2}>
+            <div className={styles.next_step} onClick={moveToAi}>
               다음 단계
             </div>
             <span style={{ display: "flex", alignItems: "center" }}>

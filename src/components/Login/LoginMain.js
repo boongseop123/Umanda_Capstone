@@ -7,7 +7,8 @@ import SocialLoginButton from "./socialLogin/SocialLoginButton";
 import PageRatio from "../Global/PageRatio";
 import { useMediaQuery } from "react-responsive";
 import { useSetRecoilState } from "recoil";
-import { tokenState } from "../../Recoils/Recoil";
+import { tokenState } from "../../recoils/Recoil";
+import { API_URL } from "../Constant";
 
 const LoginMain = () => {
   const [username, setUsername] = useState("");
@@ -30,13 +31,10 @@ const LoginMain = () => {
 
   const handleLogin = () => {
     axios
-      .post(
-        "http://ec2-3-35-49-243.ap-northeast-2.compute.amazonaws.com:8080/login",
-        {
-          username: username,
-          password: password,
-        }
-      )
+      .post(`${API_URL}/login`, {
+        username: username,
+        password: password,
+      })
       .then((response) => {
         console.log(response.data);
         setToken(response.data.jwtToken);
