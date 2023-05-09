@@ -8,6 +8,10 @@ import AccompanyPage from "./components/Accompany/AccompanyPage";
 import AiTravelPage from "./components/AiTravel/AiTravelPage";
 import AiTravelPage2 from "./components/AiTravel/AiTravelPage2";
 import AiTravelSpotSelect from "./components/AiTravel/AiTravelSpotSelect";
+import AiTravelDate from "./components/AiTravel/AiTravelDate";
+import AiTravelModel from "./components/AiTravel/AiTravelModel";
+import AiTravelMap from "./components/AiTravel/AiTravelMap";
+import PostBody from "./components/Accompany/PostBody";
 
 function App() {
   return (
@@ -25,6 +29,10 @@ function App() {
             path="/ai-travel-spot-select"
             element={<AiTravelSpotSelect />}
           />
+          <Route path="/aitravel_date" element={<AiTravelDate />} />
+          <Route path="/aitravelmodel" element={<AiTravelModel />} />
+          <Route path="/aitravelmap" element={<AiTravelMap />} />
+          <Route path="/meet" element={<PostBody />} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

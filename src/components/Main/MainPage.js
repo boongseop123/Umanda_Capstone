@@ -144,6 +144,7 @@ const MainPage = () => {
             <p className={styles.with}>Ai 경로 추천</p>
           </button>
           <button
+            onClick={moveToMeet}
             className={`${styles.desktopMeet} ${
               isButtonPressed ? "pressed" : ""
             } ${

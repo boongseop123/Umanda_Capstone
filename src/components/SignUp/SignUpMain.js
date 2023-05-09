@@ -63,7 +63,7 @@ const SignUpMain = () => {
     event.preventDefault();
 
     axios
-      .post(`${API_URL}/register`, {
+      .post(`${API_URL}/users/register`, {
         username: username,
         password: password,
         password1: password1,

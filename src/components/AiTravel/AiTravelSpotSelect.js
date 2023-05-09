@@ -1,16 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./AiTravelSpotSelect.module.scss";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  responseState,
+  selectedSpotsState,
+  selectedCountryNameState,
+} from "../../recoils/Recoil";
+import { useNavigate } from "react-router-dom";
 
 const pageSize = 12; // 한 페이지에 보여줄 데이터 개수
 const numColumns = 2; // 한 줄에 보여줄 사진 개수
 
 const AiTravelSpotSelect = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/aitravel_date");
+  };
   const location = useLocation();
   const response = location?.state?.response;
 
   const [spotIndex, setSpotIndex] = useState(0); // 현재 보여지고 있는 스팟 인덱스
   const [displayedSpots, setDisplayedSpots] = useState([]); // 현재 페이지에 보여지는 스팟들
+  const [selectedSpots, setSelectedSpots] = useRecoilState(selectedSpotsState);
+  const [selectedCountryName, setSelectedCountryName] = useRecoilState(
+    selectedCountryNameState
+  );
 
   const loadMoreButtonRef = useRef(null); // '더 보기' 버튼의 ref
 
@@ -31,12 +47,30 @@ const AiTravelSpotSelect = () => {
     setSpotIndex(newIndex);
   };
 
+  const handleSpotClick = (spot) => {
+    console.log("Spot clicked: ", spot.spot);
+    // 이미 선택된 스팟인 경우 중복으로 배열에 추가하지 않음
+    if (selectedSpots.some((selectedSpot) => selectedSpot === spot.spot)) {
+      return;
+    }
+
+    setSelectedSpots((prevState) => [...prevState, spot.spot]);
+    setSelectedCountryName(spot.countryName);
+    alert("확인되었습니다.");
+  };
+
+  useEffect(() => {
+    console.log("Selected spots: ", selectedSpots);
+    console.log("Selected country name: ", selectedCountryName);
+  }, [selectedSpots, selectedCountryName]);
+
   // 스팟을 numColumns 열로 구성하여 출력
   const renderSpot = (spot, index) => (
     <div
       key={index}
       className={styles.spot}
       style={{ width: `${100 / numColumns}%` }}
+      onClick={() => handleSpotClick(spot)}
     >
       {/* response를 이용해 화면에 원하는 정보를 보여줌 */}
       <img src={spot.URI} alt={spot.spot} />
@@ -55,6 +89,8 @@ const AiTravelSpotSelect = () => {
       >
         {displayedSpots.map(renderSpot)}
       </div>
+      <button onClick={handleNavigate}>다음</button>
+
       {spotIndex + pageSize < response?.spot?.length && (
         // 더 보기 버튼이 클릭되면 handleLoadMore 함수가 실행됨
         <button onClick={handleLoadMore} ref={loadMoreButtonRef}>
