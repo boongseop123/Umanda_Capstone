@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import SocialLoginButton from "./socialLogin/SocialLoginButton";
 import PageRatio from "../Global/PageRatio";
 import { useMediaQuery } from "react-responsive";
-import { useSetRecoilState } from "recoil";
-import { tokenState } from "../../recoils/Recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
+import { tokenState, IdState } from "../../recoils/Recoil";
 import { API_URL } from "../Constant";
 
 const LoginMain = () => {
@@ -16,6 +16,7 @@ const LoginMain = () => {
   const [rememberMe, setRememberMe] = useState(false);
 
   const setToken = useSetRecoilState(tokenState);
+  const [id, setId] = useRecoilState(IdState);
   // tokenState atom의 값을 읽어옴
 
   const navigate = useNavigate();
@@ -31,15 +32,17 @@ const LoginMain = () => {
 
   const handleLogin = () => {
     axios
-      .post(`${API_URL}/login`, {
+      .post(`${API_URL}/users/login`, {
         username: username,
         password: password,
       })
       .then((response) => {
         console.log(response.data);
         setToken(response.data.jwtToken);
+        setId(response.data.id);
         alert("로그인이 성공적으로 완료되었습니다.");
-        console.log(response.data.jwtToken);
+        //console.log(response.data.jwtToken);
+        console.log(response.data.id);
         navigate("/main");
       })
       .catch((error) => {
