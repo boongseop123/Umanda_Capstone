@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./AiTravelSpotSelect.module.scss";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   responseState,
   selectedSpotsState,
   selectedCountryNameState,
+  selectedSpotsByCountryState,
+  updatedSelectedSpotsByCountryState,
 } from "../../recoils/Recoil";
 import { useNavigate } from "react-router-dom";
 
@@ -26,6 +28,15 @@ const AiTravelSpotSelect = () => {
   const [selectedSpots, setSelectedSpots] = useRecoilState(selectedSpotsState);
   const [selectedCountryName, setSelectedCountryName] = useRecoilState(
     selectedCountryNameState
+  );
+  const [selectedSpotsByCountry, setSelectedSpotsByCountry] = useRecoilState(
+    selectedSpotsByCountryState
+  );
+  const setUpdatedSelectedSpotsByCountry = useSetRecoilState(
+    updatedSelectedSpotsByCountryState
+  );
+  const updatedSelectedSpotsByCountry = useRecoilValue(
+    updatedSelectedSpotsByCountryState
   );
 
   const loadMoreButtonRef = useRef(null); // '더 보기' 버튼의 ref
@@ -49,20 +60,58 @@ const AiTravelSpotSelect = () => {
 
   const handleSpotClick = (spot) => {
     console.log("Spot clicked: ", spot.spot);
+
+    const currentCountryName = selectedCountryName;
+    const selectedSpotsByCountrySnapshot = { ...selectedSpotsByCountry };
+
     // 이미 선택된 스팟인 경우 중복으로 배열에 추가하지 않음
     if (selectedSpots.some((selectedSpot) => selectedSpot === spot.spot)) {
       return;
     }
 
-    setSelectedSpots((prevState) => [...prevState, spot.spot]);
-    setSelectedCountryName(spot.countryName);
+    // 선택한 스팟이 이전에 선택한 나라와 같은 경우
+    if (currentCountryName === spot.countryName) {
+      setSelectedSpots((prevSelectedSpots) => [
+        ...prevSelectedSpots,
+        spot.spot,
+      ]);
+    } else {
+      // 선택한 스팟이 이전에 선택한 나라와 다른 경우
+      const updatedSelectedSpotsByCountry = {
+        ...selectedSpotsByCountrySnapshot,
+        [currentCountryName]: selectedSpots,
+      };
+
+      setSelectedSpots([spot.spot]);
+      setSelectedCountryName(spot.countryName);
+      setSelectedSpotsByCountry(updatedSelectedSpotsByCountry);
+    }
+
     alert("확인되었습니다.");
   };
+  useEffect(() => {
+    // 스팟 선택이 변경될 때마다 selectedSpotsByCountry 업데이트
+    const updatedSelectedSpotsByCountry = {
+      ...selectedSpotsByCountry,
+      [selectedCountryName]: selectedSpots,
+    };
+    setSelectedSpotsByCountry(updatedSelectedSpotsByCountry);
+  }, [selectedSpots, selectedCountryName, setSelectedSpotsByCountry]);
 
   useEffect(() => {
     console.log("Selected spots: ", selectedSpots);
     console.log("Selected country name: ", selectedCountryName);
-  }, [selectedSpots, selectedCountryName]);
+    console.log("Selected spots by country: ", selectedSpotsByCountry);
+
+    const updatedSelectedSpotsByCountry = Object.fromEntries(
+      Object.entries(selectedSpotsByCountry).filter(([key]) => key !== "")
+    );
+    console.log(
+      "Updated selected spots by country: ",
+      updatedSelectedSpotsByCountry
+    );
+    setUpdatedSelectedSpotsByCountry(updatedSelectedSpotsByCountry);
+  }, [selectedSpots, selectedCountryName, selectedSpotsByCountry]);
 
   // 스팟을 numColumns 열로 구성하여 출력
   const renderSpot = (spot, index) => (
