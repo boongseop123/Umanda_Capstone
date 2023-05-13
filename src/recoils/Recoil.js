@@ -20,6 +20,11 @@ export const selectedCountryNameState = atom({
   default: "",
 });
 
+export const selectedOptionsState = atom({
+  key: "selectedOptionsState",
+  default: [],
+});
+
 export const responseState = atom({
   key: "responseState",
   default: "",

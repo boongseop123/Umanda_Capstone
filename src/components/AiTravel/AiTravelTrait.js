@@ -1,38 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  selectedOptionsState,
+  selectedCountriesState,
+} from "../../recoils/Recoil";
 import axios from "axios";
-import styles from "./AiTravelTrait.module.scss";
-import AiTravelCountry from "./AiTravelCounrty";
-import { useRecoilValue } from "recoil";
-import { selectedCountriesState } from "../../recoils/Recoil";
 import { API_URL_AI } from "../Constant";
 import { useNavigate } from "react-router";
+import styles from "./AiTravelTrait.module.scss";
+
 const AiTravelTrait = () => {
   const navigate = useNavigate();
   const [response, setResponse] = useState(null); // 응답데이터를 저장할 상태
 
   const selectedCountries = useRecoilValue(selectedCountriesState);
-
-  console.log(selectedCountries);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] =
+    useRecoilState(selectedOptionsState);
 
   const handleOptionChange = (e) => {
     const selectedOption = e.target.value;
     setSelectedOptions((prevSelectedOptions) => {
       if (prevSelectedOptions.includes(selectedOption)) {
-        // 이미 선택된 옵션일 경우 선택 해제
         return prevSelectedOptions.filter(
           (option) => option !== selectedOption
         );
       } else {
-        // 선택되지 않은 옵션일 경우 선택 추가
         return [...prevSelectedOptions, selectedOption];
       }
     });
   };
-
-  useEffect(() => {
-    console.log(selectedOptions);
-  }, [selectedOptions]);
 
   const handleSubmit = async () => {
     try {

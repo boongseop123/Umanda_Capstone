@@ -3,6 +3,21 @@
   justify-content: center;
   padding: 20px;
 }
+.selectedCountry {
+  font-family: "Happy", sans-serif;
+
+  margin-top: 50px;
+  margin-bottom: 230px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* Add this line for horizontal center alignment */
+}
+
+.selectedCountry p {
+  margin: 0;
+  margin-right: 10px; /* Adjust the spacing between items as needed */
+}
 
 .column {
   display: flex;
