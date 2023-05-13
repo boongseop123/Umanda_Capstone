@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 const AiTravelSelect = () => {
   const navigate = useNavigate();
   const moveToAi = () => {
-    navigate("/aitravel");
+    navigate("/aitravel2");
   };
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 

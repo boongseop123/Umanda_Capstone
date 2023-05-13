@@ -145,60 +145,81 @@ const AiTravelCountry = () => {
     }, []);
     return selectedCountriesRef.current;
   }
+
+  function getKoreanCountryName(country) {
+    switch (country) {
+      case "British":
+        return "영국";
+      case "France":
+        return "프랑스";
+      case "Spain":
+        return "스페인";
+      case "Switzerland":
+        return "스위스";
+      case "Italy":
+        return "이탈리아";
+      case "Germeny":
+        return "독일";
+      default:
+        return country;
+    }
+  }
   return (
-    <div className={styles.container}>
-      <div className={styles.column}>
-        {firstColumn.map((item) => (
-          <button
-            key={item}
-            onClick={() => handleFirstClick(item)}
-            className={selectedFirst === item ? styles.active : ""}
-          >
-            {item}
-          </button>
-        ))}
+    <div>
+      <div className={styles.container}>
+        <div className={styles.column}>
+          {firstColumn.map((item) => (
+            <button
+              key={item}
+              onClick={() => handleFirstClick(item)}
+              className={selectedFirst === item ? styles.active : ""}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+        {selectedFirst && (
+          <div className={styles.column}>
+            {secondColumn[selectedFirst] &&
+              secondColumn[selectedFirst].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => handleSecondClick(item)}
+                  className={selectedSecond === item ? styles.active : ""}
+                >
+                  {item}
+                </button>
+              ))}
+          </div>
+        )}
+        {selectedSecond && (
+          <div className={styles.column}>
+            {thirdColumn[selectedSecond] &&
+              thirdColumn[selectedSecond].map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => handleThirdClick(item)}
+                  className={
+                    (selectedThird &&
+                      selectedThird.findIndex(
+                        (selectedItem) => selectedItem.name === item.name
+                      ) > -1) ||
+                    item.checked
+                      ? styles.active
+                      : ""
+                  }
+                >
+                  {item.name}
+                </button>
+              ))}
+          </div>
+        )}
       </div>
-      {selectedFirst && (
-        <div className={styles.column}>
-          {secondColumn[selectedFirst] &&
-            secondColumn[selectedFirst].map((item) => (
-              <button
-                key={item}
-                onClick={() => handleSecondClick(item)}
-                className={selectedSecond === item ? styles.active : ""}
-              >
-                {item}
-              </button>
-            ))}
-        </div>
-      )}
-      {selectedSecond && (
-        <div className={styles.column}>
-          {thirdColumn[selectedSecond] &&
-            thirdColumn[selectedSecond].map((item) => (
-              <button
-                key={item.name}
-                onClick={() => handleThirdClick(item)}
-                className={
-                  (selectedThird &&
-                    selectedThird.findIndex(
-                      (selectedItem) => selectedItem.name === item.name
-                    ) > -1) ||
-                  item.checked
-                    ? styles.active
-                    : ""
-                }
-              >
-                {item.name}
-              </button>
-            ))}
-        </div>
-      )}
-      {selectedCountries.length > 0 && (
-        <div>
-          <p>선택된 국가:</p>
+      {selectedFirst && selectedSecond && selectedThird && (
+        <div className={styles.selectedCountry}>
+          <p>선택한 나라:</p>
           {selectedCountries.map((country) => (
-            <p key={country}>{country}</p>
+            <p key={country}>{getKoreanCountryName(country)}</p>
           ))}
         </div>
       )}
