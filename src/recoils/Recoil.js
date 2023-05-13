@@ -49,3 +49,21 @@ export const postState = atom({
   key: "postState",
   default: [],
 });
+
+export const selectedSpotsByCountryState = atom({
+  key: "selectedSpotsByCountryState",
+  default: {},
+});
+
+export const selectedSpotsByCountrySelector = selector({
+  key: "selectedSpotsByCountrySelector",
+  get: ({ get }) => {
+    const selectedSpotsByCountry = get(selectedSpotsByCountryState);
+    return selectedSpotsByCountry;
+  },
+});
+
+export const updatedSelectedSpotsByCountryState = atom({
+  key: "updatedSelectedSpotsByCountryState",
+  default: {},
+});

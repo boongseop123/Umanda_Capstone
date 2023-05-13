@@ -22,28 +22,38 @@ const AiTravelModel = () => {
     return <div>Loading...</div>;
   }
 
+  let countryData = {};
+
   if (!isLoaded) {
-    const { id, latitude, longitude } = response[0];
-    setLatitude(latitude);
-    setLongitude(longitude);
+    response.forEach((data) => {
+      const { countryName, recommend1, recommend2, recommend3 } = data;
+      if (!countryData[countryName]) {
+        countryData[countryName] = [];
+      }
+      countryData[countryName].push(
+        recommend1.spot,
+        recommend2.spot,
+        recommend3.spot
+      );
+    });
     setIsLoaded(true);
   }
 
   return (
     <div>
-      <h2>병신 모델</h2>
-      {response.map((data) => {
-        const { id, latitude, longitude, spot } = data;
-        return (
-          <div key={id}>
-            <p>구분하기 위해 부여한 id?: {id}</p>
-            <hr></hr>
-            <p>latitude: {latitude}</p>
-            <p>longitude: {longitude}</p>
-            <p>spot: {spot}</p>
-          </div>
-        );
-      })}
+      {Object.keys(countryData).map((countryName) => (
+        <div key={countryName}>
+          <h2>{countryName}</h2>
+          {countryData[countryName].map((spot, index) => (
+            <div key={index}>
+              <p>Response {index + 1}:</p>
+              <p>latitude: {spot?.latitude}</p>
+              <p>longitude: {spot?.longitude}</p>
+              <p>spot: {spot?.spot}</p>
+            </div>
+          ))}
+        </div>
+      ))}
       <button onClick={handleNavigate}>구글맵띄우기</button>
     </div>
   );
