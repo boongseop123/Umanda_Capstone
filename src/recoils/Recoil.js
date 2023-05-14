@@ -67,3 +67,24 @@ export const updatedSelectedSpotsByCountryState = atom({
   key: "updatedSelectedSpotsByCountryState",
   default: {},
 });
+
+export const countryDurationsState = atom({
+  key: "countryDurationsState",
+  default: [], // 국가별 기간을 담을 상태
+});
+
+export const selectedCountryDurationsSelector = selector({
+  key: "selectedCountryDurationsSelector",
+  get: ({ get }) => {
+    const selectedCountries = get(selectedCountriesState);
+    const countryDurations = get(countryDurationsState);
+    return selectedCountries.map((country, index) => {
+      return countryDurations[index] || null;
+    });
+  },
+});
+
+export const travelDurationState = atom({
+  key: "travelDurationState",
+  default: [],
+});

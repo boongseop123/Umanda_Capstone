@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import styles from "./AiTravelMain.module.scss";
+import styles from "../Page1/AiTravelMain.module.scss";
 
 const AiTravelProgress2 = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
@@ -30,7 +30,7 @@ const AiTravelProgress2 = () => {
               }}
               checked={true}
             />
-            <div>여행 테마</div>
+            <div>여행 국가</div>
           </div>
           <div style={{ marginRight: "16px", textAlign: "center" }}>
             <input
@@ -47,7 +47,7 @@ const AiTravelProgress2 = () => {
               }}
               checked={true}
             />
-            <div>여행 국가</div>
+            <div>체류 기간</div>
           </div>
           <div style={{ marginRight: "16px", textAlign: "center" }}>
             <input
@@ -59,12 +59,12 @@ const AiTravelProgress2 = () => {
                 borderRadius: "50%",
                 width: "16px",
                 height: "16px",
-                border: "2px solid gray",
+                border: "2px solid #ef455a",
                 backgroundColor: "#fff",
               }}
               checked={true}
             />
-            <div>체류 기간</div>
+            <div>여행 테마</div>
           </div>
           <div style={{ textAlign: "center" }}>
             <input

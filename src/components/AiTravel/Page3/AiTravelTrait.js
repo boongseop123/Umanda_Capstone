@@ -3,9 +3,9 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
   selectedOptionsState,
   selectedCountriesState,
-} from "../../recoils/Recoil";
+} from "../../../recoils/Recoil";
 import axios from "axios";
-import { API_URL_AI } from "../Constant";
+import { API_URL_AI } from "../../Constant";
 import { useNavigate } from "react-router";
 import styles from "./AiTravelTrait.module.scss";
 
@@ -58,6 +58,7 @@ const AiTravelTrait = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.title}>원하는 여행 테마를 선택해 주세요!</div>
       <div className={styles.row}>
         <div className={styles.col}>
           <label className={styles.option}>
@@ -152,7 +153,6 @@ const AiTravelTrait = () => {
           </label>
         </div>
       </div>
-      <button onClick={handleSubmit}>서버에 데이터 전송</button>
     </div>
   );
 };

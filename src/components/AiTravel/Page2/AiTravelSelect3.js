@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import styles from "./AiTravelSelect.module.scss";
-import refresh from "./resource/refresh.png";
-import right_arrow from "./resource/right_arrow.png";
-import AiTravelPage2 from "./AiTravelPage2";
+import styles from "../Page3/AiTravelSelect.module.scss";
+import refresh from "../resource/refresh.png";
+import right_arrow from "../resource/right_arrow.png";
+import AiTravelPage2 from "../Page3/AiTravelPage2";
 import { useNavigate } from "react-router";
 
-const AiTravelSelect = () => {
+const AiTravelSelect3 = () => {
   const navigate = useNavigate();
   const moveToAi = () => {
     navigate("/aitravel2");
@@ -61,4 +61,4 @@ const AiTravelSelect = () => {
   );
 };
 
-export default AiTravelSelect;
+export default AiTravelSelect3;
