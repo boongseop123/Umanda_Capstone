@@ -10,6 +10,9 @@ import {
   updatedSelectedSpotsByCountryState,
 } from "../../recoils/Recoil";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import Header from "../Header/Header";
+import AiTravelProgress4 from "./AiTravelProgress4";
 
 const pageSize = 12; // 한 페이지에 보여줄 데이터 개수
 const numColumns = 2; // 한 줄에 보여줄 사진 개수
@@ -22,6 +25,7 @@ const AiTravelSpotSelect = () => {
   };
   const location = useLocation();
   const response = location?.state?.response;
+  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   const [spotIndex, setSpotIndex] = useState(0); // 현재 보여지고 있는 스팟 인덱스
   const [displayedSpots, setDisplayedSpots] = useState([]); // 현재 페이지에 보여지는 스팟들
@@ -117,12 +121,16 @@ const AiTravelSpotSelect = () => {
   const renderSpot = (spot, index) => (
     <div
       key={index}
-      className={styles.spot}
+      className={`${styles.spot} ${
+        selectedSpots.includes(spot.spot) ? styles.selected : ""
+      }`}
       style={{ width: `${100 / numColumns}%` }}
       onClick={() => handleSpotClick(spot)}
     >
       {/* response를 이용해 화면에 원하는 정보를 보여줌 */}
-      <img src={spot.URI} alt={spot.spot} />
+      <div className={styles.imageContainer}>
+        <img src={spot.URI} alt={spot.spot} className={styles.image} />
+      </div>
       <p>{spot.countryName}</p>
       <p>{spot.feature}</p>
       <p>{spot.spot}</p>
@@ -130,23 +138,48 @@ const AiTravelSpotSelect = () => {
   );
 
   return (
-    <>
-      <h1>시발 사진이 왜이리 적노??</h1>
-      <div
-        className={styles.spots}
-        style={{ display: "flex", flexWrap: "wrap" }}
-      >
-        {displayedSpots.map(renderSpot)}
-      </div>
-      <button onClick={handleNavigate}>다음</button>
+    <div>
+      <div className={styles.Frame1}>
+        <Header />
+        <div
+          className={`${styles.spots} ${
+            isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
+          }`}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            border: "1px solid white",
+            boxShadow: "0px 3px 6px #a7999a3e",
+            backgroundColor: "white",
+            borderTopLeftRadius: "45px",
+            borderTopRightRadius: "45px",
+            margin: "0 auto",
+            overflowY: "auto",
+            minHeight: "200px",
+            maxWidth: "550px",
+          }}
+        >
+          <div style={{ margin: "20px auto", textAlign: "center" }}>
+            <h3 className={styles.h1}>선호하는 관광지들을 선택해주세요!</h3>
+            <br />
+          </div>
 
-      {spotIndex + pageSize < response?.spot?.length && (
-        // 더 보기 버튼이 클릭되면 handleLoadMore 함수가 실행됨
-        <button onClick={handleLoadMore} ref={loadMoreButtonRef}>
-          더 보기
-        </button>
-      )}
-    </>
+          {displayedSpots.map(renderSpot)}
+          <button onClick={handleNavigate} className={styles.button}>
+            다음
+          </button>
+          {spotIndex + pageSize < response?.spot?.length && (
+            // 더 보기 버튼이 클릭되면 handleLoadMore 함수가 실행됨
+            <button
+              onClick={handleLoadMore}
+              style={{ fontWeight: 600, fontFamily: "Happy" }}
+            >
+              더 보기
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

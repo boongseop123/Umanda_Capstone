@@ -10,7 +10,24 @@
   box-sizing: border-box;
   height: 350px;
 }
+.Frame1 {
+  width: 550px;
 
+  margin: 0 auto;
+  background-color: #ef455a;
+}
+
+.desktopFrame2 {
+  top: 70px;
+  margin: 0 auto;
+  max-width: 550px;
+  position: relative;
+  border: 1px solid white;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  background-color: white;
+  border-top-left-radius: 45px;
+  border-top-right-radius: 45px;
+}
 .spot img {
   width: 100%;
   height: 250px;
@@ -21,4 +38,35 @@
   margin: 0;
   font-size: 16px;
   line-height: 1.5;
+  font-family: "Happy", sans-serif;
+}
+
+.selected {
+  border: 2px solid #ef455a; // 테두리 스타일 설정
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px; // 원하는 이미지 크기로 조정
+  margin-bottom: 10px; // 이미지 사이의 간격 조정
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.h3 {
+  align-items: center;
+  text-align: center;
+  font-family: "Happy", sans-serif;
+}
+
+.button {
+  margin-left: 400px;
+  font-family: "Happy", sans-serif;
+  font-weight: 600;
 }
