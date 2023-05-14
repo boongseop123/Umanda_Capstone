@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import styles from "./AiTravelSelect.module.scss";
-import refresh from "./resource/refresh.png";
-import right_arrow from "./resource/right_arrow.png";
+import refresh from "../resource/refresh.png";
+import right_arrow from "../resource/right_arrow.png";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { API_URL_AI } from "../Constant";
+import { API_URL_AI } from "../../Constant";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   selectedCountriesState,
   selectedOptionsState,
-} from "../../recoils/Recoil";
+} from "../../../recoils/Recoil";
 
 const AiTravelSelect2 = ({ onNextStep }) => {
   const navigate = useNavigate();

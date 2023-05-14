@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import styles from "./AiTravelMain.module.scss";
+import styles from "../Page1/AiTravelPage.module.scss";
 
-const AiTravelProgress = () => {
+const AiTravelProgress3 = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   return (
@@ -30,23 +30,6 @@ const AiTravelProgress = () => {
               }}
               checked={true}
             />
-            <div>여행 테마</div>
-          </div>
-          <div style={{ marginRight: "16px", textAlign: "center" }}>
-            <input
-              type="radio"
-              disabled={true}
-              style={{
-                marginBottom: "4px",
-                appearance: "none",
-                borderRadius: "50%",
-                width: "16px",
-                height: "16px",
-                border: "2px solid gray",
-                backgroundColor: "#fff",
-              }}
-              checked={true}
-            />
             <div>여행 국가</div>
           </div>
           <div style={{ marginRight: "16px", textAlign: "center" }}>
@@ -59,12 +42,29 @@ const AiTravelProgress = () => {
                 borderRadius: "50%",
                 width: "16px",
                 height: "16px",
-                border: "2px solid gray",
+                border: "2px solid #ef455a",
                 backgroundColor: "#fff",
               }}
               checked={true}
             />
             <div>체류 기간</div>
+          </div>
+          <div style={{ marginRight: "16px", textAlign: "center" }}>
+            <input
+              type="radio"
+              disabled={true}
+              style={{
+                marginBottom: "4px",
+                appearance: "none",
+                borderRadius: "50%",
+                width: "16px",
+                height: "16px",
+                border: "2px solid gray",
+                backgroundColor: "#fff",
+              }}
+              checked={true}
+            />
+            <div>여행 테마</div>
           </div>
           <div style={{ textAlign: "center" }}>
             <input
@@ -90,4 +90,4 @@ const AiTravelProgress = () => {
   );
 };
 
-export default AiTravelProgress;
+export default AiTravelProgress3;

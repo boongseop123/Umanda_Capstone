@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import styles from "./AiTravelCountry.module.scss";
 import { useRecoilState } from "recoil";
-import { selectedCountriesState } from "../../recoils/Recoil";
+import { selectedCountriesState } from "../../../recoils/Recoil";
 
 const AiTravelCountry = () => {
   const selectedCountriesRef = useRef([]);

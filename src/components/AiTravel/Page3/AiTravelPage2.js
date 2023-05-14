@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import styles from "./AiTravelPage.module.scss";
+import styles from "../Page1/AiTravelPage.module.scss";
 import { useMediaQuery } from "react-responsive";
-import button from "../Accompany/Body/resources/button.png";
-import Header from "../Header/Header";
+import button from "../../Accompany/Body/resources/button.png";
+import Header from "../../Header/Header";
 import AiTravelProgress2 from "./AiTravelProgress2";
 import AiTravelSelect2 from "./AiTravelSelect2";
-import AiTravelCountry from "./AiTravelCounrty";
+import AiTravelCountry from "../Page1/AiTravelCounrty";
 import AiTravelTrait from "./AiTravelTrait";
 
 const AiTravelPage2 = () => {

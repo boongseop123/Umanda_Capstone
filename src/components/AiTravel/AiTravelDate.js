@@ -34,9 +34,11 @@ const AiTravelDate = () => {
           const requestBody = {
             id: 1,
             countryName: country,
-            days: 2,
+            days: 3,
             spot: [...spots],
           };
+
+          console.log(requestBody.countryName);
 
           const response = await axios.post(
             `${API_URL_AI}/country`,
