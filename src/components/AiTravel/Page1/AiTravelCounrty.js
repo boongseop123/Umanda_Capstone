@@ -166,6 +166,16 @@ const AiTravelCountry = () => {
   }
   return (
     <div>
+      <div>
+        <div className={styles.line}>여행할 나라를 선택해주세요!</div>
+        {selectedFirst && selectedSecond && selectedThird && (
+          <div className={styles.selectedCountry}>
+            {selectedCountries.map((country) => (
+              <p key={country}>{getKoreanCountryName(country)}</p>
+            ))}
+          </div>
+        )}
+      </div>
       <div className={styles.container}>
         <div className={styles.column}>
           {firstColumn.map((item) => (
@@ -215,14 +225,6 @@ const AiTravelCountry = () => {
           </div>
         )}
       </div>
-      {selectedFirst && selectedSecond && selectedThird && (
-        <div className={styles.selectedCountry}>
-          <p>선택한 나라:</p>
-          {selectedCountries.map((country) => (
-            <p key={country}>{getKoreanCountryName(country)}</p>
-          ))}
-        </div>
-      )}
     </div>
   );
 };
