@@ -14,7 +14,14 @@ const AiTravelProgress = () => {
       >
         <br></br>
         <br></br>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: 17,
+            fontWeight: 600,
+          }}
+        >
           <div style={{ marginRight: "16px", textAlign: "center" }}>
             <input
               type="radio"

@@ -1,13 +1,13 @@
 .container {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 5px;
+  font-family: "Happy", sans-serif;
 }
 .selectedCountry {
   font-family: "Happy", sans-serif;
-
-  margin-top: 50px;
-  margin-bottom: 230px;
+  //margin-top: 50px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -16,6 +16,7 @@
 
 .selectedCountry p {
   margin: 0;
+  font-weight: 600;
   margin-right: 10px; /* Adjust the spacing between items as needed */
 }
 
@@ -30,12 +31,24 @@ button {
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #f8ebed;
   cursor: pointer;
+  font-family: "Happy", sans-serif;
+  font-weight: 600;
 }
 
 button:hover,
 button.active {
-  background-color: #ddd;
+  background-color: #f4c4c4;
   color: #ef455a;
+  font-family: "Happy", sans-serif;
+  font-weight: 600;
+}
+
+.line {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-family: "Happy", sans-serif;
+  font-weight: 600;
 }

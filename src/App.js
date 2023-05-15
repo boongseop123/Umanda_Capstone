@@ -8,7 +8,7 @@ import AccompanyPage from "./components/Accompany/AccompanyPage";
 import AiTravelPage from "./components/AiTravel/Page1/AiTravelPage";
 import AiTravelPage2 from "./components/AiTravel/Page3/AiTravelPage2";
 import AiTravelSpotSelect from "./components/AiTravel/AiTravelSpotSelect";
-import AiTravelDate from "./components/AiTravel/AiTravelDate";
+import AiOverView from "./components/AiTravel/AiOverView";
 import AiTravelModel from "./components/AiTravel/AiTravelModel";
 import AiTravelMap from "./components/AiTravel/AiTravelMap";
 import PostBody from "./components/Accompany/PostBody";
@@ -31,7 +31,7 @@ function App() {
             path="/ai-travel-spot-select"
             element={<AiTravelSpotSelect />}
           />
-          <Route path="/aitravel_date" element={<AiTravelDate />} />
+          <Route path="/aitravel_date" element={<AiOverView />} />
           <Route path="/aitravelmodel" element={<AiTravelModel />} />
           <Route path="/aitravelmap" element={<AiTravelMap />} />
           <Route path="/meet" element={<PostBody />} />
