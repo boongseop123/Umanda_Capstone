@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import styles from "../Page1/AiTravelPage.module.scss";
+import styles from "../Page1/AiTravelMain.module.scss";
 
 const AiTravelProgress3 = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
