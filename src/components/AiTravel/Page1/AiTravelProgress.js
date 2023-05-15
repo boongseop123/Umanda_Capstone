@@ -18,8 +18,6 @@ const AiTravelProgress = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            fontSize: 17,
-            fontWeight: 600,
           }}
         >
           <div style={{ marginRight: "16px", textAlign: "center" }}>

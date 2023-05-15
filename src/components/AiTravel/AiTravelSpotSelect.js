@@ -132,6 +132,7 @@ const AiTravelSpotSelect = () => {
         <img src={spot.URI} alt={spot.spot} className={styles.image} />
       </div>
       <p>
+        #
         {spot.countryName === "British"
           ? "영국"
           : spot.countryName === "France"
@@ -139,9 +140,9 @@ const AiTravelSpotSelect = () => {
           : spot.countryName === "Spain"
           ? "스페인"
           : spot.className}
+        <span>&nbsp;</span>#{spot.feature}
+        <span>&nbsp;</span>#{spot.spot}
       </p>
-      <p>{spot.feature}</p>
-      <p>{spot.spot}</p>
     </div>
   );
 

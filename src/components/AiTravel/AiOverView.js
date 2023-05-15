@@ -7,6 +7,8 @@ import {
   selectedSpotsByCountryState,
   responseState,
   updatedSelectedSpotsByCountryState,
+  travelDurationState,
+  IdState,
 } from "../../recoils/Recoil";
 import { API_URL_AI } from "../Constant";
 import { useNavigate } from "react-router-dom";
@@ -30,19 +32,23 @@ const AiOverView = () => {
   );
   const selectedSpotsByCountry = useRecoilValue(selectedSpotsByCountryState);
   const [response, setResponse] = useRecoilState(responseState);
-
+  const travelDuration = useRecoilValue(travelDurationState);
+  const IdToken = useRecoilValue(IdState);
   const handleSubmit = async () => {
     try {
       const requests = Object.entries(updatedSelectedSpotsByCountry).map(
-        async ([country, spots]) => {
+        async ([country, spots], index) => {
+          const days = travelDuration[index] || 0;
           const requestBody = {
-            id: 1,
+            id: IdToken,
             countryName: country,
-            days: 3,
+            days: travelDuration[index] || 0,
             spot: [...spots],
           };
 
           console.log(requestBody.countryName);
+          console.log(requestBody.days);
+          console.log(requestBody.id);
 
           const response = await axios.post(
             `${API_URL_AI}/country`,

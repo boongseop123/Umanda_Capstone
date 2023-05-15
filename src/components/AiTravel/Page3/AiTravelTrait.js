@@ -70,7 +70,7 @@ const AiTravelTrait = () => {
               onChange={handleOptionChange}
             />
             <span className={styles.checkmark}></span>
-            <span>문화와 예술</span>
+            <span>문화 · 예술</span>
           </label>
           <label className={styles.option}>
             <input
@@ -81,7 +81,7 @@ const AiTravelTrait = () => {
               onChange={handleOptionChange}
             />
             <span className={styles.checkmark}></span>
-            <span>유럽축구</span>
+            <span>풋볼투어</span>
           </label>
           <label className={styles.option}>
             <input
@@ -92,7 +92,7 @@ const AiTravelTrait = () => {
               onChange={handleOptionChange}
             />
             <span className={styles.checkmark}></span>
-            <span>자연풍경</span>
+            <span>자연 · 풍경</span>
           </label>
           <label className={styles.option}>
             <input
@@ -103,7 +103,7 @@ const AiTravelTrait = () => {
               onChange={handleOptionChange}
             />
             <span className={styles.checkmark}></span>
-            <span>사진명소</span>
+            <span>포토스팟</span>
           </label>
         </div>
         <div className={styles.col}>
@@ -127,7 +127,7 @@ const AiTravelTrait = () => {
               onChange={handleOptionChange}
             />
             <span className={styles.checkmark}></span>
-            <span>쇼핑과 패션</span>
+            <span>쇼핑 · 패션</span>
           </label>
           <label className={styles.option}>
             <input
@@ -138,7 +138,7 @@ const AiTravelTrait = () => {
               onChange={handleOptionChange}
             />
             <span className={styles.checkmark}></span>
-            <span>술과 음식</span>
+            <span>펍 · 푸드</span>
           </label>
           <label className={styles.option}>
             <input
@@ -149,7 +149,7 @@ const AiTravelTrait = () => {
               onChange={handleOptionChange}
             />
             <span className={styles.checkmark}></span>
-            <span>영화촬영지</span>
+            <span>영화 촬영지</span>
           </label>
         </div>
       </div>

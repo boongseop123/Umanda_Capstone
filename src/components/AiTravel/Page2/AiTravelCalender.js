@@ -82,7 +82,8 @@ const AiTravelCalendar = () => {
 
   return (
     <div className="custom-calendar-wrapper">
-      <h3>여행 기간을 선택해 주세요</h3>
+      <h3 className={styles.h3select}>여행 기간을 선택해 주세요</h3>
+      <br></br>
       {countryDurations.map((duration, index) => (
         <p key={index}>
           {translateCountryName(selectedCountries[index])}:{" "}

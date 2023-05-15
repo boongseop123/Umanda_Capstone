@@ -27,6 +27,8 @@ const AiTravelSelect3 = () => {
             style={{
               display: "flex",
               flexDirection: "row",
+              fontSize: 17,
+              fontWeight: 600,
             }}
           >
             <div className={styles.refresh}>초기화</div>
