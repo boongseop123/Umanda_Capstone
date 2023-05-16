@@ -33,17 +33,19 @@ $spotWidth: 50%; // Image wrapper width
 .imageCaption {
   margin-top: 10px;
   text-align: center;
+  font-family: "Happy", sans-serif;
 
   h4 {
     font-size: 16px;
     margin-bottom: 30px;
+    font-family: "Happy", sans-serif;
   }
 }
 
 .Frame1 {
   width: 550px;
   margin: 0 auto;
-  background-color: #ef455a;
+  //background-color: #ef455a;
 }
 
 .desktopFrame2 {
