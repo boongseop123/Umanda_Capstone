@@ -88,3 +88,13 @@ export const travelDurationState = atom({
   key: "travelDurationState",
   default: [],
 });
+
+export const newResponseState = atom({
+  key: "newResponseState",
+  default: [],
+});
+
+export const spotImagesState = atom({
+  key: "spotImagesState",
+  default: {},
+});

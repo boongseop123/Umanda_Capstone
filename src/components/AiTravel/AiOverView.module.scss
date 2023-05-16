@@ -1,0 +1,59 @@
+$spotHeight: 350px; // Spot's height
+$spotWidth: 50%; // Image wrapper width
+
+.spots {
+  margin-top: 20px;
+}
+
+.countryContainer {
+  margin-bottom: 20px;
+}
+
+.imageContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.imageWrapper {
+  width: $spotWidth;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.imageCaption {
+  margin-top: 10px;
+  text-align: center;
+
+  h4 {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}
+
+.Frame1 {
+  width: 550px;
+  margin: 0 auto;
+  background-color: #ef455a;
+}
+
+.desktopFrame2 {
+  top: 70px;
+  margin: 0 auto;
+  max-width: 550px;
+  position: relative;
+  border: 1px solid white;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  background-color: white;
+  border-top-left-radius: 45px;
+  border-top-right-radius: 45px;
+}
