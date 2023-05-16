@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import axios from "axios";
 import {
@@ -9,18 +9,24 @@ import {
   updatedSelectedSpotsByCountryState,
   travelDurationState,
   IdState,
+  newResponseState,
+  spotImagesState,
 } from "../../recoils/Recoil";
 import { API_URL_AI } from "../Constant";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import { useMediaQuery } from "react-responsive";
-import styles from "./Page1/AiTravelMain.module.scss";
+import styles from "./AiOverView.module.scss";
 
 const AiOverView = () => {
+  const spotsPerPage = 2;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const imagesPerPage = 2; // 한 번에 보여줄 이미지 수
   const navigate = useNavigate();
   const moveToModel = () => {
     navigate("/aitravelmodel");
   };
+
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
   const [selectedSpots, setSelectedSpots] = useRecoilState(selectedSpotsState);
@@ -30,10 +36,25 @@ const AiOverView = () => {
   const updatedSelectedSpotsByCountry = useRecoilValue(
     updatedSelectedSpotsByCountryState
   );
+  const spotImages = useRecoilValue(spotImagesState);
+  const handleNextImage = () => {
+    setCurrentImageIndex((prevIndex) => prevIndex + 1);
+  };
+
+  const handlePreviousImage = () => {
+    setCurrentImageIndex((prevIndex) => prevIndex - 1);
+  };
+  const [newResponse, setNewResponse] = useRecoilState(newResponseState);
   const selectedSpotsByCountry = useRecoilValue(selectedSpotsByCountryState);
   const [response, setResponse] = useRecoilState(responseState);
   const travelDuration = useRecoilValue(travelDurationState);
   const IdToken = useRecoilValue(IdState);
+
+  const spotImagesByCountry = {};
+  Object.entries(updatedSelectedSpotsByCountry).forEach(([country, spots]) => {
+    spotImagesByCountry[country] = spots.map((spot) => spotImages[spot]);
+  });
+
   const handleSubmit = async () => {
     try {
       const requests = Object.entries(updatedSelectedSpotsByCountry).map(
@@ -60,14 +81,12 @@ const AiOverView = () => {
       );
 
       const responses = await Promise.all(requests);
-      setResponse(responses);
+      setNewResponse(responses);
       navigate("/aitravelmodel");
     } catch (error) {
       console.error(error);
     }
   };
-
-  console.log("Selected spots by country:", updatedSelectedSpotsByCountry);
 
   let selectedCountryText = "";
   if (Array.isArray(selectedCountryName)) {
@@ -80,29 +99,73 @@ const AiOverView = () => {
     <div>
       <div className={styles.Frame1}>
         <Header />
-        <div>
-          <h2>관광지들</h2>
+        <div
+          className={`${styles.spots} ${
+            isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
+          }`}
+        >
+          <div style={{ margin: "20px auto", textAlign: "center" }}>
+            <h4>선택한 여행지입니다.</h4>
+          </div>
           {Object.entries(updatedSelectedSpotsByCountry).map(
-            ([country, spots]) => (
-              <div key={country}>
-                <h3>{country}</h3>
-                <ul>
-                  {spots.map((spot, index) => (
-                    <li key={index}>{spot}</li>
-                  ))}
-                </ul>
-              </div>
-            )
+            ([country, spots]) => {
+              const countryImages = spotImagesByCountry[country];
+
+              // 이미지 캐러셀 기능 추가
+
+              const countryImagesPerPage = countryImages.slice(
+                currentImageIndex,
+                currentImageIndex + imagesPerPage
+              );
+
+              return (
+                <div key={country} className={styles.countryContainer}>
+                  <h3>{country}</h3>
+                  <div className={styles.imageContainer}>
+                    {countryImagesPerPage.map((image, index) => {
+                      const spot = spots[index + currentImageIndex];
+                      const isActive = index === 0; // 현재 보여지는 이미지 여부
+
+                      return (
+                        <div
+                          key={index}
+                          className={`${styles.imageWrapper} ${
+                            isActive && styles.active
+                          }`}
+                        >
+                          <img
+                            src={image}
+                            alt={spot}
+                            className={styles.image}
+                          />
+                          <div className={styles.imageCaption}>
+                            <h4>{spot}</h4>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {countryImages.length > imagesPerPage && (
+                    <div className={styles.navigationButtons}>
+                      {currentImageIndex > 0 && (
+                        <button onClick={handlePreviousImage}>Previous</button>
+                      )}
+                      {currentImageIndex <
+                        countryImages.length - imagesPerPage && (
+                        <button onClick={handleNextImage}>Next</button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            }
           )}
-          <h2>선택한 나라</h2>
-          <ul>
-            {Object.keys(updatedSelectedSpotsByCountry).map(
-              (country, index) => (
-                <li key={index}>{country}</li>
-              )
-            )}
-          </ul>
-          <button onClick={handleSubmit}>모델 실행</button>
+          <div style={{ margin: "20px auto", textAlign: "center" }}>
+            <h4>이 관광지들이 마음에 들면 추천받기 버튼을 눌러주세요!</h4>
+
+            <button onClick={handleSubmit}>나만의 코스 추천받기</button>
+          </div>
         </div>
       </div>
     </div>

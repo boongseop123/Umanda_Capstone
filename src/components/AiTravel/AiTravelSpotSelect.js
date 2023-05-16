@@ -8,6 +8,7 @@ import {
   selectedCountryNameState,
   selectedSpotsByCountryState,
   updatedSelectedSpotsByCountryState,
+  spotImagesState,
 } from "../../recoils/Recoil";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
@@ -26,6 +27,7 @@ const AiTravelSpotSelect = () => {
   const location = useLocation();
   const response = location?.state?.response;
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
+  const [spotImages, setSpotImages] = useRecoilState(spotImagesState);
 
   const [spotIndex, setSpotIndex] = useState(0); // 현재 보여지고 있는 스팟 인덱스
   const [displayedSpots, setDisplayedSpots] = useState([]); // 현재 페이지에 보여지는 스팟들
@@ -90,6 +92,10 @@ const AiTravelSpotSelect = () => {
       setSelectedCountryName(spot.countryName);
       setSelectedSpotsByCountry(updatedSelectedSpotsByCountry);
     }
+    setSpotImages((prevSpotImages) => ({
+      ...prevSpotImages,
+      [spot.spot]: spot.URI,
+    }));
 
     alert("확인되었습니다.");
   };
