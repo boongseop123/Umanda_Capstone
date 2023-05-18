@@ -4,6 +4,7 @@ import {
   responseState,
   latitudeState,
   longitudeState,
+  selectedcourseState,
 } from "../../recoils/Recoil";
 import { useNavigate } from "react-router";
 import GoogleMapReact from "google-map-react";
@@ -12,6 +13,7 @@ const AiTravelMap = () => {
   const response = useRecoilValue(responseState);
   const [latitude, setLatitude] = useRecoilState(latitudeState);
   const [longitude, setLongitude] = useRecoilState(longitudeState);
+  const selectedCourse = useRecoilValue(selectedcourseState);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,15 +69,34 @@ const AiTravelMap = () => {
   return (
     <div style={{ height: "100vh", width: "100%" }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyBDyVqkHdc6nYQKeYovdTOOAwSuh--JVgg" }}
+        bootstrapURLKeys={{
+          key: "AIzaSyBDyVqkHdc6nYQKeYovdTOOAwSuh--JVgg",
+        }}
         defaultCenter={{
-          lat: 37.4980957,
-          lng: 127.0276103,
+          lat: latitude,
+          lng: longitude,
         }}
         defaultZoom={13}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-      ></GoogleMapReact>
+      >
+        {selectedCourse && (
+          <div
+            lat={selectedCourse.latitude}
+            lng={selectedCourse.longitude}
+            style={{
+              position: "absolute",
+              transform: "translate(-50%, -50%)",
+              top: "50%",
+              left: "50%",
+              background: "red",
+              width: "20px",
+              height: "20px",
+              borderRadius: "50%",
+            }}
+          ></div>
+        )}
+      </GoogleMapReact>
     </div>
   );
 };

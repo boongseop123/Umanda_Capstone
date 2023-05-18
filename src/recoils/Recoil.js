@@ -98,3 +98,8 @@ export const spotImagesState = atom({
   key: "spotImagesState",
   default: {},
 });
+
+export const selectedcourseState = atom({
+  key: "selectedCourse",
+  default: null,
+});

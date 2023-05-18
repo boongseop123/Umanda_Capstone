@@ -4,6 +4,7 @@ import {
   newResponseState,
   latitudeState,
   longitudeState,
+  selectedcourseState,
 } from "../../recoils/Recoil";
 import { useNavigate } from "react-router";
 import styles from "./AiTravelModel.module.scss";
@@ -20,8 +21,10 @@ const AiTravelModel = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [showMore, setShowMore] = useState(false);
-  const [selectedSpot, setSelectedSpot] = useState(null);
+  const [selectedSpot, setSelectedSpot] = useState(null); //
   const carouselRefs = useRef([]);
+  const [selectedCourse, setSelectedCourse] =
+    useRecoilState(selectedcourseState);
 
   const scrollNavigate = (direction) => {
     const scrollAmount = direction === "next" ? 1 : -1;
@@ -33,6 +36,10 @@ const AiTravelModel = () => {
         });
       }
     });
+  };
+  const handleSpotSelection = (course) => {
+    setSelectedCourse(course);
+    console.log(course); // 선택한 코스 정보를 콘솔에 출력
   };
 
   const openModal = (spot) => {
@@ -141,6 +148,19 @@ const AiTravelModel = () => {
                               className={styles.recommendation_column}
                             >
                               <h3>{recommendType}</h3>
+                              <div className={styles.recommendation_item}>
+                                <div className={styles.imageContainer}></div>
+                                <div className={styles.description}>
+                                  <button
+                                    onClick={() =>
+                                      handleSpotSelection(recommendationData)
+                                    }
+                                  >
+                                    선택하기
+                                  </button>{" "}
+                                  {/* 선택하기 버튼 추가 */}
+                                </div>
+                              </div>
                               <div className={styles.recommendation_carousel}>
                                 {recommendationData.map(
                                   (recommend, innerIndex) => {
@@ -165,6 +185,7 @@ const AiTravelModel = () => {
                                         </div>
                                         <div className={styles.description}>
                                           <p>{recommend.spot}</p>
+
                                           <button
                                             onClick={() =>
                                               setSelectedSpot(recommend)
