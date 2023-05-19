@@ -1,102 +1,248 @@
-import React, { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { combinedSelectedSpotsArrayState } from "../../recoils/Recoil";
 import {
-  responseState,
-  latitudeState,
-  longitudeState,
-  selectedcourseState,
-} from "../../recoils/Recoil";
-import { useNavigate } from "react-router";
-import GoogleMapReact from "google-map-react";
-
+  useLoadScript,
+  GoogleMap,
+  DirectionsRenderer,
+  Marker,
+  MarkerClusterer,
+  InfoWindow,
+  Polyline,
+} from "@react-google-maps/api";
+import Header from "../Header/Header";
+import { useMediaQuery } from "react-responsive";
+import styles from "./AiTravelSpotSelect.module.scss";
+import Modal from "react-modal";
+const customModalStyles = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 const AiTravelMap = () => {
-  const response = useRecoilValue(responseState);
-  const [latitude, setLatitude] = useRecoilState(latitudeState);
-  const [longitude, setLongitude] = useRecoilState(longitudeState);
-  const selectedCourse = useRecoilValue(selectedcourseState);
-  const navigate = useNavigate();
+  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState([]);
+  const [selectedCourse] = useRecoilState(combinedSelectedSpotsArrayState);
+  const [directions, setDirections] = useState(null);
+  const [clusterer, setClusterer] = useState(null);
+  const [selectedMarker, setSelectedMarker] = useState(null);
+  const [showShortestPath, setShowShortestPath] = useState(false);
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: "AIzaSyD6HTEklvN8AWBgtd_RdesV5c2PHllWu-Q",
+    libraries: ["places", "directions"],
+  });
 
   useEffect(() => {
-    if (Array.isArray(response) && response.length > 0) {
-      const data = response.map((item) => {
-        return {
-          latitude: item.latitude,
-          longitude: item.longitude,
-        };
-      });
-      setLatitude(Number(data?.[0]?.latitude));
-      setLongitude(Number(data?.[0]?.longitude));
+    if (isLoaded && selectedCourse && selectedCourse.length > 1) {
+      calculateDirections();
     }
-  }, [response, setLatitude, setLongitude]);
+  }, [isLoaded, selectedCourse]);
 
-  const handleApiLoaded = (map, maps) => {
-    if (Array.isArray(response) && response.length > 0) {
-      // Add your markers here
-      const markers = response.map((data) => {
-        const { id, latitude, longitude, spot } = data;
-        return new maps.Marker({
-          position: { lat: parseFloat(latitude), lng: parseFloat(longitude) },
-          map,
-          title: spot,
-        });
-      });
+  const calculateDirections = () => {
+    const waypoints = selectedCourse.map((data, index) => ({
+      location: {
+        lat: parseFloat(data.latitude),
+        lng: parseFloat(data.longitude),
+      },
+      label: (index + 1).toString(),
+    }));
 
-      // Define your path LatLng array
-      const path = response.map((data) => ({
-        lat: Number(data.latitude),
-        lng: Number(data.longitude),
-      }));
+    console.log("Selected Course Data:", selectedCourse);
 
-      // Create a polyline object passing the path and set the Map to render it.
-      new maps.Polyline({
-        path,
-        map,
-      });
+    const origin = "London Heathrow Airport, UK";
+    const destination = "Gare du Nord, Paris, France";
 
-      // Define your Map Bounds and set it as fitbounds to the Map.
-      const bounds = new maps.LatLngBounds();
-      path.forEach((location) => {
-        bounds.extend(new maps.LatLng(location.lat, location.lng));
-      });
-      map.fitBounds(bounds);
-    }
+    const directionsService = new window.google.maps.DirectionsService();
+    directionsService.route(
+      {
+        origin: origin,
+        destination: destination,
+        optimizeWaypoints: true, // 경유지 최적화 여부 설정 (선택 사항)
+        waypoints: waypoints
+          .slice(1, waypoints.length - 1)
+          .map((waypoint) => waypoint.location),
+        travelMode: window.google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === window.google.maps.DirectionsStatus.OK) {
+          setDirections(result);
+        } else {
+          console.error("Directions request failed with status: ", status);
+        }
+      }
+    );
+  };
+  const handleShowModal = () => {
+    setShowModal(true);
+    setModalContent(
+      selectedCourse.map((data, index) => ({
+        index: index + 1,
+        spot: data.spot,
+        description: data.description,
+        uri: data.URI,
+      }))
+    );
   };
 
-  if (!response || !response.length) {
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setModalContent([]);
+  };
+
+  const handleMarkerClick = (marker) => {
+    setSelectedMarker(marker);
+  };
+
+  const handleClusterClick = (cluster) => {
+    const markers = cluster.getMarkers();
+    setSelectedMarker(markers);
+  };
+
+  const handleShowShortestPath = () => {
+    setShowShortestPath(true);
+  };
+
+  if (!isLoaded) {
     return <div>Loading...</div>;
   }
 
+  if (loadError) {
+    return <div>Error loading maps</div>;
+  }
+
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{
-          key: "AIzaSyBDyVqkHdc6nYQKeYovdTOOAwSuh--JVgg",
-        }}
-        defaultCenter={{
-          lat: latitude,
-          lng: longitude,
-        }}
-        defaultZoom={13}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-      >
-        {selectedCourse && (
-          <div
-            lat={selectedCourse.latitude}
-            lng={selectedCourse.longitude}
-            style={{
-              position: "absolute",
-              transform: "translate(-50%, -50%)",
-              top: "50%",
-              left: "50%",
-              background: "red",
-              width: "20px",
-              height: "20px",
-              borderRadius: "50%",
-            }}
-          ></div>
-        )}
-      </GoogleMapReact>
+    <div>
+      <div className={styles.Frame1}>
+        <Header />
+        <div
+          className={`${styles.spots} ${
+            isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
+          }`}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            border: "1px solid white",
+            boxShadow: "0px 3px 6px #a7999a3e",
+            backgroundColor: "white",
+            borderTopLeftRadius: "45px",
+            borderTopRightRadius: "45px",
+            margin: "0 auto",
+            overflowY: "auto",
+            minHeight: "200px",
+            maxWidth: "550px",
+          }}
+        >
+          <div style={{ height: "100vh", width: "100%" }}>
+            <GoogleMap
+              mapContainerStyle={{ height: "100%", width: "100%" }}
+              center={{ lat: 51.5074, lng: -0.1278 }}
+              zoom={13}
+            >
+              {directions && <DirectionsRenderer directions={directions} />}
+              <MarkerClusterer
+                onLoad={(clusterer) => setClusterer(clusterer)}
+                onClick={handleClusterClick}
+              >
+                {(clusterer) =>
+                  selectedCourse.map((data, index) => (
+                    <Marker
+                      key={index}
+                      position={{
+                        lat: parseFloat(data.latitude),
+                        lng: parseFloat(data.longitude),
+                      }}
+                      label={(index + 1).toString()}
+                      onClick={() => handleShowModal()}
+                      clusterer={clusterer}
+                    />
+                  ))
+                }
+              </MarkerClusterer>
+              {selectedMarker && Array.isArray(selectedMarker) && (
+                <InfoWindow
+                  position={{
+                    lat: parseFloat(selectedMarker[0].latitude),
+                    lng: parseFloat(selectedMarker[0].longitude),
+                  }}
+                  onCloseClick={() => setSelectedMarker(null)}
+                >
+                  <div>
+                    <button onClick={handleShowModal}>최단 경로 보기</button>
+
+                    <h3>Selected Markers</h3>
+                    <ul>
+                      {selectedMarker.map((marker, index) => (
+                        <li key={index}>
+                          <h4>{marker.spot}</h4>
+                          <p>{marker.description}</p>
+                          <a
+                            href={marker.uri}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Image
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </InfoWindow>
+              )}
+              {showShortestPath &&
+                directions &&
+                directions.routes[0].legs.map((leg, index) => (
+                  <React.Fragment key={index}>
+                    <Marker
+                      position={leg.start_location}
+                      icon={{
+                        url: "IMAGE_URL",
+                        scaledSize: new window.google.maps.Size(30, 30),
+                      }}
+                    />
+                    {index === directions.routes[0].legs.length - 1 ? (
+                      <Marker
+                        position={leg.end_location}
+                        icon={{
+                          url: "IMAGE_URL",
+                          scaledSize: new window.google.maps.Size(30, 30),
+                        }}
+                      />
+                    ) : null}
+                  </React.Fragment>
+                ))}
+              {showShortestPath && directions && (
+                <Polyline
+                  path={directions.routes[0].overview_path}
+                  options={{
+                    strokeColor: "#0000FF",
+                    strokeOpacity: 0.8,
+                    strokeWeight: 5,
+                    icons: [
+                      {
+                        icon: {
+                          path: window.google.maps.SymbolPath
+                            .FORWARD_CLOSED_ARROW,
+                        },
+                        offset: "100%",
+                      },
+                    ],
+                  }}
+                />
+              )}
+            </GoogleMap>
+            <button onClick={handleShowShortestPath}>최단경로 보기</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

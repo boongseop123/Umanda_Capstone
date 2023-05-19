@@ -5,6 +5,8 @@ import {
   latitudeState,
   longitudeState,
   selectedcourseState,
+  selectedSpotsArrayState,
+  combinedSelectedSpotsArrayState,
 } from "../../recoils/Recoil";
 import { useNavigate } from "react-router";
 import styles from "./AiTravelModel.module.scss";
@@ -12,6 +14,9 @@ import Header from "../Header/Header";
 import { useMediaQuery } from "react-responsive";
 
 const AiTravelModel = () => {
+  const [selectedSpotsArray, setSelectedSpotsArray] = useRecoilState(
+    selectedSpotsArrayState
+  );
   const response = useRecoilValue(newResponseState);
   const [, setLatitude] = useRecoilState(latitudeState);
   const [, setLongitude] = useRecoilState(longitudeState);
@@ -21,10 +26,18 @@ const AiTravelModel = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [showMore, setShowMore] = useState(false);
-  const [selectedSpot, setSelectedSpot] = useState(null); //
+  const [selectedCourse, setSelectedCourse] = useState({}); // 선택한 코스 데이터 객체로 초기화
   const carouselRefs = useRef([]);
-  const [selectedCourse, setSelectedCourse] =
-    useRecoilState(selectedcourseState);
+  const [combinedSelectedSpotsArray, setCombinedSelectedSpotsArray] =
+    useRecoilState(combinedSelectedSpotsArrayState);
+
+  const [selectedSpot, setSelectedSpot] = useRecoilState(selectedcourseState);
+  const handleSelectedSpotsArray = (spotsArray) => {
+    setSelectedSpotsArray(spotsArray);
+  };
+  const logSelectedSpotsArray = () => {
+    console.log(selectedSpotsArray);
+  };
 
   const scrollNavigate = (direction) => {
     const scrollAmount = direction === "next" ? 1 : -1;
@@ -37,9 +50,16 @@ const AiTravelModel = () => {
       }
     });
   };
+
   const handleSpotSelection = (course) => {
-    setSelectedCourse(course);
-    console.log(course); // 선택한 코스 정보를 콘솔에 출력
+    if (selectedCourse.id && selectedCourse.countryId !== course.countryId) {
+      // 선택한 코스가 있는 경우
+      setSelectedSpotsArray([course]); // 선택한 코스로 대체
+    } else {
+      // 선택한 코스가 없거나 같은 나라 내의 코스를 선택한 경우
+      setSelectedSpotsArray((prevSpots) => [...prevSpots, course]); // 코스를 추가
+    }
+    setSelectedCourse((prevCourses) => ({ ...prevCourses, ...course })); // 선택한 코스 데이터 업데이트
   };
 
   const openModal = (spot) => {
@@ -49,6 +69,10 @@ const AiTravelModel = () => {
   const closeModal = () => {
     setSelectedSpot(null);
   };
+
+  useEffect(() => {
+    console.log(selectedSpotsArray);
+  }, [selectedSpotsArray]);
 
   useEffect(() => {
     if (response && response.length > 0 && !isLoaded) {
@@ -67,6 +91,19 @@ const AiTravelModel = () => {
   }, [response, isLoaded]);
 
   const handleNavigate = () => {
+    const updatedSelectedSpotsArray = selectedSpotsArray.reduce(
+      (acc, spot) => [...acc, ...spot],
+      []
+    );
+
+    setCombinedSelectedSpotsArray(updatedSelectedSpotsArray);
+
+    if (combinedSelectedSpotsArray.length > 0) {
+      console.log("Combined array is already stored in Recoil.");
+    } else {
+      console.log("Combined array is stored in Recoil.");
+    }
+
     navigate("/aitravelmap");
   };
 
@@ -124,7 +161,6 @@ const AiTravelModel = () => {
               const { id, countryName } = responseData;
               const koreanCountryName =
                 countryNames[countryName] || countryName;
-
               return (
                 <div key={index}>
                   <h2>{koreanCountryName}</h2>
@@ -216,6 +252,10 @@ const AiTravelModel = () => {
                 </div>
               );
             })}
+            <button onClick={logSelectedSpotsArray}>
+              selectedSpotsArray 콘솔 출력
+            </button>
+
             <button onClick={handleNavigate}>구글맵 띄우기</button>
           </div>
         </div>

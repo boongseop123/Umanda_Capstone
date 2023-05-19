@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, selector, useRecoilState } from "recoil";
 
 export const tokenState = atom({
   key: "tokenState",
@@ -102,4 +102,14 @@ export const spotImagesState = atom({
 export const selectedcourseState = atom({
   key: "selectedCourse",
   default: null,
+});
+
+export const selectedSpotsArrayState = atom({
+  key: "selectedSpotsArrayState",
+  default: [], // 초기값은 빈 배열
+});
+
+export const combinedSelectedSpotsArrayState = atom({
+  key: "combinedSelectedSpotsArrayState",
+  default: [],
 });
