@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import Header from "../Header/Header";
 import AiTravelProgress4 from "./AiTravelProgress4";
+import { motion } from "framer-motion";
 
 const pageSize = 12; // 한 페이지에 보여줄 데이터 개수
 const numColumns = 2; // 한 줄에 보여줄 사진 개수
@@ -153,48 +154,55 @@ const AiTravelSpotSelect = () => {
   );
 
   return (
-    <div>
-      <div className={styles.Frame1}>
-        <Header />
-        <div
-          className={`${styles.spots} ${
-            isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
-          }`}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            border: "1px solid white",
-            boxShadow: "0px 3px 6px #a7999a3e",
-            backgroundColor: "white",
-            borderTopLeftRadius: "45px",
-            borderTopRightRadius: "45px",
-            margin: "0 auto",
-            overflowY: "auto",
-            minHeight: "200px",
-            maxWidth: "550px",
-          }}
-        >
-          <div style={{ margin: "20px auto", textAlign: "center" }}>
-            <h3 className={styles.h1}>선호하는 관광지들을 선택해주세요!</h3>
-            <br />
-          </div>
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div>
+        <div className={styles.Frame1}>
+          <Header />
+          <div
+            className={`${styles.spots} ${
+              isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
+            }`}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              border: "1px solid white",
+              boxShadow: "0px 3px 6px #a7999a3e",
+              backgroundColor: "white",
+              borderTopLeftRadius: "45px",
+              borderTopRightRadius: "45px",
+              margin: "0 auto",
+              overflowY: "auto",
+              minHeight: "200px",
+              maxWidth: "550px",
+            }}
+          >
+            <div style={{ margin: "20px auto", textAlign: "center" }}>
+              <h3 className={styles.h1}>선호하는 관광지들을 선택해주세요!</h3>
+              <br />
+            </div>
 
-          {displayedSpots.map(renderSpot)}
-          <button onClick={handleNavigate} className={styles.button}>
-            다음
-          </button>
-          {spotIndex + pageSize < response?.spot?.length && (
-            // 더 보기 버튼이 클릭되면 handleLoadMore 함수가 실행됨
-            <button
-              onClick={handleLoadMore}
-              style={{ fontWeight: 600, fontFamily: "Happy" }}
-            >
-              더 보기
+            {displayedSpots.map(renderSpot)}
+            <button onClick={handleNavigate} className={styles.button}>
+              다음
             </button>
-          )}
+            {spotIndex + pageSize < response?.spot?.length && (
+              // 더 보기 버튼이 클릭되면 handleLoadMore 함수가 실행됨
+              <button
+                onClick={handleLoadMore}
+                style={{ fontWeight: 600, fontFamily: "Happy" }}
+              >
+                더 보기
+              </button>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

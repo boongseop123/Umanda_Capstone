@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "./AiTravelCountry.module.scss";
 import { useRecoilState } from "recoil";
 import { selectedCountriesState } from "../../../recoils/Recoil";
+import { motion } from "framer-motion";
 
 const AiTravelCountry = () => {
   const selectedCountriesRef = useRef([]);
@@ -165,67 +166,74 @@ const AiTravelCountry = () => {
     }
   }
   return (
-    <div>
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div>
-        <div className={styles.line}>여행할 나라를 선택해주세요!</div>
-        {selectedFirst && selectedSecond && selectedThird && (
-          <div className={styles.selectedCountry}>
-            {selectedCountries.map((country) => (
-              <p key={country}>{getKoreanCountryName(country)}</p>
+        <div>
+          <div className={styles.line}>여행할 나라를 선택해주세요!</div>
+          {selectedFirst && selectedSecond && selectedThird && (
+            <div className={styles.selectedCountry}>
+              {selectedCountries.map((country) => (
+                <p key={country}>{getKoreanCountryName(country)}</p>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={styles.container}>
+          <div className={styles.column}>
+            {firstColumn.map((item) => (
+              <button
+                key={item}
+                onClick={() => handleFirstClick(item)}
+                className={selectedFirst === item ? styles.active : ""}
+              >
+                {item}
+              </button>
             ))}
           </div>
-        )}
-      </div>
-      <div className={styles.container}>
-        <div className={styles.column}>
-          {firstColumn.map((item) => (
-            <button
-              key={item}
-              onClick={() => handleFirstClick(item)}
-              className={selectedFirst === item ? styles.active : ""}
-            >
-              {item}
-            </button>
-          ))}
+          {selectedFirst && (
+            <div className={styles.column}>
+              {secondColumn[selectedFirst] &&
+                secondColumn[selectedFirst].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => handleSecondClick(item)}
+                    className={selectedSecond === item ? styles.active : ""}
+                  >
+                    {item}
+                  </button>
+                ))}
+            </div>
+          )}
+          {selectedSecond && (
+            <div className={styles.column}>
+              {thirdColumn[selectedSecond] &&
+                thirdColumn[selectedSecond].map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => handleThirdClick(item)}
+                    className={
+                      (selectedThird &&
+                        selectedThird.findIndex(
+                          (selectedItem) => selectedItem.name === item.name
+                        ) > -1) ||
+                      item.checked
+                        ? styles.active
+                        : ""
+                    }
+                  >
+                    {item.name}
+                  </button>
+                ))}
+            </div>
+          )}
         </div>
-        {selectedFirst && (
-          <div className={styles.column}>
-            {secondColumn[selectedFirst] &&
-              secondColumn[selectedFirst].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => handleSecondClick(item)}
-                  className={selectedSecond === item ? styles.active : ""}
-                >
-                  {item}
-                </button>
-              ))}
-          </div>
-        )}
-        {selectedSecond && (
-          <div className={styles.column}>
-            {thirdColumn[selectedSecond] &&
-              thirdColumn[selectedSecond].map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleThirdClick(item)}
-                  className={
-                    (selectedThird &&
-                      selectedThird.findIndex(
-                        (selectedItem) => selectedItem.name === item.name
-                      ) > -1) ||
-                    item.checked
-                      ? styles.active
-                      : ""
-                  }
-                >
-                  {item.name}
-                </button>
-              ))}
-          </div>
-        )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default AiTravelCountry;

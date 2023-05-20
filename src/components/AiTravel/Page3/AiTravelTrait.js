@@ -8,6 +8,7 @@ import axios from "axios";
 import { API_URL_AI } from "../../Constant";
 import { useNavigate } from "react-router";
 import styles from "./AiTravelTrait.module.scss";
+import { motion } from "framer-motion";
 
 const AiTravelTrait = () => {
   const navigate = useNavigate();
@@ -57,103 +58,110 @@ const AiTravelTrait = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>원하는 여행 테마를 선택해 주세요!</div>
-      <div className={styles.row}>
-        <div className={styles.col}>
-          <label className={styles.option}>
-            <input
-              type="checkbox"
-              id="문화와 예술"
-              value="문화와 예술"
-              checked={selectedOptions.includes("문화와 예술")}
-              onChange={handleOptionChange}
-            />
-            <span className={styles.checkmark}></span>
-            <span>문화 · 예술</span>
-          </label>
-          <label className={styles.option}>
-            <input
-              type="checkbox"
-              id="유럽축구"
-              value="유럽축구"
-              checked={selectedOptions.includes("유럽축구")}
-              onChange={handleOptionChange}
-            />
-            <span className={styles.checkmark}></span>
-            <span>풋볼투어</span>
-          </label>
-          <label className={styles.option}>
-            <input
-              type="checkbox"
-              id="자연풍경"
-              value="자연풍경"
-              checked={selectedOptions.includes("자연풍경")}
-              onChange={handleOptionChange}
-            />
-            <span className={styles.checkmark}></span>
-            <span>자연 · 풍경</span>
-          </label>
-          <label className={styles.option}>
-            <input
-              type="checkbox"
-              id="사진명소"
-              value="사진명소"
-              checked={selectedOptions.includes("사진명소")}
-              onChange={handleOptionChange}
-            />
-            <span className={styles.checkmark}></span>
-            <span>포토스팟</span>
-          </label>
-        </div>
-        <div className={styles.col}>
-          <label className={styles.option}>
-            <input
-              type="checkbox"
-              id="액티비티"
-              value="액티비티"
-              checked={selectedOptions.includes("액티비티")}
-              onChange={handleOptionChange}
-            />
-            <span className={styles.checkmark}></span>
-            <span>액티비티</span>
-          </label>
-          <label className={styles.option}>
-            <input
-              type="checkbox"
-              id="쇼핑과 패션"
-              value="쇼핑과 패션"
-              checked={selectedOptions.includes("쇼핑과 패션")}
-              onChange={handleOptionChange}
-            />
-            <span className={styles.checkmark}></span>
-            <span>쇼핑 · 패션</span>
-          </label>
-          <label className={styles.option}>
-            <input
-              type="checkbox"
-              id="술과 음식"
-              value="술과 음식"
-              checked={selectedOptions.includes("술과 음식")}
-              onChange={handleOptionChange}
-            />
-            <span className={styles.checkmark}></span>
-            <span>펍 · 푸드</span>
-          </label>
-          <label className={styles.option}>
-            <input
-              type="checkbox"
-              id="영화촬영지"
-              value="영화촬영지"
-              checked={selectedOptions.includes("영화촬영지")}
-              onChange={handleOptionChange}
-            />
-            <span className={styles.checkmark}></span>
-            <span>영화 촬영지</span>
-          </label>
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className={styles.container}>
+        <div className={styles.title}>원하는 여행 테마를 선택해 주세요!</div>
+        <div className={styles.row}>
+          <div className={styles.col}>
+            <label className={styles.option}>
+              <input
+                type="checkbox"
+                id="문화와 예술"
+                value="문화와 예술"
+                checked={selectedOptions.includes("문화와 예술")}
+                onChange={handleOptionChange}
+              />
+              <span className={styles.checkmark}></span>
+              <span>문화 · 예술</span>
+            </label>
+            <label className={styles.option}>
+              <input
+                type="checkbox"
+                id="유럽축구"
+                value="유럽축구"
+                checked={selectedOptions.includes("유럽축구")}
+                onChange={handleOptionChange}
+              />
+              <span className={styles.checkmark}></span>
+              <span>풋볼투어</span>
+            </label>
+            <label className={styles.option}>
+              <input
+                type="checkbox"
+                id="자연풍경"
+                value="자연풍경"
+                checked={selectedOptions.includes("자연풍경")}
+                onChange={handleOptionChange}
+              />
+              <span className={styles.checkmark}></span>
+              <span>자연 · 풍경</span>
+            </label>
+            <label className={styles.option}>
+              <input
+                type="checkbox"
+                id="사진명소"
+                value="사진명소"
+                checked={selectedOptions.includes("사진명소")}
+                onChange={handleOptionChange}
+              />
+              <span className={styles.checkmark}></span>
+              <span>포토스팟</span>
+            </label>
+          </div>
+          <div className={styles.col}>
+            <label className={styles.option}>
+              <input
+                type="checkbox"
+                id="액티비티"
+                value="액티비티"
+                checked={selectedOptions.includes("액티비티")}
+                onChange={handleOptionChange}
+              />
+              <span className={styles.checkmark}></span>
+              <span>액티비티</span>
+            </label>
+            <label className={styles.option}>
+              <input
+                type="checkbox"
+                id="쇼핑과 패션"
+                value="쇼핑과 패션"
+                checked={selectedOptions.includes("쇼핑과 패션")}
+                onChange={handleOptionChange}
+              />
+              <span className={styles.checkmark}></span>
+              <span>쇼핑 · 패션</span>
+            </label>
+            <label className={styles.option}>
+              <input
+                type="checkbox"
+                id="술과 음식"
+                value="술과 음식"
+                checked={selectedOptions.includes("술과 음식")}
+                onChange={handleOptionChange}
+              />
+              <span className={styles.checkmark}></span>
+              <span>펍 · 푸드</span>
+            </label>
+            <label className={styles.option}>
+              <input
+                type="checkbox"
+                id="영화촬영지"
+                value="영화촬영지"
+                checked={selectedOptions.includes("영화촬영지")}
+                onChange={handleOptionChange}
+              />
+              <span className={styles.checkmark}></span>
+              <span>영화 촬영지</span>
+            </label>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -8,6 +8,7 @@ import Meet30 from "../../resources/Meet30.jpeg";
 import Route30 from "../../resources/Route30.jpeg";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -34,145 +35,176 @@ const MainPage = () => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", position: "relative" }}
-      className={`${styles.Frame} ${
-        isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
-      }`}
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
       <div
-        className={styles.header}
         style={{
-          position: "absolute",
-          top: 0,
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
+          position: "relative",
         }}
+        className={`${styles.Frame} ${
+          isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
+        }`}
       >
-        <div className={styles.home1}>Umanda</div>
-        <div className={styles.home}>홈</div>
-        <div className={styles.home}>Q&A</div>
-      </div>
-      <div className={styles.main}>
-        <h3
-          className={`${styles.desktopTravel} ${
-            isDesktop
-              ? styles.desktopTravel
-              : isMobile
-              ? styles.mobileTravel
-              : ""
-          }`}
+        <div
+          className={styles.header}
+          style={{
+            position: "absolute",
+            top: 0,
+            display: "flex",
+            flexDirection: "row",
+          }}
         >
-          떠나기 좋은 여행 추천
-        </h3>
-        <div>
-          <div className={styles.img1}>
-            <div style={{ position: "relative" }}>
-              <img
-                className={styles.img}
-                src={require("../../resources/London.jpeg")}
-              />
-            </div>
-            <div
-              className={styles.imgtext}
-              style={{
-                position: "absolute",
-                top: "20%",
-                left: "18%",
-                transform: "translate(-50%, -50%)",
-                zIndex: 1,
-              }}
-            >
-              <br></br>
-              <span
-                className={styles.span1}
-                style={{ display: "block", textAlign: "left" }}
+          <div className={styles.home1}>Umanda</div>
+          <div className={styles.home}>홈</div>
+          <div className={styles.home}>Q&A</div>
+        </div>
+        <div className={styles.main}>
+          <h3
+            className={`${styles.desktopTravel} ${
+              isDesktop
+                ? styles.desktopTravel
+                : isMobile
+                ? styles.mobileTravel
+                : ""
+            }`}
+          >
+            떠나기 좋은 여행 추천
+          </h3>
+          <div>
+            <div className={styles.img1}>
+              <div style={{ position: "relative" }}>
+                <img
+                  className={styles.img}
+                  src={require("../../resources/London.jpeg")}
+                />
+              </div>
+              <div
+                className={styles.imgtext}
+                style={{
+                  position: "absolute",
+                  top: "20%",
+                  left: "18%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 1,
+                }}
               >
-                딱 맞는 여행
-              </span>
-              <br></br>
-              <span
-                className={styles.span1}
-                style={{ display: "block", textAlign: "left" }}
-              >
-                어디가 좋을까?
-              </span>
+                <br></br>
+                <span
+                  className={styles.span1}
+                  style={{ display: "block", textAlign: "left" }}
+                >
+                  딱 맞는 여행
+                </span>
+                <br></br>
+                <span
+                  className={styles.span1}
+                  style={{ display: "block", textAlign: "left" }}
+                >
+                  어디가 좋을까?
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-        <div
-          className={`${styles.desktopFrame} ${
-            isDesktop ? styles.desktopFrame : isMobile ? styles.mobileFrame : ""
-          }`}
-        >
-          <button
-            onClick={moveToAccompany}
-            className={`${styles.desktopAccompany} ${
+          <div
+            className={`${styles.desktopFrame} ${
               isDesktop
-                ? styles.desktopAccompany
+                ? styles.desktopFrame
                 : isMobile
-                ? styles.mobileAccompany
+                ? styles.mobileFrame
                 : ""
-            } button${isButtonPressed ? " pressed" : ""}`}
-            onMouseDown={handleButtonPress}
-            onMouseUp={handleButtonRelease}
-            onMouseLeave={handleButtonRelease}
-          >
-            <img
-              src={Route30}
-              className={`${styles.desktopImg} ${
-                isDesktop ? styles.desktopImg : isMobile ? styles.mobileImg : ""
-              }`}
-            ></img>
-            <p className={styles.with}>동행</p>
-          </button>
-          <button
-            onClick={moveToAi}
-            className={`${styles.desktopAI} ${
-              isDesktop ? styles.desktopAI : isMobile ? styles.mobileAI : ""
-            } button${isButtonPressed ? " pressed" : ""}`}
-            onMouseDown={handleButtonPress}
-            onMouseUp={handleButtonRelease}
-            onMouseLeave={handleButtonRelease}
-          >
-            <img
-              src={Accompany30}
-              className={`${styles.desktopImg} ${
-                isDesktop ? styles.desktopImg : isMobile ? styles.mobileImg : ""
-              }`}
-            ></img>
-            <p className={styles.with}>Ai 경로 추천</p>
-          </button>
-          <button
-            onClick={moveToMeet}
-            className={`${styles.desktopMeet} ${
-              isButtonPressed ? "pressed" : ""
-            } ${
-              isDesktop ? styles.desktopMeet : isMobile ? styles.mobileMeet : ""
             }`}
-            onMouseDown={handleButtonPress}
-            onMouseUp={handleButtonRelease}
-            onMouseLeave={handleButtonRelease}
           >
-            <img
-              src={Meet30}
-              className={`${styles.desktopImg} ${
-                isDesktop ? styles.desktopImg : isMobile ? styles.mobileImg : ""
+            <button
+              onClick={moveToAccompany}
+              className={`${styles.desktopAccompany} ${
+                isDesktop
+                  ? styles.desktopAccompany
+                  : isMobile
+                  ? styles.mobileAccompany
+                  : ""
+              } button${isButtonPressed ? " pressed" : ""}`}
+              onMouseDown={handleButtonPress}
+              onMouseUp={handleButtonRelease}
+              onMouseLeave={handleButtonRelease}
+            >
+              <img
+                src={Route30}
+                className={`${styles.desktopImg} ${
+                  isDesktop
+                    ? styles.desktopImg
+                    : isMobile
+                    ? styles.mobileImg
+                    : ""
+                }`}
+              ></img>
+              <p className={styles.with}>동행</p>
+            </button>
+            <button
+              onClick={moveToAi}
+              className={`${styles.desktopAI} ${
+                isDesktop ? styles.desktopAI : isMobile ? styles.mobileAI : ""
+              } button${isButtonPressed ? " pressed" : ""}`}
+              onMouseDown={handleButtonPress}
+              onMouseUp={handleButtonRelease}
+              onMouseLeave={handleButtonRelease}
+            >
+              <img
+                src={Accompany30}
+                className={`${styles.desktopImg} ${
+                  isDesktop
+                    ? styles.desktopImg
+                    : isMobile
+                    ? styles.mobileImg
+                    : ""
+                }`}
+              ></img>
+              <p className={styles.with}>Ai 경로 추천</p>
+            </button>
+            <button
+              onClick={moveToMeet}
+              className={`${styles.desktopMeet} ${
+                isButtonPressed ? "pressed" : ""
+              } ${
+                isDesktop
+                  ? styles.desktopMeet
+                  : isMobile
+                  ? styles.mobileMeet
+                  : ""
               }`}
-            ></img>
-            <p className={styles.with}>만남</p>
-          </button>
-        </div>
-        <div>
-          <p className={styles.friend}>
-            <span style={{ color: "#A0A0A0" }}>마음 맞는 </span>
-            <span style={{ color: "#EF455A" }}>여행 </span>
-            <span style={{ color: "#A0A0A0" }}>함께 가는 </span>
-            <span style={{ color: "#EF455A" }}>친구</span>
-          </p>
+              onMouseDown={handleButtonPress}
+              onMouseUp={handleButtonRelease}
+              onMouseLeave={handleButtonRelease}
+            >
+              <img
+                src={Meet30}
+                className={`${styles.desktopImg} ${
+                  isDesktop
+                    ? styles.desktopImg
+                    : isMobile
+                    ? styles.mobileImg
+                    : ""
+                }`}
+              ></img>
+              <p className={styles.with}>만남</p>
+            </button>
+          </div>
+          <div>
+            <p className={styles.friend}>
+              <span style={{ color: "#A0A0A0" }}>마음 맞는 </span>
+              <span style={{ color: "#EF455A" }}>여행 </span>
+              <span style={{ color: "#A0A0A0" }}>함께 가는 </span>
+              <span style={{ color: "#EF455A" }}>친구</span>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

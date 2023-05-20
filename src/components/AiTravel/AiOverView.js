@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import { useMediaQuery } from "react-responsive";
 import styles from "./AiOverView.module.scss";
+import { motion } from "framer-motion";
 
 const AiOverView = () => {
   const spotsPerPage = 2;
@@ -96,79 +97,88 @@ const AiOverView = () => {
   }
 
   return (
-    <div>
-      <div className={styles.Frame1}>
-        <Header />
-        <div
-          className={`${styles.spots} ${
-            isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
-          }`}
-        >
-          <div style={{ margin: "20px auto", textAlign: "center" }}>
-            <h4>선택한 여행지입니다.</h4>
-          </div>
-          {Object.entries(updatedSelectedSpotsByCountry).map(
-            ([country, spots]) => {
-              const countryImages = spotImagesByCountry[country];
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div>
+        <div className={styles.Frame1}>
+          <Header />
+          <div
+            className={`${styles.spots} ${
+              isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
+            }`}
+          >
+            <div style={{ margin: "20px auto", textAlign: "center" }}>
+              <h4>선택한 여행지입니다.</h4>
+            </div>
+            {Object.entries(updatedSelectedSpotsByCountry).map(
+              ([country, spots]) => {
+                const countryImages = spotImagesByCountry[country];
 
-              // 이미지 캐러셀 기능 추가
+                // 이미지 캐러셀 기능 추가
 
-              const countryImagesPerPage = countryImages.slice(
-                currentImageIndex,
-                currentImageIndex + imagesPerPage
-              );
+                const countryImagesPerPage = countryImages.slice(
+                  currentImageIndex,
+                  currentImageIndex + imagesPerPage
+                );
 
-              return (
-                <div key={country} className={styles.countryContainer}>
-                  <h3>{country}</h3>
-                  <div className={styles.imageContainer}>
-                    {countryImagesPerPage.map((image, index) => {
-                      const spot = spots[index + currentImageIndex];
-                      const isActive = index === 0; // 현재 보여지는 이미지 여부
+                return (
+                  <div key={country} className={styles.countryContainer}>
+                    <h3>{country}</h3>
+                    <div className={styles.imageContainer}>
+                      {countryImagesPerPage.map((image, index) => {
+                        const spot = spots[index + currentImageIndex];
+                        const isActive = index === 0; // 현재 보여지는 이미지 여부
 
-                      return (
-                        <div
-                          key={index}
-                          className={`${styles.imageWrapper} ${
-                            isActive && styles.active
-                          }`}
-                        >
-                          <img
-                            src={image}
-                            alt={spot}
-                            className={styles.image}
-                          />
-                          <div className={styles.imageCaption}>
-                            <h4>{spot}</h4>
+                        return (
+                          <div
+                            key={index}
+                            className={`${styles.imageWrapper} ${
+                              isActive && styles.active
+                            }`}
+                          >
+                            <img
+                              src={image}
+                              alt={spot}
+                              className={styles.image}
+                            />
+                            <div className={styles.imageCaption}>
+                              <h4>{spot}</h4>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {countryImages.length > imagesPerPage && (
-                    <div className={styles.navigationButtons}>
-                      {currentImageIndex > 0 && (
-                        <button onClick={handlePreviousImage}>Previous</button>
-                      )}
-                      {currentImageIndex <
-                        countryImages.length - imagesPerPage && (
-                        <button onClick={handleNextImage}>Next</button>
-                      )}
+                        );
+                      })}
                     </div>
-                  )}
-                </div>
-              );
-            }
-          )}
-          <div style={{ margin: "20px auto", textAlign: "center" }}>
-            <h4>이 관광지들이 마음에 들면 추천받기 버튼을 눌러주세요!</h4>
 
-            <button onClick={handleSubmit}>나만의 코스 추천받기</button>
+                    {countryImages.length > imagesPerPage && (
+                      <div className={styles.navigationButtons}>
+                        {currentImageIndex > 0 && (
+                          <button onClick={handlePreviousImage}>
+                            Previous
+                          </button>
+                        )}
+                        {currentImageIndex <
+                          countryImages.length - imagesPerPage && (
+                          <button onClick={handleNextImage}>Next</button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+            )}
+            <div style={{ margin: "20px auto", textAlign: "center" }}>
+              <h4>이 관광지들이 마음에 들면 추천받기 버튼을 눌러주세요!</h4>
+
+              <button onClick={handleSubmit}>나만의 코스 추천받기</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
