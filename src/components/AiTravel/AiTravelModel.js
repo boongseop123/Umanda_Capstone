@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import styles from "./AiTravelModel.module.scss";
 import Header from "../Header/Header";
 import { useMediaQuery } from "react-responsive";
+import { motion } from "framer-motion";
 
 const AiTravelModel = () => {
   const [selectedSpotsArray, setSelectedSpotsArray] = useRecoilState(
@@ -134,147 +135,158 @@ const AiTravelModel = () => {
   };
 
   return (
-    <div>
-      <div className={styles.Frame1}>
-        <Header />
-        <div className={styles.container}>
-          <div
-            className={`${styles.spots} ${
-              isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
-            }`}
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              border: "1px solid white",
-              boxShadow: "0px 3px 6px #a7999a3e",
-              backgroundColor: "white",
-              borderTopLeftRadius: "45px",
-              borderTopRightRadius: "45px",
-              margin: "0 auto",
-              overflowY: "auto",
-              minHeight: "200px",
-              maxWidth: "550px",
-            }}
-          >
-            <div className={styles.hh3}>원하는 코스를 선택해주세요!</div>
-            {response.map((responseData, index) => {
-              const { id, countryName } = responseData;
-              const koreanCountryName =
-                countryNames[countryName] || countryName;
-              return (
-                <div key={index}>
-                  <h2>{koreanCountryName}</h2>
-                  <div className={styles.recommendations_container}>
-                    <div
-                      className={`${styles.recommendation_row} ${
-                        showMore ? styles.horizontalScroll : ""
-                      }`}
-                    >
-                      {Array.from({ length: showMore ? 3 : 1 }).map(
-                        (_, recommendIndex) => {
-                          const recommendType = getRecommendationType(
-                            recommendIndex + 1
-                          );
-                          const recommendationData =
-                            responseData[`recommend${recommendIndex + 1}`];
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div>
+        <div className={styles.Frame1}>
+          <Header />
+          <div className={styles.container}>
+            <div
+              className={`${styles.spots} ${
+                isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
+              }`}
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                border: "1px solid white",
+                boxShadow: "0px 3px 6px #a7999a3e",
+                backgroundColor: "white",
+                borderTopLeftRadius: "45px",
+                borderTopRightRadius: "45px",
+                margin: "0 auto",
+                overflowY: "auto",
+                minHeight: "200px",
+                maxWidth: "550px",
+              }}
+            >
+              <div className={styles.hh3}>원하는 코스를 선택해주세요!</div>
+              {response.map((responseData, index) => {
+                const { id, countryName } = responseData;
+                const koreanCountryName =
+                  countryNames[countryName] || countryName;
+                return (
+                  <div key={index}>
+                    <h2>{koreanCountryName}</h2>
+                    <div className={styles.recommendations_container}>
+                      <div
+                        className={`${styles.recommendation_row} ${
+                          showMore ? styles.horizontalScroll : ""
+                        }`}
+                      >
+                        {Array.from({ length: showMore ? 3 : 1 }).map(
+                          (_, recommendIndex) => {
+                            const recommendType = getRecommendationType(
+                              recommendIndex + 1
+                            );
+                            const recommendationData =
+                              responseData[`recommend${recommendIndex + 1}`];
 
-                          return (
-                            <div
-                              key={recommendIndex}
-                              className={styles.recommendation_column}
-                            >
-                              <h3>{recommendType}</h3>
-                              <div className={styles.recommendation_item}>
-                                <div className={styles.imageContainer}></div>
-                                <div className={styles.description}>
-                                  <button
-                                    onClick={() =>
-                                      handleSpotSelection(recommendationData)
+                            return (
+                              <div
+                                key={recommendIndex}
+                                className={styles.recommendation_column}
+                              >
+                                <h3>{recommendType}</h3>
+                                <div className={styles.recommendation_item}>
+                                  <div className={styles.imageContainer}></div>
+                                  <div className={styles.description}>
+                                    <button
+                                      onClick={() =>
+                                        handleSpotSelection(recommendationData)
+                                      }
+                                    >
+                                      선택하기
+                                    </button>{" "}
+                                    {/* 선택하기 버튼 추가 */}
+                                  </div>
+                                </div>
+                                <div className={styles.recommendation_carousel}>
+                                  {recommendationData.map(
+                                    (recommend, innerIndex) => {
+                                      if (
+                                        selectedCountry &&
+                                        recommend.countryId !== selectedCountry
+                                      ) {
+                                        return null;
+                                      }
+
+                                      return (
+                                        <div
+                                          key={innerIndex}
+                                          className={styles.recommendation_item}
+                                        >
+                                          <div
+                                            className={styles.imageContainer}
+                                          >
+                                            <img
+                                              src={recommend.URI}
+                                              alt="Spot Image"
+                                              className={styles.image}
+                                            />
+                                          </div>
+                                          <div className={styles.description}>
+                                            <p>{recommend.spot}</p>
+
+                                            <button
+                                              onClick={() =>
+                                                setSelectedSpot(recommend)
+                                              }
+                                            >
+                                              자세히 보기
+                                            </button>
+                                          </div>
+                                        </div>
+                                      );
                                     }
-                                  >
-                                    선택하기
-                                  </button>{" "}
-                                  {/* 선택하기 버튼 추가 */}
+                                  )}
                                 </div>
                               </div>
-                              <div className={styles.recommendation_carousel}>
-                                {recommendationData.map(
-                                  (recommend, innerIndex) => {
-                                    if (
-                                      selectedCountry &&
-                                      recommend.countryId !== selectedCountry
-                                    ) {
-                                      return null;
-                                    }
-
-                                    return (
-                                      <div
-                                        key={innerIndex}
-                                        className={styles.recommendation_item}
-                                      >
-                                        <div className={styles.imageContainer}>
-                                          <img
-                                            src={recommend.URI}
-                                            alt="Spot Image"
-                                            className={styles.image}
-                                          />
-                                        </div>
-                                        <div className={styles.description}>
-                                          <p>{recommend.spot}</p>
-
-                                          <button
-                                            onClick={() =>
-                                              setSelectedSpot(recommend)
-                                            }
-                                          >
-                                            자세히 보기
-                                          </button>
-                                        </div>
-                                      </div>
-                                    );
-                                  }
-                                )}
-                              </div>
-                            </div>
-                          );
-                        }
+                            );
+                          }
+                        )}
+                      </div>
+                      {!showMore && (
+                        <button onClick={() => setShowMore(true)}>
+                          더 보기
+                        </button>
+                      )}
+                      {showMore && (
+                        <button onClick={() => setShowMore(false)}>
+                          접어두기
+                        </button>
                       )}
                     </div>
-                    {!showMore && (
-                      <button onClick={() => setShowMore(true)}>더 보기</button>
-                    )}
-                    {showMore && (
-                      <button onClick={() => setShowMore(false)}>
-                        접어두기
-                      </button>
-                    )}
                   </div>
-                </div>
-              );
-            })}
-            <button onClick={logSelectedSpotsArray}>
-              selectedSpotsArray 콘솔 출력
-            </button>
+                );
+              })}
+              <button onClick={logSelectedSpotsArray}>
+                selectedSpotsArray 콘솔 출력
+              </button>
 
-            <button onClick={handleNavigate}>구글맵 띄우기</button>
-          </div>
-        </div>
-        {selectedSpot && (
-          <div className={styles.modal}>
-            <div className={styles.modalContent}>
-              <span
-                className={styles.close}
-                onClick={() => setSelectedSpot(null)}
-              >
-                ×
-              </span>
-              <h4>{selectedSpot.spot}</h4>
-              <p>{selectedSpot.description}</p>
+              <button onClick={handleNavigate}>구글맵 띄우기</button>
             </div>
           </div>
-        )}
+          {selectedSpot && (
+            <div className={styles.modal}>
+              <div className={styles.modalContent}>
+                <span
+                  className={styles.close}
+                  onClick={() => setSelectedSpot(null)}
+                >
+                  ×
+                </span>
+                <h4>{selectedSpot.spot}</h4>
+                <p>{selectedSpot.description}</p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

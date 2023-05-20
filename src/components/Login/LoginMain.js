@@ -9,6 +9,7 @@ import { useMediaQuery } from "react-responsive";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { tokenState, IdState } from "../../recoils/Recoil";
 import { API_URL } from "../Constant";
+import { motion } from "framer-motion";
 
 const LoginMain = () => {
   const [username, setUsername] = useState("");
@@ -55,82 +56,89 @@ const LoginMain = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column" }}
-      className={`${styles.Frame} ${
-        isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
-      }`}
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
-      <h3
-        className={`${
-          isDesktop ? styles.desktopH3 : isMobile ? styles.mobileH3 : ""
+      <div
+        style={{ display: "flex", flexDirection: "column" }}
+        className={`${styles.Frame} ${
+          isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
         }`}
       >
-        Umanda
-      </h3>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <input
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
+        <h3
+          className={`${
+            isDesktop ? styles.desktopH3 : isMobile ? styles.mobileH3 : ""
           }`}
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="이메일 주소 또는 아이디"
-        />
-        <input
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="패스워드"
-        />
-      </div>
-      <div className={styles.findIdPass}>
-        <div>
-          <label htmlFor="keepLogin">
-            <input
-              type="checkbox"
-              id="keepLogin"
-              checked={isChecked}
-              onChange={handleCheck}
-              className={styles.stillLogin}
-            />
-            로그인 유지
-          </label>
-          <label className={styles.label_with_margin}>
-            <Link
-              to="/forgot-password"
-              style={{ textDecoration: "none", color: "#ef455a" }}
-            >
-              아이디 또는 비밀번호를 잊으셨나요?
-            </Link>
-          </label>
-        </div>
-        <div>
-          <button
-            onClick={handleLogin}
-            className={`${styles.desktopLoginBox} ${
-              isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
+        >
+          Umanda
+        </h3>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <input
+            className={`${styles.desktopInput} ${
+              isDesktop ? styles.desktopInput : styles.mobileInput
             }`}
-          >
-            <text className={styles.loginBoxText}>로그인</text>
-          </button>
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="이메일 주소 또는 아이디"
+          />
+          <input
+            className={`${styles.desktopInput} ${
+              isDesktop ? styles.desktopInput : styles.mobileInput
+            }`}
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="패스워드"
+          />
         </div>
-        <div className={styles.RegisterBox}>
-          <label>
-            <Link to="/sign-up" className={styles.Register}>
-              Umanda가 처음이신가요? 회원가입
-            </Link>
-          </label>
-        </div>
-        <div>
-          <SocialLoginButton />
+        <div className={styles.findIdPass}>
+          <div>
+            <label htmlFor="keepLogin">
+              <input
+                type="checkbox"
+                id="keepLogin"
+                checked={isChecked}
+                onChange={handleCheck}
+                className={styles.stillLogin}
+              />
+              로그인 유지
+            </label>
+            <label className={styles.label_with_margin}>
+              <Link
+                to="/forgot-password"
+                style={{ textDecoration: "none", color: "#ef455a" }}
+              >
+                아이디 또는 비밀번호를 잊으셨나요?
+              </Link>
+            </label>
+          </div>
+          <div>
+            <button
+              onClick={handleLogin}
+              className={`${styles.desktopLoginBox} ${
+                isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
+              }`}
+            >
+              <text className={styles.loginBoxText}>로그인</text>
+            </button>
+          </div>
+          <div className={styles.RegisterBox}>
+            <label>
+              <Link to="/sign-up" className={styles.Register}>
+                Umanda가 처음이신가요? 회원가입
+              </Link>
+            </label>
+          </div>
+          <div>
+            <SocialLoginButton />
+          </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

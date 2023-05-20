@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import { AnimatePresence } from "framer-motion";
 import IntroPage from "./components/Intro/IntroPage";
 import LoginPage from "./components/Login/LoginPage";
 import SignUpPage from "./components/SignUp/SignUpPage";
@@ -18,24 +19,26 @@ function App() {
   return (
     <RecoilRoot>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<IntroPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path="/main" element={<MainPage />} />
-          <Route path="/accompany" element={<AccompanyPage />} />
-          <Route path="/aitravel" element={<AiTravelPage />} />
-          <Route path="/aitravel2" element={<AiTravelPage2 />} />
-          <Route path="/aitravel_calender" element={<AiTravelPage3 />} />
-          <Route
-            path="/ai-travel-spot-select"
-            element={<AiTravelSpotSelect />}
-          />
-          <Route path="/aitravel_date" element={<AiOverView />} />
-          <Route path="/aitravelmodel" element={<AiTravelModel />} />
-          <Route path="/aitravelmap" element={<AiTravelMap />} />
-          <Route path="/meet" element={<PostBody />} />
-        </Routes>
+        <AnimatePresence>
+          <Routes>
+            <Route path="/" element={<IntroPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/accompany" element={<AccompanyPage />} />
+            <Route path="/aitravel" element={<AiTravelPage />} />
+            <Route path="/aitravel2" element={<AiTravelPage2 />} />
+            <Route path="/aitravel_calender" element={<AiTravelPage3 />} />
+            <Route
+              path="/ai-travel-spot-select"
+              element={<AiTravelSpotSelect />}
+            />
+            <Route path="/aitravel_date" element={<AiOverView />} />
+            <Route path="/aitravelmodel" element={<AiTravelModel />} />
+            <Route path="/aitravelmap" element={<AiTravelMap />} />
+            <Route path="/meet" element={<PostBody />} />
+          </Routes>
+        </AnimatePresence>
       </BrowserRouter>
     </RecoilRoot>
   );

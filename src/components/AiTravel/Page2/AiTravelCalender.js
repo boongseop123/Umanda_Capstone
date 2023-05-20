@@ -7,6 +7,7 @@ import {
   travelDurationState,
 } from "../../../recoils/Recoil";
 import styles from "./AiTravelCalender.Module.scss"; // 경로 수정
+import { motion } from "framer-motion";
 
 const AiTravelCalendar = () => {
   const selectedCountries = useRecoilValue(selectedCountriesState);
@@ -81,26 +82,33 @@ const AiTravelCalendar = () => {
   };
 
   return (
-    <div className="custom-calendar-wrapper">
-      <h3 className={styles.h3select}>여행 기간을 선택해 주세요</h3>
-      <br></br>
-      {countryDurations.map((duration, index) => (
-        <p key={index}>
-          {translateCountryName(selectedCountries[index])}:{" "}
-          {duration !== null ? duration + "일" : "기간이 선택되지 않았습니다"}
-        </p>
-      ))}
-      <div className="custom-calendar-container">
-        <Calendar
-          onChange={handleDateChange}
-          value={selectedDates}
-          selectRange
-          className="custom-calendar"
-          tileClassName="custom-calendar-tile"
-          calendarType="US"
-        />
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div className="custom-calendar-wrapper">
+        <h3 className={styles.h3select}>여행 기간을 선택해 주세요</h3>
+        <br></br>
+        {countryDurations.map((duration, index) => (
+          <p key={index}>
+            {translateCountryName(selectedCountries[index])}:{" "}
+            {duration !== null ? duration + "일" : "기간이 선택되지 않았습니다"}
+          </p>
+        ))}
+        <div className="custom-calendar-container">
+          <Calendar
+            onChange={handleDateChange}
+            value={selectedDates}
+            selectRange
+            className="custom-calendar"
+            tileClassName="custom-calendar-tile"
+            calendarType="US"
+          />
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

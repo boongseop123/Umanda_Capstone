@@ -14,6 +14,8 @@ import Header from "../Header/Header";
 import { useMediaQuery } from "react-responsive";
 import styles from "./AiTravelSpotSelect.module.scss";
 import Modal from "react-modal";
+import { motion } from "framer-motion";
+
 const customModalStyles = {
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -120,130 +122,137 @@ const AiTravelMap = () => {
   }
 
   return (
-    <div>
-      <div className={styles.Frame1}>
-        <Header />
-        <div
-          className={`${styles.spots} ${
-            isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
-          }`}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            border: "1px solid white",
-            boxShadow: "0px 3px 6px #a7999a3e",
-            backgroundColor: "white",
-            borderTopLeftRadius: "45px",
-            borderTopRightRadius: "45px",
-            margin: "0 auto",
-            overflowY: "auto",
-            minHeight: "200px",
-            maxWidth: "550px",
-          }}
-        >
-          <div style={{ height: "100vh", width: "100%" }}>
-            <GoogleMap
-              mapContainerStyle={{ height: "100%", width: "100%" }}
-              center={{ lat: 51.5074, lng: -0.1278 }}
-              zoom={13}
-            >
-              {directions && <DirectionsRenderer directions={directions} />}
-              <MarkerClusterer
-                onLoad={(clusterer) => setClusterer(clusterer)}
-                onClick={handleClusterClick}
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <div>
+        <div className={styles.Frame1}>
+          <Header />
+          <div
+            className={`${styles.spots} ${
+              isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
+            }`}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              border: "1px solid white",
+              boxShadow: "0px 3px 6px #a7999a3e",
+              backgroundColor: "white",
+              borderTopLeftRadius: "45px",
+              borderTopRightRadius: "45px",
+              margin: "0 auto",
+              overflowY: "auto",
+              minHeight: "200px",
+              maxWidth: "550px",
+            }}
+          >
+            <div style={{ height: "100vh", width: "100%" }}>
+              <GoogleMap
+                mapContainerStyle={{ height: "100%", width: "100%" }}
+                center={{ lat: 51.5074, lng: -0.1278 }}
+                zoom={13}
               >
-                {(clusterer) =>
-                  selectedCourse.map((data, index) => (
-                    <Marker
-                      key={index}
-                      position={{
-                        lat: parseFloat(data.latitude),
-                        lng: parseFloat(data.longitude),
-                      }}
-                      label={(index + 1).toString()}
-                      onClick={() => handleShowModal()}
-                      clusterer={clusterer}
-                    />
-                  ))
-                }
-              </MarkerClusterer>
-              {selectedMarker && Array.isArray(selectedMarker) && (
-                <InfoWindow
-                  position={{
-                    lat: parseFloat(selectedMarker[0].latitude),
-                    lng: parseFloat(selectedMarker[0].longitude),
-                  }}
-                  onCloseClick={() => setSelectedMarker(null)}
+                {directions && <DirectionsRenderer directions={directions} />}
+                <MarkerClusterer
+                  onLoad={(clusterer) => setClusterer(clusterer)}
+                  onClick={handleClusterClick}
                 >
-                  <div>
-                    <button onClick={handleShowModal}>최단 경로 보기</button>
-
-                    <h3>Selected Markers</h3>
-                    <ul>
-                      {selectedMarker.map((marker, index) => (
-                        <li key={index}>
-                          <h4>{marker.spot}</h4>
-                          <p>{marker.description}</p>
-                          <a
-                            href={marker.uri}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Image
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </InfoWindow>
-              )}
-              {showShortestPath &&
-                directions &&
-                directions.routes[0].legs.map((leg, index) => (
-                  <React.Fragment key={index}>
-                    <Marker
-                      position={leg.start_location}
-                      icon={{
-                        url: "IMAGE_URL",
-                        scaledSize: new window.google.maps.Size(30, 30),
-                      }}
-                    />
-                    {index === directions.routes[0].legs.length - 1 ? (
+                  {(clusterer) =>
+                    selectedCourse.map((data, index) => (
                       <Marker
-                        position={leg.end_location}
+                        key={index}
+                        position={{
+                          lat: parseFloat(data.latitude),
+                          lng: parseFloat(data.longitude),
+                        }}
+                        label={(index + 1).toString()}
+                        onClick={() => handleShowModal()}
+                        clusterer={clusterer}
+                      />
+                    ))
+                  }
+                </MarkerClusterer>
+                {selectedMarker && Array.isArray(selectedMarker) && (
+                  <InfoWindow
+                    position={{
+                      lat: parseFloat(selectedMarker[0].latitude),
+                      lng: parseFloat(selectedMarker[0].longitude),
+                    }}
+                    onCloseClick={() => setSelectedMarker(null)}
+                  >
+                    <div>
+                      <button onClick={handleShowModal}>최단 경로 보기</button>
+
+                      <h3>Selected Markers</h3>
+                      <ul>
+                        {selectedMarker.map((marker, index) => (
+                          <li key={index}>
+                            <h4>{marker.spot}</h4>
+                            <p>{marker.description}</p>
+                            <a
+                              href={marker.uri}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Image
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </InfoWindow>
+                )}
+                {showShortestPath &&
+                  directions &&
+                  directions.routes[0].legs.map((leg, index) => (
+                    <React.Fragment key={index}>
+                      <Marker
+                        position={leg.start_location}
                         icon={{
                           url: "IMAGE_URL",
                           scaledSize: new window.google.maps.Size(30, 30),
                         }}
                       />
-                    ) : null}
-                  </React.Fragment>
-                ))}
-              {showShortestPath && directions && (
-                <Polyline
-                  path={directions.routes[0].overview_path}
-                  options={{
-                    strokeColor: "#0000FF",
-                    strokeOpacity: 0.8,
-                    strokeWeight: 5,
-                    icons: [
-                      {
-                        icon: {
-                          path: window.google.maps.SymbolPath
-                            .FORWARD_CLOSED_ARROW,
+                      {index === directions.routes[0].legs.length - 1 ? (
+                        <Marker
+                          position={leg.end_location}
+                          icon={{
+                            url: "IMAGE_URL",
+                            scaledSize: new window.google.maps.Size(30, 30),
+                          }}
+                        />
+                      ) : null}
+                    </React.Fragment>
+                  ))}
+                {showShortestPath && directions && (
+                  <Polyline
+                    path={directions.routes[0].overview_path}
+                    options={{
+                      strokeColor: "#0000FF",
+                      strokeOpacity: 0.8,
+                      strokeWeight: 5,
+                      icons: [
+                        {
+                          icon: {
+                            path: window.google.maps.SymbolPath
+                              .FORWARD_CLOSED_ARROW,
+                          },
+                          offset: "100%",
                         },
-                        offset: "100%",
-                      },
-                    ],
-                  }}
-                />
-              )}
-            </GoogleMap>
-            <button onClick={handleShowShortestPath}>최단경로 보기</button>
+                      ],
+                    }}
+                  />
+                )}
+              </GoogleMap>
+              <button onClick={handleShowShortestPath}>최단경로 보기</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

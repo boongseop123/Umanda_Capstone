@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import { useMediaQuery } from "react-responsive";
 import BirthdatePicker from "./Pages/birthComponent";
 import { API_URL } from "../Constant";
+import { motion } from "framer-motion";
 
 const SignUpMain = () => {
   const [responseData, setResponseData] = useState(null);
@@ -84,149 +85,156 @@ const SignUpMain = () => {
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column" }}
-      className={`${styles.Frame} ${
-        isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
-      }`}
+    <motion.div
+      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
     >
-      <h4 className={styles.register}>회원가입</h4>
-      <br></br>
-      <br></br>
-      <div>
-        <label>
-          <h5 className={styles.register}>아이디</h5>
+      <div
+        style={{ display: "flex", flexDirection: "column" }}
+        className={`${styles.Frame} ${
+          isDesktop ? styles.desktop : isMobile ? styles.mobile : ""
+        }`}
+      >
+        <h4 className={styles.register}>회원가입</h4>
+        <br></br>
+        <br></br>
+        <div>
+          <label>
+            <h5 className={styles.register}>아이디</h5>
+            <input
+              onFocus={() => {
+                setisIdClicked(true);
+              }}
+              onBlur={() => {
+                setisIdClicked(false);
+              }}
+              className={`${styles.desktopInput1} ${
+                isDesktop ? styles.desktopInput : styles.mobileInput1
+              }`}
+              type="string"
+              placeholder={isIdClicked === true ? "" : "아이디 입력 (6 ~ 20자)"}
+              value={username}
+              onChange={handleUsernameChange}
+            />
+            <button className={styles.duplicateButton}>중복확인</button>
+          </label>
+        </div>
+        <div>
+          <h5 className={styles.id}>패스워드</h5>
           <input
             onFocus={() => {
-              setisIdClicked(true);
+              setisPassClicked(true);
             }}
             onBlur={() => {
-              setisIdClicked(false);
+              setisPassClicked(false);
             }}
-            className={`${styles.desktopInput1} ${
-              isDesktop ? styles.desktopInput : styles.mobileInput1
+            className={`${styles.desktopInput} ${
+              isDesktop ? styles.desktopInput : styles.mobileInput
+            }`}
+            type="password"
+            placeholder={
+              isPassClicked === true
+                ? ""
+                : "패스워드 입력 (문자, 숫자, 특수문자 포함 8 ~ 20자)"
+            }
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </div>
+        <div>
+          <h5 className={styles.id}>패스워드 확인</h5>
+          <input
+            onFocus={() => {
+              setisPassClicked_1(true);
+            }}
+            onBlur={() => {
+              setisPassClicked_1(false);
+            }}
+            className={`${styles.desktopInput} ${
+              isDesktop ? styles.desktopInput : styles.mobileInput
+            }`}
+            type="password"
+            placeholder={
+              isPassClicked_1 === true
+                ? ""
+                : "패스워드 입력 (문자, 숫자, 특수문자 포함 8 ~ 20자)"
+            }
+            value={password1}
+            onChange={handlePassword1Change}
+          />
+        </div>
+        <div>
+          <h5 className={styles.id}>이름</h5>
+          <input
+            onFocus={() => {
+              setisNameClicked(true);
+            }}
+            onBlur={() => {
+              setisNameClicked(false);
+            }}
+            className={`${styles.desktopInput} ${
+              isDesktop ? styles.desktopInput : styles.mobileInput
             }`}
             type="string"
-            placeholder={isIdClicked === true ? "" : "아이디 입력 (6 ~ 20자)"}
-            value={username}
-            onChange={handleUsernameChange}
+            placeholder={isNameClicked === true ? "" : "이름을 입력해주세요"}
+            value={name}
+            onChange={handleNameChange}
           />
-          <button className={styles.duplicateButton}>중복확인</button>
-        </label>
-      </div>
-      <div>
-        <h5 className={styles.id}>패스워드</h5>
-        <input
-          onFocus={() => {
-            setisPassClicked(true);
-          }}
-          onBlur={() => {
-            setisPassClicked(false);
-          }}
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
-          type="password"
-          placeholder={
-            isPassClicked === true
-              ? ""
-              : "패스워드 입력 (문자, 숫자, 특수문자 포함 8 ~ 20자)"
-          }
-          value={password}
-          onChange={handlePasswordChange}
-        />
-      </div>
-      <div>
-        <h5 className={styles.id}>패스워드 확인</h5>
-        <input
-          onFocus={() => {
-            setisPassClicked_1(true);
-          }}
-          onBlur={() => {
-            setisPassClicked_1(false);
-          }}
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
-          type="password"
-          placeholder={
-            isPassClicked_1 === true
-              ? ""
-              : "패스워드 입력 (문자, 숫자, 특수문자 포함 8 ~ 20자)"
-          }
-          value={password1}
-          onChange={handlePassword1Change}
-        />
-      </div>
-      <div>
-        <h5 className={styles.id}>이름</h5>
-        <input
-          onFocus={() => {
-            setisNameClicked(true);
-          }}
-          onBlur={() => {
-            setisNameClicked(false);
-          }}
-          className={`${styles.desktopInput} ${
-            isDesktop ? styles.desktopInput : styles.mobileInput
-          }`}
-          type="string"
-          placeholder={isNameClicked === true ? "" : "이름을 입력해주세요"}
-          value={name}
-          onChange={handleNameChange}
-        />
-      </div>
-      <div>
-        <h5 className={styles.id}>생년월일</h5>
-        <BirthdatePicker
-          className="custom-datepicker"
-          onBirthdateChange={handleBirthdateChange}
-        />
-      </div>
-      <div className={styles.label}>
-        <h5>성별</h5>
-        <label className={styles.maleLabel}>
-          <input
-            type="radio"
-            name="gender"
-            value="MAN"
-            checked={gender === "MAN"}
-            className={styles.stillLogin}
-            onChange={handleGenderChange}
+        </div>
+        <div>
+          <h5 className={styles.id}>생년월일</h5>
+          <BirthdatePicker
+            className="custom-datepicker"
+            onBirthdateChange={handleBirthdateChange}
           />
-          <text className={styles.malefont}>남성</text>
-        </label>
-        <label>
-          <input
-            type="radio"
-            name="gender"
-            value="WOMEN"
-            checked={gender === "WOMEN"}
-            className={styles.stillLogin}
-            onChange={handleGenderChange}
-          />
-          <text className={styles.malefont}>여성</text>
-        </label>
-      </div>
-      <div
-        div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-      >
-        <button
-          onClick={handleRegister}
-          className={`${styles.desktopLoginBox} ${
-            isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
-          }`}
+        </div>
+        <div className={styles.label}>
+          <h5>성별</h5>
+          <label className={styles.maleLabel}>
+            <input
+              type="radio"
+              name="gender"
+              value="MAN"
+              checked={gender === "MAN"}
+              className={styles.stillLogin}
+              onChange={handleGenderChange}
+            />
+            <text className={styles.malefont}>남성</text>
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="WOMEN"
+              checked={gender === "WOMEN"}
+              className={styles.stillLogin}
+              onChange={handleGenderChange}
+            />
+            <text className={styles.malefont}>여성</text>
+          </label>
+        </div>
+        <div
+          div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            textAlign: "center",
+          }}
         >
-          <text className={styles.loginBoxText}>회원가입</text>
-        </button>
-        {responseData && <div>{responseData}</div>}
+          <button
+            onClick={handleRegister}
+            className={`${styles.desktopLoginBox} ${
+              isDesktop ? styles.desktopLoginBox : styles.mobileLoginBox
+            }`}
+          >
+            <text className={styles.loginBoxText}>회원가입</text>
+          </button>
+          {responseData && <div>{responseData}</div>}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
