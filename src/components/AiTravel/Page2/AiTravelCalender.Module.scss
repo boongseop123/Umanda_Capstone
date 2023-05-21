@@ -3,9 +3,10 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  font-family: "Happy", sans-serif;
+  font-family: "Happy Bold", sans-serif;
   margin-top: 50px;
   margin-bottom: 300px;
+  position: relative;
 }
 
 .h3select {
@@ -128,4 +129,8 @@ abbr[title] {
   border-bottom-right-radius: 6px;
   background: #ef455a;
   color: white;
+}
+
+.text {
+  font-family: "Happy Bolder", sans-serif;
 }
