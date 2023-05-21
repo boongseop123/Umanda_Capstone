@@ -19,6 +19,12 @@
   width: 100%;
   z-index: 0;
 }
+.subtitle {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #ef455a;
+  font-family: "Happy Bold";
+}
 
 /* Umanda 글자 디자인 */
 .desktopUmanda {
@@ -46,7 +52,7 @@
   margin-right: 10px;
   margin-bottom: 40px;
   margin-top: 30px;
-  font-family: "Happy", sans-serif;
+  font-family: "Happy Bold", sans-serif;
   font-size: 28px;
   margin-left: 35px;
 }
@@ -56,9 +62,10 @@
   margin-right: 10px;
   margin-bottom: 30px;
   margin-top: 40px;
-  font-family: "Happy", sans-serif;
+  font-family: "Happy Bold", sans-serif;
   font-size: 15px;
   margin-left: 20px;
+  font-weight: 700;
 }
 
 /* 떠나기 좋은 여행 추천 데스크탑 버전 */
@@ -86,21 +93,18 @@
 
 .img {
   left: 0;
-  border-radius: 30px;
-  width: 530px;
-  height: 320px;
+  border-radius: 28px;
+  width: 540px;
+  height: 330px;
   margin-top: 20px;
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-  //background-size: cover;
   text-align: center;
-  //vertical-align: middle;
-  /* 이미지를 적절한 크기로 지정합니다. */
 }
 
 .imgtext {
   position: absolute;
   z-index: 1;
-  font-family: "Happy", sans-serif;
+  font-family: "Happy Bold", sans-serif;
   display: flex;
   flex-direction: column;
 }
@@ -110,14 +114,24 @@
 }
 
 button:active {
-  background-color: #f6e0e0;
+  background-color: #f8e8e8;
 }
 .span1 {
   font-family: "Happy", sans-serif;
-  color: white;
-  margin-left: 70px;
-  font-size: 25px;
-  font-weight: 680px;
+  color: #fcf2f2;
+  margin-left: 120px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.span2 {
+  font-family: "Happy", sans-serif;
+  color: #fcf2f2;
+  margin-left: 120px;
+  margin-bottom: 5px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 20px;
 }
 /* 슬라이드 규격 mobile 버전 */
 .mobileImgSlide {
@@ -125,12 +139,13 @@ button:active {
   width: 400px;
   height: 200px;
   margin-left: 12px;
-  background-image: url("../../resources/London.jpeg");
+  background-image: url("../../resources/travelimg.jpg");
 }
 .QnA {
   color: white;
   margin-right: 40px;
   margin-bottom: 60px;
+  font-family: "Happy Bold", sans-serif;
 }
 
 /* header 가로 설정 */
@@ -212,7 +227,7 @@ button:active {
   height: 280px;
   margin-left: 25px;
   margin-top: 20px;
-  background-image: url("../../resources/London.jpeg");
+  background-image: url("../../resources/travelimg.jpg");
   background-size: cover;
 }
 
@@ -309,17 +324,15 @@ button:active {
 }
 
 .with {
-  font-family: "Happy", sans-serif;
-  font-size: 16px;
-  font-weight: bold;
+  font-family: "Happy Bold", sans-serif;
+  font-size: 17px;
   color: black;
 }
 
 /* 맨 밑 문구 디자인 */
 .friend {
-  font-family: "Happy", sans-serif;
+  font-family: "Happy Bolder", sans-serif;
   text-align: center;
-  font-weight: bold;
   margin-top: 50px;
   margin-bottom: 36px;
 }

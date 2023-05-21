@@ -28,7 +28,7 @@ const AiTravelModel = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [showMore, setShowMore] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState({}); // 선택한 코스 데이터 객체로 초기화
-  const carouselRefs = useRef([]);
+  const carouselRefs = useRef([]); // carouselRefs 초기화
   const [combinedSelectedSpotsArray, setCombinedSelectedSpotsArray] =
     useRecoilState(combinedSelectedSpotsArrayState);
 
@@ -40,16 +40,16 @@ const AiTravelModel = () => {
     console.log(selectedSpotsArray);
   };
 
-  const scrollNavigate = (direction) => {
-    const scrollAmount = direction === "next" ? 1 : -1;
-    carouselRefs.current.forEach((carousel) => {
-      if (carousel) {
-        carousel.scrollBy({
-          left: scrollAmount * carousel.offsetWidth,
-          behavior: "smooth",
-        });
-      }
-    });
+  const scrollNavigate = (direction, courseIndex) => {
+    const carousel = carouselRefs.current[courseIndex];
+    if (carousel) {
+      const scrollAmount =
+        direction === "next" ? carousel.offsetWidth : -carousel.offsetWidth;
+      carousel.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
   };
 
   const handleSpotSelection = (course) => {
@@ -204,6 +204,24 @@ const AiTravelModel = () => {
                                     {/* 선택하기 버튼 추가 */}
                                   </div>
                                 </div>
+                                {recommendationData.length > 1 && (
+                                  <div className={styles.carousel_controls}>
+                                    <button
+                                      onClick={() =>
+                                        scrollNavigate("previous", index)
+                                      }
+                                    >
+                                      이전
+                                    </button>
+                                    <button
+                                      onClick={() =>
+                                        scrollNavigate("next", index)
+                                      }
+                                    >
+                                      다음
+                                    </button>
+                                  </div>
+                                )}
                                 <div className={styles.recommendation_carousel}>
                                   {recommendationData.map(
                                     (recommend, innerIndex) => {
@@ -218,6 +236,10 @@ const AiTravelModel = () => {
                                         <div
                                           key={innerIndex}
                                           className={styles.recommendation_item}
+                                          ref={(el) =>
+                                            (carouselRefs.current[innerIndex] =
+                                              el)
+                                          }
                                         >
                                           <div
                                             className={styles.imageContainer}

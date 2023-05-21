@@ -6,10 +6,16 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 20px;
-  //justify-content: space-between; /* 요소들 사이에 여백을 분배하여 2개씩 띄우도록 설정 */
+  overflow-x: auto; /* 스크롤 가능하도록 설정 */
+  scroll-snap-type: x mandatory; /* 스냅 효과 적용 */
 }
 
 .recommendation_column {
+  width: 100%;
+  color: gray;
+  border: solid 2px;
+  border-radius: 8px;
+  border-color: #f8e7e8;
   flex: 1 0 calc(50% - 5px); /* 너비를 50%로 설정하고 좌우 여백을 5px로 조정 */
   margin-bottom: 20px;
   padding: 0 5px; /* 좌우 패딩을 5px로 설정 */
@@ -17,7 +23,7 @@
 
 .recommendation_carousel {
   display: flex;
-  overflow-x: auto;
+  overflow-x: scroll;
   //overflow-x: hidden; /* 스크롤을 없애기 위해 overflow-x: hidden;으로 변경 */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth; // 자연스러운 스크롤 이동을 위해 추가
@@ -25,6 +31,7 @@
 .container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .recommendation_item {
   flex: 0 0 33.33%;
@@ -36,9 +43,11 @@
   }
 
   img {
-    width: 80%; // 이미지 크기 조정
-    height: auto; // 가로줄에 사진 2장이 올바르게 표시되도록 수정
+    width: 100%; // 이미지 크기 조정
+    height: 200px; // 가로줄에 사진 2장이 올바르게 표시되도록 수정
     object-fit: cover;
+    border-radius: 10px;
+    transition: opacity 0.3s ease;
   }
 }
 
@@ -78,8 +87,8 @@
   font-weight: 600;
 }
 .imageContainer {
-  width: 100%;
-  position: relative;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .modal {

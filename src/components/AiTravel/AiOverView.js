@@ -56,6 +56,13 @@ const AiOverView = () => {
     spotImagesByCountry[country] = spots.map((spot) => spotImages[spot]);
   });
 
+  const countryNames = {
+    British: "영국",
+    Spain: "스페인",
+    Italy: "이탈리아",
+    Swiss: "스위스",
+    France: "프랑스",
+  };
   const handleSubmit = async () => {
     try {
       const requests = Object.entries(updatedSelectedSpotsByCountry).map(
@@ -117,6 +124,7 @@ const AiOverView = () => {
             {Object.entries(updatedSelectedSpotsByCountry).map(
               ([country, spots]) => {
                 const countryImages = spotImagesByCountry[country];
+                const countryName = countryNames[country]; // 국가의 한글 이름을 가져옵니다.
 
                 // 이미지 캐러셀 기능 추가
 
@@ -127,7 +135,7 @@ const AiOverView = () => {
 
                 return (
                   <div key={country} className={styles.countryContainer}>
-                    <h3>{country}</h3>
+                    <h3>{countryName}</h3>
                     <div className={styles.imageContainer}>
                       {countryImagesPerPage.map((image, index) => {
                         const spot = spots[index + currentImageIndex];

@@ -9,3 +9,17 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Happy Bold";
+  src: url("/fonts/NanumSquareNeo-cBd.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Happy Bolder";
+  src: url("/fonts/NanumSquareNeo-dEb.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
