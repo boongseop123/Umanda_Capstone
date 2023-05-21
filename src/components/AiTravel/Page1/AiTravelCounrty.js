@@ -44,10 +44,19 @@ const AiTravelCountry = () => {
     프랑스: [
       { name: "파리", checked: false, country: "France" },
       { name: "마르세유", checked: false, country: "France" },
+      { name: "몽펠리에", checked: false, country: "France" },
+      { name: "리옹", checked: false, country: "France" },
+      { name: "툴루즈", checked: false, country: "France" },
+      { name: "낭트", checked: false, country: "France" },
+      { name: "모나코", checked: false, country: "France" },
     ],
     스페인: [
       { name: "마드리드", checked: false, country: "Spain" },
       { name: "바르셀로나", checked: false, country: "Spain" },
+      { name: "산탄데르", checked: false, country: "Spain" },
+      { name: "그라나다", checked: false, country: "Spain" },
+      { name: "코르도바", checked: false, country: "Spain" },
+      { name: "세비야", checked: false, country: "Spain" },
     ],
     스위스: [
       { name: "취리히", checked: false, country: "Switzerland" },
@@ -173,12 +182,12 @@ const AiTravelCountry = () => {
       exit={{ opacity: 0 }}
     >
       <div>
-        <div>
+        <div className={styles.frame}>
           <div className={styles.line}>여행할 나라를 선택해주세요!</div>
           {selectedFirst && selectedSecond && selectedThird && (
             <div className={styles.selectedCountry}>
               {selectedCountries.map((country) => (
-                <p key={country}>{getKoreanCountryName(country)}</p>
+                <p key={country}>{getKoreanCountryName(country)}.</p>
               ))}
             </div>
           )}
