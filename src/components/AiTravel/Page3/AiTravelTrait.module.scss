@@ -10,7 +10,7 @@
   font-family: "Happy", sans-serif;
   font-weight: 600;
   margin-bottom: 50px;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .row {
@@ -39,6 +39,8 @@
   width: 16px;
   height: 16px;
   border: 1px solid #ef455a;
+  //border: 1px solid #f5b9c0;
+
   margin-right: 10px;
   border-radius: 50%; /* 동그란 모양으로 바꾸기 */
   background-color: white; /* 배경색 추가 */
@@ -72,7 +74,7 @@
 }
 
 .option span:last-child {
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 600;
   font-family: "Happy", sans-serif;
 }

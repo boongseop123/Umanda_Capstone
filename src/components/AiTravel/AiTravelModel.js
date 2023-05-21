@@ -285,10 +285,6 @@ const AiTravelModel = () => {
                   </div>
                 );
               })}
-              <button onClick={logSelectedSpotsArray}>
-                selectedSpotsArray 콘솔 출력
-              </button>
-
               <button onClick={handleNavigate}>구글맵 띄우기</button>
             </div>
           </div>

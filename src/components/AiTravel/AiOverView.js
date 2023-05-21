@@ -118,8 +118,14 @@ const AiOverView = () => {
               isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
             }`}
           >
-            <div style={{ margin: "20px auto", textAlign: "center" }}>
-              <h4>선택한 여행지입니다.</h4>
+            <div
+              style={{
+                marginTop: "40px",
+                marginBottom: "30px",
+                textAlign: "center",
+              }}
+            >
+              <h4 className={styles.h4}>선택한 여행지입니다.</h4>
             </div>
             {Object.entries(updatedSelectedSpotsByCountry).map(
               ([country, spots]) => {
@@ -135,7 +141,7 @@ const AiOverView = () => {
 
                 return (
                   <div key={country} className={styles.countryContainer}>
-                    <h3>{countryName}</h3>
+                    <h3 className={styles.h4}>{countryName}</h3>
                     <div className={styles.imageContainer}>
                       {countryImagesPerPage.map((image, index) => {
                         const spot = spots[index + currentImageIndex];
@@ -164,13 +170,11 @@ const AiOverView = () => {
                     {countryImages.length > imagesPerPage && (
                       <div className={styles.navigationButtons}>
                         {currentImageIndex > 0 && (
-                          <button onClick={handlePreviousImage}>
-                            Previous
-                          </button>
+                          <button onClick={handlePreviousImage}>이전</button>
                         )}
                         {currentImageIndex <
                           countryImages.length - imagesPerPage && (
-                          <button onClick={handleNextImage}>Next</button>
+                          <button onClick={handleNextImage}>다음</button>
                         )}
                       </div>
                     )}
@@ -179,7 +183,9 @@ const AiOverView = () => {
               }
             )}
             <div style={{ margin: "20px auto", textAlign: "center" }}>
-              <h4>이 관광지들이 마음에 들면 추천받기 버튼을 눌러주세요!</h4>
+              <h4 className={styles.bottomtext}>
+                이 관광지들이 마음에 들면 추천받기 버튼을 눌러주세요!
+              </h4>
 
               <button onClick={handleSubmit}>나만의 코스 추천받기</button>
             </div>
