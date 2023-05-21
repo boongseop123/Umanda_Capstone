@@ -81,7 +81,7 @@ const MainPage = () => {
               <div style={{ position: "relative" }}>
                 <img
                   className={styles.img}
-                  src={require("../../resources/London.jpeg")}
+                  src={require("../../resources/travelimg.jpg")}
                 />
               </div>
               <div
@@ -96,12 +96,11 @@ const MainPage = () => {
               >
                 <br></br>
                 <span
-                  className={styles.span1}
+                  className={styles.span2}
                   style={{ display: "block", textAlign: "left" }}
                 >
                   딱 맞는 여행
                 </span>
-                <br></br>
                 <span
                   className={styles.span1}
                   style={{ display: "block", textAlign: "left" }}
@@ -134,7 +133,7 @@ const MainPage = () => {
               onMouseLeave={handleButtonRelease}
             >
               <img
-                src={Route30}
+                src={Accompany30}
                 className={`${styles.desktopImg} ${
                   isDesktop
                     ? styles.desktopImg
@@ -143,7 +142,10 @@ const MainPage = () => {
                     : ""
                 }`}
               ></img>
-              <p className={styles.with}>동행</p>
+              <div>
+                <p className={styles.with}>동행</p>
+                <p className={styles.subtitle}>>>여행 동행 찾기</p>
+              </div>
             </button>
             <button
               onClick={moveToAi}
@@ -155,7 +157,7 @@ const MainPage = () => {
               onMouseLeave={handleButtonRelease}
             >
               <img
-                src={Accompany30}
+                src={Route30}
                 className={`${styles.desktopImg} ${
                   isDesktop
                     ? styles.desktopImg
@@ -164,7 +166,10 @@ const MainPage = () => {
                     : ""
                 }`}
               ></img>
-              <p className={styles.with}>Ai 경로 추천</p>
+              <div>
+                <p className={styles.with}>Ai 경로 추천</p>
+                <p className={styles.subtitle}>>>경로탐색</p>
+              </div>
             </button>
             <button
               onClick={moveToMeet}
@@ -191,7 +196,10 @@ const MainPage = () => {
                     : ""
                 }`}
               ></img>
-              <p className={styles.with}>만남</p>
+              <div>
+                <p className={styles.with}>만남</p>
+                <p className={styles.subtitle}>>>나의 친구 찾기</p>
+              </div>
             </button>
           </div>
           <div>
