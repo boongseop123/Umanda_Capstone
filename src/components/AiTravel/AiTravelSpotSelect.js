@@ -29,6 +29,8 @@ const AiTravelSpotSelect = () => {
   const response = location?.state?.response;
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const [spotImages, setSpotImages] = useRecoilState(spotImagesState);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedSpot, setSelectedSpot] = useState(null);
 
   const [spotIndex, setSpotIndex] = useState(0); // 현재 보여지고 있는 스팟 인덱스
   const [displayedSpots, setDisplayedSpots] = useState([]); // 현재 페이지에 보여지는 스팟들
@@ -98,7 +100,8 @@ const AiTravelSpotSelect = () => {
       [spot.spot]: spot.URI,
     }));
 
-    alert("확인되었습니다.");
+    setSelectedSpot(spot); // 모달 창을 열기 위해 선택한 스팟을 설정
+    setShowModal(true); // 모달 창 표시
   };
   useEffect(() => {
     // 스팟 선택이 변경될 때마다 selectedSpotsByCountry 업데이트
@@ -152,7 +155,10 @@ const AiTravelSpotSelect = () => {
       </p>
     </div>
   );
-
+  const handleCloseModal = () => {
+    setSelectedSpot(null); // 선택한 스팟 초기화
+    setShowModal(false);
+  };
   return (
     <motion.div
       /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
@@ -181,8 +187,8 @@ const AiTravelSpotSelect = () => {
               maxWidth: "550px",
             }}
           >
-            <div style={{ margin: "20px auto", textAlign: "center" }}>
-              <h3 className={styles.h1}>선호하는 관광지들을 선택해주세요!</h3>
+            <div style={{ margin: "23px auto", textAlign: "center" }}>
+              <h3 className={styles.h1}>취향에 맞는 여행지를 선택해주세요!</h3>
               <br />
             </div>
 
