@@ -9,6 +9,7 @@ import Route30 from "../../resources/Route30.jpeg";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+//import Header from "../Header/Header";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -63,6 +64,7 @@ const MainPage = () => {
           <div className={styles.home1}>Umanda</div>
           <div className={styles.home}>홈</div>
           <div className={styles.home}>Q&A</div>
+          <div className={styles.home}>지도</div>
         </div>
         <div className={styles.main}>
           <h3
