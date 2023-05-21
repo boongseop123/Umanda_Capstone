@@ -86,7 +86,7 @@ const AiTravelProgress = () => {
               }}
               checked={true}
             />
-            <div className={styles.progress}>이동 수단</div>
+            <div className={styles.progress}>추천 경로</div>
           </div>
         </div>
         <div className={styles.FormHorizontal}></div>

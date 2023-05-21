@@ -14,7 +14,12 @@ const AiTravelProgress2 = () => {
       >
         <br></br>
         <br></br>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <div style={{ marginRight: "16px", textAlign: "center" }}>
             <input
               type="radio"
@@ -25,12 +30,12 @@ const AiTravelProgress2 = () => {
                 borderRadius: "50%",
                 width: "16px",
                 height: "16px",
-                border: "2px solid #ef455a",
+                border: "5px solid #ef455a",
                 backgroundColor: "#fff",
               }}
               checked={true}
             />
-            <div>여행 국가</div>
+            <div className={styles.progress}>여행 국가</div>
           </div>
           <div style={{ marginRight: "16px", textAlign: "center" }}>
             <input
@@ -42,12 +47,12 @@ const AiTravelProgress2 = () => {
                 borderRadius: "50%",
                 width: "16px",
                 height: "16px",
-                border: "2px solid #ef455a",
+                border: "5px solid #ef455a",
                 backgroundColor: "#fff",
               }}
               checked={true}
             />
-            <div>체류 기간</div>
+            <div className={styles.progress}>체류 기간</div>
           </div>
           <div style={{ marginRight: "16px", textAlign: "center" }}>
             <input
@@ -59,12 +64,12 @@ const AiTravelProgress2 = () => {
                 borderRadius: "50%",
                 width: "16px",
                 height: "16px",
-                border: "2px solid #ef455a",
+                border: "5px solid #ef455a",
                 backgroundColor: "#fff",
               }}
               checked={true}
             />
-            <div>여행 테마</div>
+            <div className={styles.progress}>여행 테마</div>
           </div>
           <div style={{ textAlign: "center" }}>
             <input
@@ -76,12 +81,12 @@ const AiTravelProgress2 = () => {
                 borderRadius: "50%",
                 width: "16px",
                 height: "16px",
-                border: "2px solid gray",
+                border: "3px solid gray",
                 backgroundColor: "#fff",
               }}
               checked={true}
             />
-            <div>이동 수단</div>
+            <div className={styles.progress}>추천 경로</div>
           </div>
         </div>
         <div className={styles.FormHorizontal}></div>
