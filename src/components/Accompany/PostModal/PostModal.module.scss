@@ -1,0 +1,127 @@
+.modalContainer {
+  position: fixed;
+  z-index: 999; // Footer 보다 우선순위가 높음
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  background-color: #fff;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.containerDesktop {
+  width: 80px;
+  height: 30px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  margin-right: 10px;
+  border: 1px solid lightgray;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Calender {
+  display: flex;
+  justify-content: center;
+}
+
+.submitButton {
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  background-color: white;
+}
+
+.contentContainer {
+  display: flex;
+  align-items: stretch; /* This will ensure the textContent and the image have the same height */
+  margin-bottom: 30px;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 30px;
+}
+
+.title {
+  width: 200px;
+  font-size: 16px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+.departDate {
+  font-size: 16px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+.createdBy {
+  font-size: 16px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.fieldset {
+  width: 370px;
+  height: 200px;
+  margin-top: -15px;
+  border-radius: 15px;
+}
+
+.sendMsg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 40px;
+  background-color: #ef455a;
+  border-radius: 10px;
+  border: 1px solid white;
+  color: white;
+}
+
+.updateButton {
+  width: 30px;
+  padding: 2px;
+  margin-left: 5px;
+  background-color: lightgray;
+  border: 10px;
+  border-radius: 5px;
+  color: black;
+}
+
+.editTitle {
+  width: 300px;
+  height: 20px;
+}
+
+.editContent {
+  width: 300px;
+  height: 200px;
+}

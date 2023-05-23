@@ -1,6 +1,7 @@
 .CategoryDesktop {
   margin-top: 52px;
-  margin-left: 49px;
+  // margin-left: 49px;
+  min-height: 650px;
 }
 
 .CategoryMobile {
@@ -9,13 +10,14 @@
 }
 
 .CategoryButtonDesktop {
-  margin-left: 75px;
+  margin-left: 68px;
+  // margin-top: 2px;
   border: 1px solid white;
   background-image: url("./resources/filter.png");
   background-size: contain;
   background-color: white;
-  width: 40px;
-  height: 40px;
+  width: 33px;
+  height: 33px;
   // margin-top: 3px;
 }
 
@@ -32,7 +34,9 @@
 .FormHorizontal {
   display: flex;
   flex-direction: row;
-  margin-top: -10px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
 }
 
 .GenderDesktop {
@@ -83,7 +87,7 @@
   border-radius: 100px;
   border: 1px solid lightgray;
   padding-left: 10px;
-  width: 100px;
+  width: 130px;
   height: 35px;
   background-color: white;
   color: gray;
@@ -102,12 +106,12 @@
   border-radius: 100px;
   border: 1px solid gray;
   padding-left: 10px;
-  margin-left: -18px;
   margin-top: 20px;
-  margin-bottom: -10px;
+  margin-left: 28px;
   border: 1px;
   width: 100px;
-  height: 30px;
+  height: 35px;
+  border: 1px solid lightgray;
   // font-size: 15px;
   background-color: white;
 }
@@ -175,12 +179,12 @@ select option:checked {
 .postDesktop {
   width: 480px;
   height: 100px;
-  margin-top: 20px;
-  margin-left: -13px;
-
+  margin-top: 30px;
+  margin-left: 35px;
   border-radius: 10px;
-  align-items: center;
   display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
@@ -245,19 +249,19 @@ input:focus {
 .titleMobile {
   font: normal normal 600 11px/4px Noto Sans Myanmar;
   letter-spacing: -0.6px;
-  font-size: 11px;
+  font-size: 18px;
 }
 .profileBoxDesktop {
   display: flex;
   align-items: center;
-  margin-top: 16px;
-  margin-bottom: 6px;
+  margin-top: 6px;
+  margin-bottom: 6 px;
 }
 
 .profileBoxMobile {
   display: flex;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 10px;
   margin-bottom: 6px;
 }
 .profileDesktop {
@@ -287,8 +291,8 @@ input:focus {
   display: flex;
   width: 100px;
   height: 30px;
-  margin-top: 54px;
-  margin-left: 130px;
+  margin-top: 35px;
+  margin-left: 140px;
   border: #ef455a;
   border-radius: 100px;
   align-items: center;
@@ -315,10 +319,6 @@ input:focus {
   height: 15px;
 }
 
-.fonts {
-  font-family: "Happy", sans-serif;
-}
-
 .pencil {
   width: 40px;
   height: 40px;
@@ -329,8 +329,43 @@ input:focus {
 }
 
 .AccompanybuttonDesktop {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .AccompanybuttonMobile {
   margin-left: 5px;
+}
+
+/* 게시글 작성하는 버튼 - 연필 모양 */
+.postButton {
+  bottom: 100px;
+  right: 530px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  position: fixed;
+  border-radius: 50%;
+  background-size: 30px;
+  background-color: #ef455a;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("../Body/resources/pencil.png");
+}
+
+.deleteButton {
+  background-color: white;
+  width: 40px;
+  height: 22px;
+  border-radius: 38px;
+  border: 1px solid #ef455a;
+}
+
+.updateButton {
+  background-color: white;
+  width: 40px;
+  height: 22px;
+  border-radius: 38px;
+  border: 1px solid #ef455a;
+  margin-right: 5px;
 }
