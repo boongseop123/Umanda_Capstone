@@ -17,7 +17,9 @@
   color: #ef455a;
   margin-top: 100px;
   margin-bottom: 80px;
-  font-family: "NanumSquare", sans-serif;
+  font-family: "Happy Bolder", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
 }
 
 /* Umanda 로고 모바일 버전 디자인 */
@@ -32,6 +34,7 @@
 /* "이메일 주소 또는 아이디" and "패스워드" input 디자인 - 데스크탑 버전 */
 .desktopInput {
   font-family: "Happy", sans-serif;
+  font-weight: 700;
 
   margin-top: 20px;
   width: 450px;
@@ -59,6 +62,7 @@
   opacity: 1;
   border: none;
   font-family: "Happy", sans-serif;
+  font-weight: 700;
 }
 /* input 디자인 */
 input::placeholder {
@@ -76,6 +80,8 @@ input::placeholder {
   appearance: none;
   background-color: #ffffff;
   transition: all 0.3s ease-in-out;
+  font-family: "Happy", sans-serif;
+  font-weight: 700;
 }
 
 .stillLogin:checked {
@@ -84,7 +90,8 @@ input::placeholder {
 
 /* 아이디 / 비밀번호 찾기 */
 .findIdPass {
-  font-family: "Happy", sans-serif;
+  font-family: "Happy Bold", sans-serif;
+  font-weight: 700;
   flex-direction: column;
   margin-top: 50px;
   margin-bottom: 74.5px;
