@@ -35,6 +35,7 @@ const AiTravelMap = () => {
     googleMapsApiKey: "AIzaSyD6HTEklvN8AWBgtd_RdesV5c2PHllWu-Q",
     libraries: libraries,
   });
+  const [index, setIndex] = useState(0);
   const [hotelData, setHotelData] = useState([]);
   const [foodData, setFoodData] = useState([]); // 변수명을 `setFoodData`로 수정
   const [showFoodInfo, setShowFoodInfo] = useState(false);
@@ -57,6 +58,7 @@ const AiTravelMap = () => {
         lng: parseFloat(data.longitude),
       },
       label: (index + 1).toString(),
+      index: index + 1, // 순서에 따라 1부터 시작하는 index 부여
     }));
 
     const origin = { lat: 51.47011583720578, lng: -0.45429550256021695 };
@@ -67,18 +69,24 @@ const AiTravelMap = () => {
       {
         origin: origin,
         destination: destination,
-        optimizeWaypoints: true, // 경유지 최적화 여부 설정 (선택 사항)
-        waypoints: waypoints.slice(1, waypoints.length - 1).map((waypoint) => ({
+        optimizeWaypoints: true,
+        waypoints: waypoints.map((waypoint) => ({
           location: new window.google.maps.LatLng(
             waypoint.location.lat,
             waypoint.location.lng
           ),
+          label: waypoint.label,
         })),
         travelMode: window.google.maps.TravelMode.DRIVING,
       },
       (result, status) => {
         if (status === window.google.maps.DirectionsStatus.OK) {
+          const optimizedWaypoints = result.routes[0].waypoint_order;
+          const updatedSelectedCourse = optimizedWaypoints.map(
+            (waypointIndex) => selectedCourse[waypointIndex]
+          );
           setDirections(result);
+          setSelectedCourseMarker(updatedSelectedCourse);
         } else {
           console.error("Directions request failed with status: ", status);
         }
@@ -161,18 +169,19 @@ const AiTravelMap = () => {
 
       return (
         <OverlayView
-          key={index}
+          key={data.index} // 수정: key 값으로 data.index를 사용
           position={{
             lat: parseFloat(data.latitude),
             lng: parseFloat(data.longitude),
           }}
           mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+          index={data.index} // 인덱스 값을 추가로 전달
         >
           <div
             className={styles.customMarker}
             onClick={() => handleSelectedCourseMarkerClick(data)}
           >
-            <div style={markerStyle}>{index + 1}</div>
+            <div style={markerStyle}>{data.index}</div>
           </div>
         </OverlayView>
       );
@@ -221,7 +230,6 @@ const AiTravelMap = () => {
                 center={{ lat: 51.5074, lng: -0.1278 }}
                 zoom={13}
               >
-                {directions && <DirectionsRenderer directions={directions} />}
                 {renderSelectedCourseMarkers()}
                 {selectedCourseMarker && (
                   <InfoWindowF
@@ -229,7 +237,7 @@ const AiTravelMap = () => {
                       lat: parseFloat(selectedCourseMarker.latitude),
                       lng: parseFloat(selectedCourseMarker.longitude),
                     }}
-                    onCloseClick={() => setSelectedCourseMarker(null)}
+                    index={index} // 인덱스 값을 추가로 전달
                   >
                     <div>
                       <h3>{selectedCourseMarker.spot}</h3>
@@ -246,6 +254,28 @@ const AiTravelMap = () => {
                     </div>
                   </InfoWindowF>
                 )}
+                {directions && (
+                  <DirectionsRenderer
+                    directions={directions}
+                    options={{
+                      markerOptions: {
+                        label: {
+                          text: (index + 1).toString(),
+                          color: "white",
+                          fontSize: "12px",
+                        },
+                        // waypoint 마커에 적용할 스타일
+                        //   icon: {
+                        // 기본 스타일
+                        //      url: markerIcon, // 커스텀 마커 이미지 경로
+                        //      scaledSize: new window.google.maps.Size(30, 30), // 마커 크기 조정
+                        //      labelOrigin: new window.google.maps.Point(15, -10), // 마커 라벨 위치 조정
+                        //    },
+                      },
+                    }}
+                  />
+                )}
+
                 <div
                   style={{
                     position: "absolute",
