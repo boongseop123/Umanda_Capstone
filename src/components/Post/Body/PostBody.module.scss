@@ -1,0 +1,77 @@
+.container {
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+/* 글쓰기 글자 디자인 */
+.h1 {
+  margin-left: -2px;
+}
+
+.writerBox {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-left: -14px;
+}
+
+.writer {
+  height: 25px;
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.titleBox {
+  margin-bottom: 20px;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+}
+
+.span {
+  margin-right: 20px;
+  font-size: 16px;
+}
+
+.title {
+  width: 400px;
+  height: 20px;
+}
+
+.contentBox {
+  display: flex;
+  align-items: flex-start;
+}
+
+textarea {
+  width: 400px;
+  height: 300px;
+}
+
+.buttonBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.button1 {
+  color: white;
+  width: 200px;
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 38px;
+  background-color: #ef455a;
+  border: 1px solid lightgray;
+}
+
+.button2 {
+  color: white;
+  width: 200px;
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 38px;
+  background-color: #ef455a;
+  border: 1px solid lightgray;
+}

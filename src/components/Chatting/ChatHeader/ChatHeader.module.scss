@@ -1,0 +1,122 @@
+/* Umanda 글자 디자인 */
+.desktopUmanda {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-right: 50px;
+  margin-left: 30px;
+  margin-bottom: 70px;
+}
+
+.mobileUmanda {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 76px;
+}
+
+/* 홈 글자 디자인 */
+.main,
+.meet,
+.ai,
+.accompany {
+  color: white;
+  margin-right: 20px;
+  margin-bottom: 38px;
+  text-decoration: none;
+}
+
+/* header 가로 설정 */
+.headerColumnDesktop {
+  width: 550px;
+  height: 110px;
+  position: fixed;
+  background-color: #ef455a;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.25));
+}
+
+.headerColumnMobile {
+  width: 550px;
+  height: 120px;
+  position: fixed;
+  display: flex;
+  align-items: center; /* 세로 중앙 정렬 */
+  flex-direction: row;
+  background-color: #ef455a;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.25));
+}
+
+.hamburgerDesktop {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 40px;
+  margin-left: 80px;
+}
+
+.button .hamburgerMobile {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 40px;
+  margin-left: 8px;
+}
+
+.backButtonDesktop {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-top: 14px;
+  margin-left: 10px;
+  margin-right: 14px;
+  border: #ef455a;
+  background-color: transparent;
+  background-image: url("back.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* ChatInput 스타일 */
+.inputDesktop {
+  width: 550px;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  border-top: 1px solid #efefef;
+}
+
+.inputMobile {
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  background-color: #ffffff;
+  border-top: 1px solid #efefef;
+}
+
+.inputBox {
+  width: calc(100% - 80px);
+  height: 60px;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+}
+
+.sendButton {
+  width: 60px;
+  height: 60px;
+  margin: 10px;
+  border: none;
+  border-radius: 50%;
+  background-color: #ef455a;
+}

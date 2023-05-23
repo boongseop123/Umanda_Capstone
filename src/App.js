@@ -12,8 +12,10 @@ import AiTravelSpotSelect from "./components/AiTravel/AiTravelSpotSelect";
 import AiOverView from "./components/AiTravel/AiOverView";
 import AiTravelModel from "./components/AiTravel/AiTravelModel";
 import AiTravelMap from "./components/AiTravel/AiTravelMap";
-import PostBody from "./components/Accompany/PostBody";
 import AiTravelPage3 from "./components/AiTravel/Page2/AiTravelPage3";
+import PostPage from "./components/Post/PostPage";
+import ChatPage from "./components/Chatting/ChatPage";
+import MeetPage from "./components/Meet/MeetPage";
 
 function App() {
   return (
@@ -36,7 +38,9 @@ function App() {
             <Route path="/aitravel_date" element={<AiOverView />} />
             <Route path="/aitravelmodel" element={<AiTravelModel />} />
             <Route path="/aitravelmap" element={<AiTravelMap />} />
-            <Route path="/meet" element={<PostBody />} />
+            <Route path="/meet" element={<MeetPage />} />
+            <Route path="/chatPage/:username" element={<ChatPage />} />
+            <Route path="/post" element={<PostPage />} />
           </Routes>
         </AnimatePresence>
       </BrowserRouter>

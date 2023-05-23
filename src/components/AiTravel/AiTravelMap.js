@@ -19,7 +19,7 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { API_URL_AI } from "../Constant";
 import markerIcon from "../../resources/markerIcon.png"; // 커스텀 마커 이미지 경로
-
+import foodMarker from "../../resources/foodMarker.png";
 const AiTravelMap = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const [showModal, setShowModal] = useState(false);
@@ -39,6 +39,7 @@ const AiTravelMap = () => {
   const [hotelData, setHotelData] = useState([]);
   const [foodData, setFoodData] = useState([]); // 변수명을 `setFoodData`로 수정
   const [showFoodInfo, setShowFoodInfo] = useState(false);
+  const [shortestPathSpots, setShortestPathSpots] = useState([]);
 
   useEffect(() => {
     if (isLoaded && selectedCourse && selectedCourse.length > 1) {
@@ -48,6 +49,7 @@ const AiTravelMap = () => {
 
   useEffect(() => {
     fetchFoodData();
+    // calculateDirections();
   }, []);
 
   const calculateDirections = () => {
@@ -57,8 +59,8 @@ const AiTravelMap = () => {
         lat: parseFloat(data.latitude),
         lng: parseFloat(data.longitude),
       },
-      label: (index + 1).toString(),
-      index: index + 1, // 순서에 따라 1부터 시작하는 index 부여
+      //label: (index + 1).toString(),
+      //index: index,
     }));
 
     const origin = { lat: 51.47011583720578, lng: -0.45429550256021695 };
@@ -69,24 +71,18 @@ const AiTravelMap = () => {
       {
         origin: origin,
         destination: destination,
-        optimizeWaypoints: true,
-        waypoints: waypoints.map((waypoint) => ({
+        optimizeWaypoints: true, // 경유지 최적화 여부 설정 (선택 사항)
+        waypoints: waypoints.slice(1, waypoints.length - 1).map((waypoint) => ({
           location: new window.google.maps.LatLng(
             waypoint.location.lat,
             waypoint.location.lng
           ),
-          label: waypoint.label,
         })),
-        travelMode: window.google.maps.TravelMode.DRIVING,
+        travelMode: window.google.maps.TravelMode.BICYCLING,
       },
       (result, status) => {
         if (status === window.google.maps.DirectionsStatus.OK) {
-          const optimizedWaypoints = result.routes[0].waypoint_order;
-          const updatedSelectedCourse = optimizedWaypoints.map(
-            (waypointIndex) => selectedCourse[waypointIndex]
-          );
           setDirections(result);
-          setSelectedCourseMarker(updatedSelectedCourse);
         } else {
           console.error("Directions request failed with status: ", status);
         }
@@ -107,31 +103,26 @@ const AiTravelMap = () => {
 
   const handleShowShortestPath = () => {
     setShowShortestPath(true);
+    setShortestPathSpots(selectedCourse);
   };
 
   const handleSelectedCourseMarkerClick = (data) => {
     setSelectedCourseMarker(data);
   };
-
   const renderFoodMarkers = () => {
     return foodData.map((data, index) => (
-      <OverlayView
+      <MarkerF
         key={index}
         position={{
           lat: parseFloat(data.latitude),
           lng: parseFloat(data.longitude),
         }}
-        mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-      >
-        <div className={styles.customMarker}>
-          <img
-            src={markerIcon}
-            alt={data.name}
-            className={styles.markerImage}
-            onClick={() => handleMarkerClick(data)}
-          />
-        </div>
-      </OverlayView>
+        onClick={() => handleMarkerClick(data)}
+        icon={{
+          url: foodMarker,
+          scaledSize: new window.google.maps.Size(30, 30),
+        }}
+      />
     ));
   };
 
@@ -167,24 +158,24 @@ const AiTravelMap = () => {
         scaledSize: new window.google.maps.Size(30, 30),
       };
 
-      return (
-        <OverlayView
-          key={data.index} // 수정: key 값으로 data.index를 사용
-          position={{
-            lat: parseFloat(data.latitude),
-            lng: parseFloat(data.longitude),
-          }}
-          mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-          index={data.index} // 인덱스 값을 추가로 전달
-        >
-          <div
-            className={styles.customMarker}
-            onClick={() => handleSelectedCourseMarkerClick(data)}
-          >
-            <div style={markerStyle}>{data.index}</div>
-          </div>
-        </OverlayView>
-      );
+      // return (
+      //   <OverlayView
+      //     key={index}
+      //     position={{
+      //       lat: parseFloat(data.latitude),
+      //       lng: parseFloat(data.longitude),
+      //     }}
+      //     mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+      //     index={index} // 인덱스 값을 추가로 전달
+      //   >
+      //     <div
+      //       className={styles.customMarker}
+      //       onClick={() => handleSelectedCourseMarkerClick(data)}
+      //     >
+      //       <div style={markerStyle}>{index + 1}</div>
+      //     </div>
+      //   </OverlayView>
+      // );
     });
   };
 
@@ -230,14 +221,13 @@ const AiTravelMap = () => {
                 center={{ lat: 51.5074, lng: -0.1278 }}
                 zoom={13}
               >
-                {renderSelectedCourseMarkers()}
                 {selectedCourseMarker && (
                   <InfoWindowF
                     position={{
                       lat: parseFloat(selectedCourseMarker.latitude),
                       lng: parseFloat(selectedCourseMarker.longitude),
                     }}
-                    index={index} // 인덱스 값을 추가로 전달
+                    //index={index} // 인덱스 값을 추가로 전달
                   >
                     <div>
                       <h3>{selectedCourseMarker.spot}</h3>
@@ -254,23 +244,19 @@ const AiTravelMap = () => {
                     </div>
                   </InfoWindowF>
                 )}
+
                 {directions && (
                   <DirectionsRenderer
                     directions={directions}
                     options={{
                       markerOptions: {
-                        label: {
-                          text: (index + 1).toString(),
-                          color: "white",
-                          fontSize: "12px",
-                        },
                         // waypoint 마커에 적용할 스타일
-                        //   icon: {
-                        // 기본 스타일
-                        //      url: markerIcon, // 커스텀 마커 이미지 경로
-                        //      scaledSize: new window.google.maps.Size(30, 30), // 마커 크기 조정
-                        //      labelOrigin: new window.google.maps.Point(15, -10), // 마커 라벨 위치 조정
-                        //    },
+                        icon: {
+                          // 기본 스타일
+                          url: markerIcon, // 커스텀 마커 이미지 경로
+                          scaledSize: new window.google.maps.Size(30, 30), // 마커 크기 조정
+                          labelOrigin: new window.google.maps.Point(15, -10), // 마커 라벨 위치 조정
+                        },
                       },
                     }}
                   />
@@ -287,6 +273,7 @@ const AiTravelMap = () => {
                   }}
                 >
                   <button onClick={handleShowFoodInfo}>음식점</button>
+                  <button onClick={handleShowShortestPath}>최단 경로</button>
                 </div>
                 {showFoodInfo && renderFoodMarkers()}
                 {selectedFoodMarker && (

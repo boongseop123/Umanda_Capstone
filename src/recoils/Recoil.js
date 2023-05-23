@@ -113,3 +113,43 @@ export const combinedSelectedSpotsArrayState = atom({
   key: "combinedSelectedSpotsArrayState",
   default: [],
 });
+
+export const chatRoomsState = atom({
+  key: "chatRoomsState",
+  default: [],
+});
+
+export const selectedDateState = atom({
+  key: "selectedDateState",
+  default: "",
+});
+
+export const userState = atom({
+  key: "userState",
+  default: { name: "", username: "", birthdate: "" }, // include other user properties as needed
+});
+
+export const departDateState = atom({
+  key: "departureDateState", // unique ID (with respect to other atoms/selectors)
+  default: "", // default value (aka initial value)
+});
+
+export const currentUserState = atom({
+  key: "currentUserState",
+  default: null, // 초기값 설정
+});
+
+export const postAuthorState = atom({
+  key: "postAuthorState",
+  default: null, // 초기값 설정
+});
+
+export const unreadMessageState = atom({
+  key: "unreadMessageState",
+  default: {},
+});
+
+export const usernameState = atom({
+  key: "usernameState", // unique ID (with respect to other atoms/selectors)
+  default: "", // default value (aka initial value)
+});

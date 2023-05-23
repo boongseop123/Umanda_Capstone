@@ -7,7 +7,7 @@
 
 .desktopFrame2 {
   top: 70px;
-  height: auto !important;
+  min-height: 100%;
   margin: 0 auto;
   max-width: 550px;
   position: relative;
@@ -20,7 +20,7 @@
 
 .mobileFrame2 {
   top: 75px;
-  height: auto !important;
+  min-height: 100vh;
   margin: 0 auto;
   max-width: 550px;
   position: relative;

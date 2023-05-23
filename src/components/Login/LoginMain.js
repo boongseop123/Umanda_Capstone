@@ -7,7 +7,7 @@ import SocialLoginButton from "./socialLogin/SocialLoginButton";
 import PageRatio from "../Global/PageRatio";
 import { useMediaQuery } from "react-responsive";
 import { useSetRecoilState, useRecoilState } from "recoil";
-import { tokenState, IdState } from "../../recoils/Recoil";
+import { tokenState, IdState, usernameState } from "../../recoils/Recoil";
 import { API_URL } from "../Constant";
 import { motion } from "framer-motion";
 
@@ -19,6 +19,7 @@ const LoginMain = () => {
   const setToken = useSetRecoilState(tokenState);
   const [id, setId] = useRecoilState(IdState);
   // tokenState atom의 값을 읽어옴
+  const setusername = useSetRecoilState(usernameState);
 
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
@@ -39,19 +40,28 @@ const LoginMain = () => {
       })
       .then((response) => {
         console.log(response.data);
-        setToken(response.data.jwtToken);
-        setId(response.data.id);
+
+        const { jwtToken, id } = response.data;
+
+        setToken(jwtToken);
+        setId(id);
+        setusername(username);
+
+        // Save token and id to localStorage
+        localStorage.setItem("jwtToken", jwtToken);
+        localStorage.setItem("id", id);
+
         alert("로그인이 성공적으로 완료되었습니다.");
-        //console.log(response.data.jwtToken);
-        console.log(response.data.id);
+        console.log(jwtToken);
+        console.log(id);
         navigate("/main");
       })
       .catch((error) => {
         console.log(error.response.data);
+        console.log(error.response);
         alert("로그인에 실패했습니다.");
       });
   };
-
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
