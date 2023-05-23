@@ -4,6 +4,7 @@
 
 .recommendation_row {
   display: flex;
+  font-family: "Happy Bolder", sans-serif;
   flex-wrap: wrap;
   margin-bottom: 20px;
   overflow-x: auto; /* 스크롤 가능하도록 설정 */
@@ -12,12 +13,12 @@
 
 .recommendation_column {
   width: 100%;
-  color: gray;
-  border: solid 2px;
-  border-radius: 8px;
-  border-color: #f8e7e8;
+  color: rgb(37, 36, 36);
+  //border: solid 2px;
+  //border-radius: 8px;
+  //border-color: #f8e7e8;
   flex: 1 0 calc(50% - 5px); /* 너비를 50%로 설정하고 좌우 여백을 5px로 조정 */
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   padding: 0 5px; /* 좌우 패딩을 5px로 설정 */
 }
 
@@ -34,7 +35,7 @@
   flex-wrap: wrap;
 }
 .recommendation_item {
-  flex: 0 0 33.33%;
+  flex: 0 0 44%;
   padding: 10px;
   scroll-snap-align: start;
 
@@ -49,6 +50,44 @@
     border-radius: 10px;
     transition: opacity 0.3s ease;
   }
+}
+.another {
+  margin-bottom: 50px;
+  background-color: whitesmoke;
+  border-radius: 50px;
+}
+
+.choose_column {
+  display: flex;
+
+  //align-items: center;
+  //justify-content: space-between;
+}
+
+.coursechoose {
+  margin-left: 10px;
+}
+
+.buttonPressed {
+  background-color: #ef455a; /* 원하는 색상으로 변경 */
+}
+
+.circle {
+  margin-left: 5px;
+  display: inline-block;
+  position: relative;
+  padding: 10px;
+  border: none;
+  border-radius: 50%;
+  background-color: #ccc; /* 버튼의 배경색에 맞게 조절하세요 */
+  color: #fff; /* 버튼의 텍스트 색상에 맞게 조절하세요 */
+  font-size: 14px; /* 버튼의 글꼴 크기에 맞게 조절하세요 */
+  cursor: pointer;
+}
+
+.circle.checked {
+  background-color: #000; /* 체크된 상태의 배경색에 맞게 조절하세요 */
+  color: #fff; /* 체크된 상태의 텍스트 색상에 맞게 조절하세요 */
 }
 
 .description {
@@ -85,7 +124,28 @@
   justify-content: center;
   font-family: "Happy", sans-serif;
   font-weight: 600;
+  font-size: 20px;
 }
+
+.recommendName {
+  font-family: "Happy Bolder", sans-serif;
+  margin-left: 10px;
+}
+
+.detailButton {
+  border-radius: 50px;
+  color: gray;
+  background-color: #f8c0c6;
+}
+
+.hh2 {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  font-family: "Happy", sans-serif;
+  font-weight: 600;
+}
+
 .imageContainer {
   display: flex;
   flex-wrap: wrap;

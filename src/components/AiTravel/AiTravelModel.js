@@ -18,6 +18,9 @@ const AiTravelModel = () => {
   const [selectedSpotsArray, setSelectedSpotsArray] = useRecoilState(
     selectedSpotsArrayState
   );
+  const handleButtonClick = () => {
+    setIsButtonPressed(!isButtonPressed);
+  };
   const response = useRecoilValue(newResponseState);
   const [, setLatitude] = useRecoilState(latitudeState);
   const [, setLongitude] = useRecoilState(longitudeState);
@@ -31,13 +34,11 @@ const AiTravelModel = () => {
   const carouselRefs = useRef([]); // carouselRefs 초기화
   const [combinedSelectedSpotsArray, setCombinedSelectedSpotsArray] =
     useRecoilState(combinedSelectedSpotsArrayState);
+  const [isButtonPressed, setIsButtonPressed] = useState(false);
 
   const [selectedSpot, setSelectedSpot] = useRecoilState(selectedcourseState);
   const handleSelectedSpotsArray = (spotsArray) => {
     setSelectedSpotsArray(spotsArray);
-  };
-  const logSelectedSpotsArray = () => {
-    console.log(selectedSpotsArray);
   };
 
   const scrollNavigate = (direction, courseIndex) => {
@@ -61,6 +62,7 @@ const AiTravelModel = () => {
       setSelectedSpotsArray((prevSpots) => [...prevSpots, course]); // 코스를 추가
     }
     setSelectedCourse((prevCourses) => ({ ...prevCourses, ...course })); // 선택한 코스 데이터 업데이트
+    setIsButtonPressed(true);
   };
 
   const openModal = (spot) => {
@@ -150,7 +152,7 @@ const AiTravelModel = () => {
                 isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
               }`}
               style={{
-                display: "flex",
+                //display: "flex",
                 flexWrap: "wrap",
                 border: "1px solid white",
                 boxShadow: "0px 3px 6px #a7999a3e",
@@ -158,7 +160,7 @@ const AiTravelModel = () => {
                 borderTopLeftRadius: "45px",
                 borderTopRightRadius: "45px",
                 margin: "0 auto",
-                overflowY: "auto",
+                //overflowY: "auto",
                 minHeight: "200px",
                 maxWidth: "550px",
               }}
@@ -170,8 +172,11 @@ const AiTravelModel = () => {
                   countryNames[countryName] || countryName;
                 return (
                   <div key={index}>
-                    <h2>{koreanCountryName}</h2>
-                    <div className={styles.recommendations_container}>
+                    <div>
+                      <div>
+                        <h2 className={styles.hh2}>{koreanCountryName}</h2>
+                      </div>
+                      <div className={styles.recommendations_container}></div>
                       <div
                         className={`${styles.recommendation_row} ${
                           showMore ? styles.horizontalScroll : ""
@@ -190,38 +195,34 @@ const AiTravelModel = () => {
                                 key={recommendIndex}
                                 className={styles.recommendation_column}
                               >
-                                <h3>{recommendType}</h3>
+                                <h3 className={styles.recommendName}>
+                                  {recommendType}
+                                </h3>
                                 <div className={styles.recommendation_item}>
                                   <div className={styles.imageContainer}></div>
                                   <div className={styles.description}>
-                                    <button
-                                      onClick={() =>
-                                        handleSpotSelection(recommendationData)
-                                      }
-                                    >
-                                      선택하기
-                                    </button>{" "}
+                                    <div className={styles.choose_column}>
+                                      <button
+                                        onClick={() => {
+                                          handleSpotSelection(
+                                            recommendationData
+                                          );
+                                          handleButtonClick();
+                                        }}
+                                        className={`${styles.circle} ${
+                                          isButtonPressed
+                                            ? styles.buttonPressed
+                                            : ""
+                                        }`}
+                                      ></button>
+                                      <p className={styles.coursechoose}>
+                                        코스 선택
+                                      </p>
+                                    </div>
                                     {/* 선택하기 버튼 추가 */}
                                   </div>
                                 </div>
-                                {recommendationData.length > 1 && (
-                                  <div className={styles.carousel_controls}>
-                                    <button
-                                      onClick={() =>
-                                        scrollNavigate("previous", index)
-                                      }
-                                    >
-                                      이전
-                                    </button>
-                                    <button
-                                      onClick={() =>
-                                        scrollNavigate("next", index)
-                                      }
-                                    >
-                                      다음
-                                    </button>
-                                  </div>
-                                )}
+
                                 <div className={styles.recommendation_carousel}>
                                   {recommendationData.map(
                                     (recommend, innerIndex) => {
@@ -257,6 +258,7 @@ const AiTravelModel = () => {
                                               onClick={() =>
                                                 setSelectedSpot(recommend)
                                               }
+                                              className={styles.detailButton}
                                             >
                                               자세히 보기
                                             </button>
@@ -272,8 +274,11 @@ const AiTravelModel = () => {
                         )}
                       </div>
                       {!showMore && (
-                        <button onClick={() => setShowMore(true)}>
-                          더 보기
+                        <button
+                          onClick={() => setShowMore(true)}
+                          className={styles.another}
+                        >
+                          <p>다른 코스 >></p>
                         </button>
                       )}
                       {showMore && (
