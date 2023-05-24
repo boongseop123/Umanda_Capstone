@@ -9,6 +9,7 @@ import Route30 from "../../resources/Route30.jpeg";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import icon from "./resource/airplane_icon.png";
 //import Header from "../Header/Header";
 
 const MainPage = () => {
@@ -67,17 +68,21 @@ const MainPage = () => {
           <div className={styles.home}>지도</div>
         </div>
         <div className={styles.main}>
-          <h3
-            className={`${styles.desktopTravel} ${
-              isDesktop
-                ? styles.desktopTravel
-                : isMobile
-                ? styles.mobileTravel
-                : ""
-            }`}
-          >
-            떠나기 좋은 여행 추천
-          </h3>
+          <div className={styles.flex}>
+            <h3
+              className={`${styles.desktopTravel} ${
+                isDesktop
+                  ? styles.desktopTravel
+                  : isMobile
+                  ? styles.mobileTravel
+                  : ""
+              }`}
+            >
+              떠나기 좋은 여행 추천
+            </h3>
+            <img src={icon} alt="123" className={styles.icon} />
+          </div>
+
           <div>
             <div className={styles.img1}>
               <div style={{ position: "relative" }}>
