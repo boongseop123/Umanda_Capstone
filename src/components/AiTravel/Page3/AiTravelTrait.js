@@ -9,6 +9,14 @@ import { API_URL_AI } from "../../Constant";
 import { useNavigate } from "react-router";
 import styles from "./AiTravelTrait.module.scss";
 import { motion } from "framer-motion";
+import culture from "./resources/culture_icon.png";
+import fotball from "./resources/football.png";
+import nature from "./resources/nature.png";
+import camera from "./resources/camera.png";
+import ski from "./resources/ski.png";
+import fashion from "./resources/fashion.png";
+import drink from "./resources/drink.png";
+import movie from "./resources/movie.png";
 
 const AiTravelTrait = () => {
   const navigate = useNavigate();
@@ -77,7 +85,8 @@ const AiTravelTrait = () => {
                 onChange={handleOptionChange}
               />
               <span className={styles.checkmark}></span>
-              <span>문화 · 예술</span>
+              <span className={styles.feature_name}>문화 · 예술</span>
+              <img src={culture} alt="culture" className={styles.icon} />
             </label>
             <label className={styles.option}>
               <input
@@ -88,7 +97,8 @@ const AiTravelTrait = () => {
                 onChange={handleOptionChange}
               />
               <span className={styles.checkmark}></span>
-              <span>풋볼투어</span>
+              <span className={styles.feature_name}>풋볼투어</span>
+              <img src={fotball} alt="culture" className={styles.icon} />
             </label>
             <label className={styles.option}>
               <input
@@ -99,7 +109,8 @@ const AiTravelTrait = () => {
                 onChange={handleOptionChange}
               />
               <span className={styles.checkmark}></span>
-              <span>자연 · 풍경</span>
+              <span className={styles.feature_name}>자연 · 풍경</span>
+              <img src={nature} alt="culture" className={styles.icon} />
             </label>
             <label className={styles.option}>
               <input
@@ -110,7 +121,8 @@ const AiTravelTrait = () => {
                 onChange={handleOptionChange}
               />
               <span className={styles.checkmark}></span>
-              <span>포토스팟</span>
+              <span className={styles.feature_name}>포토스팟</span>
+              <img src={camera} alt="culture" className={styles.icon} />
             </label>
           </div>
           <div className={styles.col}>
@@ -123,7 +135,8 @@ const AiTravelTrait = () => {
                 onChange={handleOptionChange}
               />
               <span className={styles.checkmark}></span>
-              <span>액티비티</span>
+              <span className={styles.feature_name}>액티비티</span>
+              <img src={ski} alt="culture" className={styles.icon} />
             </label>
             <label className={styles.option}>
               <input
@@ -134,7 +147,8 @@ const AiTravelTrait = () => {
                 onChange={handleOptionChange}
               />
               <span className={styles.checkmark}></span>
-              <span>쇼핑 · 패션</span>
+              <span className={styles.feature_name}>쇼핑 · 패션</span>
+              <img src={fashion} alt="culture" className={styles.icon} />
             </label>
             <label className={styles.option}>
               <input
@@ -145,7 +159,8 @@ const AiTravelTrait = () => {
                 onChange={handleOptionChange}
               />
               <span className={styles.checkmark}></span>
-              <span>펍 · 푸드</span>
+              <span className={styles.feature_name}>펍 · 푸드</span>
+              <img src={drink} alt="culture" className={styles.icon} />
             </label>
             <label className={styles.option}>
               <input
@@ -156,7 +171,8 @@ const AiTravelTrait = () => {
                 onChange={handleOptionChange}
               />
               <span className={styles.checkmark}></span>
-              <span>영화 촬영지</span>
+              <span className={styles.feature_name}>영화 촬영지</span>
+              <img src={movie} alt="culture" className={styles.icon} />
             </label>
           </div>
         </div>

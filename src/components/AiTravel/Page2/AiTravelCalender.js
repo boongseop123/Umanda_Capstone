@@ -8,6 +8,7 @@ import {
 } from "../../../recoils/Recoil";
 import styles from "./AiTravelCalender.Module.scss"; // 경로 수정
 import { motion } from "framer-motion";
+import icon from "./resource/calender_icon1.png";
 
 const AiTravelCalendar = () => {
   const selectedCountries = useRecoilValue(selectedCountriesState);
@@ -89,12 +90,17 @@ const AiTravelCalendar = () => {
       exit={{ opacity: 0 }}
     >
       <div className="custom-calendar-wrapper">
-        <h2 className={styles.h3select}>여행 기간을 선택해 주세요</h2>
+        <div className={styles.flex}>
+          <h2 className={styles.h3select}>여행 기간을 선택해 주세요!</h2>
+        </div>
+
         <br></br>
         {countryDurations.map((duration, index) => (
           <h4 key={index} className={styles.text}>
-            {translateCountryName(selectedCountries[index])}:{" "}
-            {duration !== null ? duration + "일" : "기간이 선택되지 않았습니다"}
+            <div className={styles.flex}>
+              {translateCountryName(selectedCountries[index])}:{" "}
+              {duration !== null ? duration + "일" : "기간을 설정해주세요"}
+            </div>
           </h4>
         ))}
         <div className="custom-calendar-container">
