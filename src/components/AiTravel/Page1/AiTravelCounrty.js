@@ -4,6 +4,12 @@ import styles from "./AiTravelCountry.module.scss";
 import { useRecoilState } from "recoil";
 import { selectedCountriesState } from "../../../recoils/Recoil";
 import { motion } from "framer-motion";
+import Italy from "./resoure/italy.png";
+import paris from "./resoure/paris.jpeg";
+import london from "./resoure/londons.jpg";
+import swiss from "./resoure/swiss.jpeg";
+import chex from "./resoure/czeh.png";
+import icon from "./resoure/recommend_icon.png";
 
 const AiTravelCountry = () => {
   const selectedCountriesRef = useRef([]);
@@ -182,12 +188,39 @@ const AiTravelCountry = () => {
       exit={{ opacity: 0 }}
     >
       <div>
-        <div className={styles.frame}>
+        <div>
           <div className={styles.line}>여행할 나라를 선택해주세요!</div>
+          <div className={styles.flex}>
+            <div className={styles.famous_city}>추천 인기 도시</div>
+            <img className={styles.icon} src={icon} alt="icon" />
+          </div>
+
+          <div className={styles.famous_img}>
+            <div className={styles.imageContainer}>
+              <img src={chex} alt="Image 1" />
+              <span className={styles.imageText}>VENICE</span>
+            </div>
+            <div className={styles.imageContainer}>
+              <img src={paris} alt="Image 1" />
+              <span className={styles.imageText}>PARIS</span>
+            </div>
+            <div className={styles.imageContainer}>
+              <img src={london} alt="Image 1" />
+              <span className={styles.imageText}>LONDON</span>
+            </div>
+            <div className={styles.imageContainer}>
+              <img src={swiss} alt="Image 1" />
+              <span className={styles.imageText}>SWISS</span>
+            </div>
+            <div className={styles.imageContainer}>
+              <img src={Italy} alt="Image 1" />
+              <span className={styles.imageText}>Italy</span>
+            </div>
+          </div>
           {selectedFirst && selectedSecond && selectedThird && (
             <div className={styles.selectedCountry}>
               {selectedCountries.map((country) => (
-                <p key={country}>{getKoreanCountryName(country)}.</p>
+                <p key={country}>'{getKoreanCountryName(country)}' </p>
               ))}
             </div>
           )}

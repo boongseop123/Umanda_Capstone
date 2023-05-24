@@ -30,17 +30,78 @@ button {
   margin-bottom: 10px;
   padding: 10px;
   border: none;
-  border-radius: 5px;
+  border-radius: 38px;
   background-color: #f8ebed;
   cursor: pointer;
-  font-family: "Happy", sans-serif;
-  font-weight: 600;
+  font-family: "Happy Bold", sans-serif;
+  font-weight: 700;
+}
+
+.famous_city {
+  font-family: "Happy Bolder", sans-serif;
+  font-weight: 700;
+  margin-left: 22px;
+  font-size: 17px;
+}
+
+.flex {
+  display: flex;
+}
+
+.icon {
+  width: 30px;
+  height: 20px;
+}
+
+.imageContainer {
+  position: relative;
+  /* 다른 스타일 설정 */
+}
+
+.imageText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-42%, -50%);
+  font-family: "Happy Bolder", sans-serif;
+  color: white;
+  /* 다른 텍스트 스타일 설정 */
+}
+
+.famous_img {
+  display: flex;
+  //flex-wrap: wrap;
+  overflow-x: hidden;
+  padding-bottom: 10px;
+}
+
+.famous_img img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+  flex-shrink: 0; // 이미지가 줄어들지 않도록 설정
+  position: relative; // 상대적 위치 설정
+}
+
+.famous_img::after {
+  content: "";
+  width: 50%; // 반만 걸치도록 설정
+  height: 100px;
+  //background-color: white; // 프레임의 배경색과 동일하게 설정
+  position: absolute; // 절대적 위치 설정
+  top: 0;
+  right: -25%; // 반만 보이도록 설정
+  z-index: 1; // 이미지보다 뒤에 위치하도록 설정
 }
 
 button:hover,
 button.active {
-  background-color: #f4c4c4;
-  color: #ef455a;
+  background-color: #fababa;
+  color: #0c0a0c;
   font-family: "Happy Bold", sans-serif;
   //font-weight: 600;
 }
