@@ -68,8 +68,12 @@
   margin-left: 10px;
 }
 
-.buttonPressed {
-  background-color: #ef455a; /* 원하는 색상으로 변경 */
+circle:hover,
+circle.active {
+  background-color: #f4c4c4;
+  color: #ef455a;
+  font-family: "Happy Bold", sans-serif;
+  //font-weight: 600;
 }
 
 .circle {
