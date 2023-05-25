@@ -189,13 +189,11 @@ const AiTravelSpotSelect = () => {
           >
             <div style={{ margin: "23px auto", textAlign: "center" }}>
               <h3 className={styles.h1}>취향에 맞는 여행지를 선택해주세요!</h3>
+              <p className={styles.h2}>(국가별 5개 이상 선택해주세요)</p>
               <br />
             </div>
 
             {displayedSpots.map(renderSpot)}
-            <button onClick={handleNavigate} className={styles.button}>
-              다음
-            </button>
             {spotIndex + pageSize < response?.spot?.length && (
               // 더 보기 버튼이 클릭되면 handleLoadMore 함수가 실행됨
               <button
@@ -205,6 +203,9 @@ const AiTravelSpotSelect = () => {
                 더 보기
               </button>
             )}
+            <button onClick={handleNavigate} className={styles.button}>
+              다음
+            </button>
           </div>
         </div>
       </div>

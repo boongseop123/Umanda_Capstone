@@ -111,6 +111,9 @@ const AiTravelCalendar = () => {
             className="custom-calendar"
             tileClassName="custom-calendar-tile"
             calendarType="US"
+            formatDay={(locale, date) =>
+              date.toLocaleString("en", { day: "numeric" })
+            }
           />
         </div>
       </div>

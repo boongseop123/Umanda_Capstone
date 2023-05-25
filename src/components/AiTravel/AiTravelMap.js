@@ -5,11 +5,9 @@ import {
   useLoadScript,
   GoogleMap,
   DirectionsRenderer,
-  MarkerF,
-  InfoWindowF,
-  Polyline,
+  Marker as MarkerF,
+  InfoWindow as InfoWindowF,
   OverlayView,
-  DirectionsService,
 } from "@react-google-maps/api";
 import Header from "../Header/Header";
 import { useMediaQuery } from "react-responsive";
@@ -37,7 +35,7 @@ const AiTravelMap = () => {
   });
   const [index, setIndex] = useState(0);
   const [hotelData, setHotelData] = useState([]);
-  const [foodData, setFoodData] = useState([]); // 변수명을 `setFoodData`로 수정
+  const [foodData, setFoodData] = useState([]);
   const [showFoodInfo, setShowFoodInfo] = useState(false);
   const [shortestPathSpots, setShortestPathSpots] = useState([]);
 
@@ -49,18 +47,14 @@ const AiTravelMap = () => {
 
   useEffect(() => {
     fetchFoodData();
-    // calculateDirections();
   }, []);
 
   const calculateDirections = () => {
-    console.log(selectedCourse);
     const waypoints = selectedCourse.map((data, index) => ({
       location: {
         lat: parseFloat(data.latitude),
         lng: parseFloat(data.longitude),
       },
-      //label: (index + 1).toString(),
-      //index: index,
     }));
 
     const origin = { lat: 51.47011583720578, lng: -0.45429550256021695 };
@@ -71,7 +65,7 @@ const AiTravelMap = () => {
       {
         origin: origin,
         destination: destination,
-        optimizeWaypoints: true, // 경유지 최적화 여부 설정 (선택 사항)
+        optimizeWaypoints: true,
         waypoints: waypoints.slice(1, waypoints.length - 1).map((waypoint) => ({
           location: new window.google.maps.LatLng(
             waypoint.location.lat,
@@ -89,6 +83,7 @@ const AiTravelMap = () => {
       }
     );
   };
+
   const handleShowModal = () => {
     setShowModal(true);
   };
@@ -102,13 +97,14 @@ const AiTravelMap = () => {
   };
 
   const handleShowShortestPath = () => {
-    setShowShortestPath(true);
-    setShortestPathSpots(selectedCourse);
+    setShowShortestPath((prevState) => !prevState);
   };
 
   const handleSelectedCourseMarkerClick = (data) => {
     setSelectedCourseMarker(data);
+    console.log(123);
   };
+
   const renderFoodMarkers = () => {
     return foodData.map((data, index) => (
       <MarkerF
@@ -130,6 +126,14 @@ const AiTravelMap = () => {
     setShowFoodInfo(!showFoodInfo);
   };
 
+  const handleShowSelectedCourseMarkers = () => {
+    if (selectedMarker) {
+      setSelectedMarker(null); // selectedMarker 상태를 null로 설정하여 마커 숨김
+    } else {
+      const markers = renderSelectedCourseMarkers();
+      setSelectedMarker(markers);
+    }
+  };
   const fetchFoodData = () => {
     axios
       .get(`${API_URL_AI}/restaurant`, {})
@@ -146,11 +150,11 @@ const AiTravelMap = () => {
       const markerStyle = {
         background: "gray",
         color: "white",
-        padding: "13px",
-        borderRadius: "38%",
+        padding: "12px",
+        borderRadius: "50%",
         fontWeight: "bold",
         fontSize: "16px",
-        cursor: "cursor",
+        cursor: "pointer",
       };
 
       const markerIconStyle = {
@@ -158,24 +162,43 @@ const AiTravelMap = () => {
         scaledSize: new window.google.maps.Size(30, 30),
       };
 
-      // return (
-      //   <OverlayView
-      //     key={index}
-      //     position={{
-      //       lat: parseFloat(data.latitude),
-      //       lng: parseFloat(data.longitude),
-      //     }}
-      //     mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-      //     index={index} // 인덱스 값을 추가로 전달
-      //   >
-      //     <div
-      //       className={styles.customMarker}
-      //       onClick={() => handleSelectedCourseMarkerClick(data)}
-      //     >
-      //       <div style={markerStyle}>{index + 1}</div>
-      //     </div>
-      //   </OverlayView>
-      // );
+      return (
+        <React.Fragment key={index}>
+          <MarkerF
+            position={{
+              lat: parseFloat(data.latitude),
+              lng: parseFloat(data.longitude),
+            }}
+            onClick={() => handleSelectedCourseMarkerClick(data)}
+          >
+            <div style={markerStyle}></div>
+          </MarkerF>
+
+          {selectedCourseMarker && selectedCourseMarker === data && (
+            <InfoWindowF
+              position={{
+                lat: parseFloat(selectedCourseMarker.latitude),
+                lng: parseFloat(selectedCourseMarker.longitude),
+              }}
+              onCloseClick={() => setSelectedCourseMarker(null)}
+            >
+              <div>
+                <h3>{selectedCourseMarker.spot}</h3>
+                <ul>
+                  <li>
+                    <img
+                      src={selectedCourseMarker.URI}
+                      alt={selectedCourseMarker.spot}
+                      className={styles.markerImage}
+                    />
+                    <p>{selectedCourseMarker.description}</p>
+                  </li>
+                </ul>
+              </div>
+            </InfoWindowF>
+          )}
+        </React.Fragment>
+      );
     });
   };
 
@@ -186,9 +209,11 @@ const AiTravelMap = () => {
   if (loadError) {
     return <div>Error loading maps</div>;
   }
+
+  const markers = renderSelectedCourseMarkers();
+
   return (
     <motion.div
-      /* 2. 원하는 애니메이션으로 jsx를 감싸준다 */
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -221,47 +246,6 @@ const AiTravelMap = () => {
                 center={{ lat: 51.5074, lng: -0.1278 }}
                 zoom={13}
               >
-                {selectedCourseMarker && (
-                  <InfoWindowF
-                    position={{
-                      lat: parseFloat(selectedCourseMarker.latitude),
-                      lng: parseFloat(selectedCourseMarker.longitude),
-                    }}
-                    //index={index} // 인덱스 값을 추가로 전달
-                  >
-                    <div>
-                      <h3>{selectedCourseMarker.spot}</h3>
-                      <ul>
-                        <li>
-                          <img
-                            src={selectedCourseMarker.URI}
-                            alt={selectedCourseMarker.spot}
-                            className={styles.markerImage}
-                          />
-                          <p>{selectedCourseMarker.description}</p>
-                        </li>
-                      </ul>
-                    </div>
-                  </InfoWindowF>
-                )}
-
-                {directions && (
-                  <DirectionsRenderer
-                    directions={directions}
-                    options={{
-                      markerOptions: {
-                        // waypoint 마커에 적용할 스타일
-                        icon: {
-                          // 기본 스타일
-                          url: markerIcon, // 커스텀 마커 이미지 경로
-                          scaledSize: new window.google.maps.Size(30, 30), // 마커 크기 조정
-                          labelOrigin: new window.google.maps.Point(15, -10), // 마커 라벨 위치 조정
-                        },
-                      },
-                    }}
-                  />
-                )}
-
                 <div
                   style={{
                     position: "absolute",
@@ -274,8 +258,10 @@ const AiTravelMap = () => {
                 >
                   <button onClick={handleShowFoodInfo}>음식점</button>
                   <button onClick={handleShowShortestPath}>최단 경로</button>
+                  <button onClick={handleShowSelectedCourseMarkers}>
+                    내 관광지
+                  </button>
                 </div>
-                {showFoodInfo && renderFoodMarkers()}
                 {selectedFoodMarker && (
                   <InfoWindowF
                     position={{
@@ -296,6 +282,23 @@ const AiTravelMap = () => {
                     </div>
                   </InfoWindowF>
                 )}
+                {showShortestPath && directions && (
+                  <DirectionsRenderer
+                    directions={directions}
+                    options={{
+                      markerOptions: {
+                        icon: {
+                          url: markerIcon,
+                          scaledSize: new window.google.maps.Size(30, 30),
+                          labelOrigin: new window.google.maps.Point(15, -10),
+                        },
+                      },
+                    }}
+                  />
+                )}
+
+                {showFoodInfo && renderFoodMarkers()}
+                {selectedMarker && renderSelectedCourseMarkers()}
               </GoogleMap>
             </div>
           </div>
