@@ -37,6 +37,35 @@ $spotHeight: 350px; // 스팟의 높이
   border-top-right-radius: 45px;
 }
 
+.text {
+  font-family: "Happy Bolder", sans-serif;
+  margin-bottom: 10px;
+  margin-left: 8px;
+}
+
+.mapbottom {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.mapbutton {
+  margin-left: 20px;
+  background-color: #f75f71;
+  font-family: "Happy Bolder", sans-serif;
+  color: white;
+}
+
+.br {
+  background-color: rgb(228, 226, 226);
+  color: rgb(228, 226, 226);
+}
+
+.air {
+  margin-left: 20px;
+  background-color: rgb(248, 247, 247);
+  font-family: "Happy Bolder", sans-serif;
+}
+
 .sheetFrame {
   //top: 70px;
   margin: 0 auto;

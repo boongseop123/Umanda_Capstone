@@ -19,6 +19,7 @@ import { API_URL_AI } from "../Constant";
 import markerIcon from "../../resources/markerIcon.png"; // 커스텀 마커 이미지 경로
 import foodMarker from "../../resources/foodMarker.png";
 import Sheet from "react-modal-sheet";
+import travelPin from "./resource/travelpin.png";
 
 const AiTravelMap = () => {
   const [isOpen, setOpen] = useState(false);
@@ -217,6 +218,10 @@ const AiTravelMap = () => {
               lat: parseFloat(data.latitude),
               lng: parseFloat(data.longitude),
             }}
+            icon={{
+              url: travelPin,
+              scaledSize: new window.google.maps.Size(30, 30),
+            }}
             onClick={() => handleSelectedCourseMarkerClick(data)}
           >
             <div style={markerStyle}></div>
@@ -333,36 +338,81 @@ const AiTravelMap = () => {
                 {showShortestPath && directions && (
                   <DirectionsRenderer
                     directions={directions}
-                    options={{
-                      markerOptions: {
-                        icon: {
-                          url: markerIcon,
-                          scaledSize: new window.google.maps.Size(30, 30),
-                          labelOrigin: new window.google.maps.Point(15, -10),
-                        },
-                      },
-                    }}
+                    // options={{
+                    //   markerOptions: {
+                    //     icon: {
+                    //       url: markerIcon,
+                    //       scaledSize: new window.google.maps.Size(30, 30),
+                    //       labelOrigin: new window.google.maps.Point(15, -10),
+                    //     },
+                    //   },
+                    // }}
                   />
                 )}
 
                 {showFoodInfo && renderFoodMarkers()}
                 {selectedMarker && renderSelectedCourseMarkers()}
               </GoogleMap>
-              <div>
-                <div>출발지를 선택해주세요!</div>
-                <button onClick={handleSelectOriginBritish}>영국</button>
-                <button onClick={handleSelectOriginFrance}>프랑스</button>
-                <button onClick={handleSelectOriginSpain}>스페인</button>
-                <button onClick={handleSelectOriginSwiss}>스위스</button>
-                <button onClick={handleSelectOriginItaly}>이탈리아</button>
+              <div className={styles.br}>
+                <div className={styles.br}>123</div>
               </div>
-              <div>
-                <div>도착지를 선택해주세요!</div>
-                <button onClick={handleSelectDestinBritish}>영국</button>
-                <button onClick={handleSelectDestinFrance}>프랑스</button>
-                <button onClick={handleSelectDestionSpain}>스페인</button>
-                <button>스위스</button>
-                <button>이탈리아</button>
+              <div className={styles.mapbottom}>
+                <div className={styles.text}>출발지를 선택해주세요!</div>
+                <button
+                  className={styles.mapbutton}
+                  onClick={handleSelectOriginBritish}
+                >
+                  영국
+                </button>
+                <button
+                  className={styles.mapbutton}
+                  onClick={handleSelectOriginFrance}
+                >
+                  프랑스
+                </button>
+                <button
+                  className={styles.mapbutton}
+                  onClick={handleSelectOriginSpain}
+                >
+                  스페인
+                </button>
+                <button
+                  className={styles.mapbutton}
+                  onClick={handleSelectOriginSwiss}
+                >
+                  스위스
+                </button>
+                <button
+                  className={styles.mapbutton}
+                  onClick={handleSelectOriginItaly}
+                >
+                  이탈리아
+                </button>
+                <button className={styles.air}>항공편 정보보러가기 >></button>
+              </div>
+              <div className={styles.mapbottom}>
+                <div className={styles.text}>도착지를 선택해주세요!</div>
+                <button
+                  className={styles.mapbutton}
+                  onClick={handleSelectDestinBritish}
+                >
+                  영국
+                </button>
+                <button
+                  className={styles.mapbutton}
+                  onClick={handleSelectDestinFrance}
+                >
+                  프랑스
+                </button>
+                <button
+                  className={styles.mapbutton}
+                  onClick={handleSelectDestionSpain}
+                >
+                  스페인
+                </button>
+                <button className={styles.mapbutton}>스위스</button>
+                <button className={styles.mapbutton}>이탈리아</button>
+                <button className={styles.air}>항공편 정보보러가기 >></button>
               </div>
             </div>
           </div>
