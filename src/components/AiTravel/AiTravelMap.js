@@ -18,7 +18,11 @@ import axios from "axios";
 import { API_URL_AI } from "../Constant";
 import markerIcon from "../../resources/markerIcon.png"; // 커스텀 마커 이미지 경로
 import foodMarker from "../../resources/foodMarker.png";
+import Sheet from "react-modal-sheet";
+
 const AiTravelMap = () => {
+  const [isOpen, setOpen] = useState(false);
+
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState([]);
@@ -39,6 +43,9 @@ const AiTravelMap = () => {
   const [showFoodInfo, setShowFoodInfo] = useState(false);
   const [shortestPathSpots, setShortestPathSpots] = useState([]);
 
+  const [origin, setOrigin] = useState(null);
+  const [destination, setDestination] = useState(null);
+
   useEffect(() => {
     if (isLoaded && selectedCourse && selectedCourse.length > 1) {
       calculateDirections();
@@ -49,6 +56,43 @@ const AiTravelMap = () => {
     fetchFoodData();
   }, []);
 
+  const handleSelectOriginBritish = () => {
+    setOrigin({ lat: 51.47011583720578, lng: -0.45429550256021695 });
+    calculateDirections(); // origin 값이 설정된 후에 calculateDirections 호출
+  };
+
+  const handleSelectOriginFrance = () => {
+    setOrigin({ lat: 49.01820265889724, lng: 2.5506204819845575 });
+    calculateDirections(); // origin 값이 설정된 후에 calculateDirections 호출
+  };
+
+  const handleSelectOriginSpain = () => {
+    setOrigin({ lat: 40.49211702675035, lng: -3.5619339790760756 });
+    calculateDirections(); // origin 값이 설정된 후에 calculateDirections 호출
+  };
+
+  const handleSelectOriginItaly = () => {
+    setOrigin({ lat: 51.47011583720578, lng: -0.45429550256021695 });
+    calculateDirections(); // origin 값이 설정된 후에 calculateDirections 호출
+  };
+
+  const handleSelectOriginSwiss = () => {
+    setOrigin({ lat: 51.47011583720578, lng: -0.45429550256021695 });
+    calculateDirections(); // origin 값이 설정된 후에 calculateDirections 호출
+  };
+
+  const handleSelectDestinBritish = () => {
+    setDestination({ lat: 51.47011583720578, lng: -0.45429550256021695 });
+  };
+
+  const handleSelectDestinFrance = () => {
+    setDestination({ lat: 49.01820265889724, lng: 2.5506204819845575 });
+  };
+
+  const handleSelectDestionSpain = () => {
+    setDestination({ lat: 40.49211702675035, lng: -3.5619339790760756 });
+  };
+
   const calculateDirections = () => {
     const waypoints = selectedCourse.map((data, index) => ({
       location: {
@@ -57,14 +101,14 @@ const AiTravelMap = () => {
       },
     }));
 
-    const origin = { lat: 51.47011583720578, lng: -0.45429550256021695 };
-    const destination = { lat: 37.42032503555593, lng: -5.8930285423288185 };
+    const originValue = origin; // Assign the value of origin to a separate variable
+    const destinationValue = destination;
 
     const directionsService = new window.google.maps.DirectionsService();
     directionsService.route(
       {
-        origin: origin,
-        destination: destination,
+        origin: originValue,
+        destination: destinationValue,
         optimizeWaypoints: true,
         waypoints: waypoints.slice(1, waypoints.length - 1).map((waypoint) => ({
           location: new window.google.maps.LatLng(
@@ -83,6 +127,10 @@ const AiTravelMap = () => {
       }
     );
   };
+
+  useEffect(() => {
+    setOpen(true); // 컴포넌트가 마운트될 때 자동으로 Sheet를 엽니다.
+  }, []);
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -242,7 +290,7 @@ const AiTravelMap = () => {
             <div style={{ height: "100vh", width: "100%" }}>
               <GoogleMap
                 options={{ disableDefaultUI: true }}
-                mapContainerStyle={{ height: "100%", width: "100%" }}
+                mapContainerStyle={{ height: "60%", width: "100%" }}
                 center={{ lat: 51.5074, lng: -0.1278 }}
                 zoom={13}
               >
@@ -300,6 +348,22 @@ const AiTravelMap = () => {
                 {showFoodInfo && renderFoodMarkers()}
                 {selectedMarker && renderSelectedCourseMarkers()}
               </GoogleMap>
+              <div>
+                <div>출발지를 선택해주세요!</div>
+                <button onClick={handleSelectOriginBritish}>영국</button>
+                <button onClick={handleSelectOriginFrance}>프랑스</button>
+                <button onClick={handleSelectOriginSpain}>스페인</button>
+                <button onClick={handleSelectOriginSwiss}>스위스</button>
+                <button onClick={handleSelectOriginItaly}>이탈리아</button>
+              </div>
+              <div>
+                <div>도착지를 선택해주세요!</div>
+                <button onClick={handleSelectDestinBritish}>영국</button>
+                <button onClick={handleSelectDestinFrance}>프랑스</button>
+                <button onClick={handleSelectDestionSpain}>스페인</button>
+                <button>스위스</button>
+                <button>이탈리아</button>
+              </div>
             </div>
           </div>
         </div>

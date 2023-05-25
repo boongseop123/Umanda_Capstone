@@ -30,7 +30,7 @@ const AiTravelModel = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [showMore, setShowMore] = useState(false);
-  const [selectedCourse, setSelectedCourse] = useState({}); // 선택한 코스 데이터 객체로 초기화
+  const [selectedCourse, setSelectedCourse] = useState({}); // 선택한 코스 데이터 객체로 초기화--?이부분 안되면 {}이렇게 객체로 바꿔
   const carouselRefs = useRef([]); // carouselRefs 초기화
   const [combinedSelectedSpotsArray, setCombinedSelectedSpotsArray] =
     useRecoilState(combinedSelectedSpotsArrayState);
