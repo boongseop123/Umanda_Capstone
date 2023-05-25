@@ -47,11 +47,10 @@
   // 특정 타일에 대한 스타일
   // 원하는 스타일을 추가해주세요
   &--active {
-    background-color: #ef455a; // 원하는 색상으로 변경해주세요
+    background-color: #ef455a;
+    color: white;
+    visibility: hidden; /* 일을 표시하지 않음 */
   }
-}
-
-.custom-calendar-tile {
 }
 
 .custom-calendar-tile--active {

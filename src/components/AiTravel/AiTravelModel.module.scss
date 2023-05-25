@@ -22,6 +22,23 @@
   padding: 0 5px; /* 좌우 패딩을 5px로 설정 */
 }
 
+.spots::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.spots::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.spots::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 2em;
+}
+
+.spots::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
 .recommendation_carousel {
   display: flex;
   overflow-x: scroll;
