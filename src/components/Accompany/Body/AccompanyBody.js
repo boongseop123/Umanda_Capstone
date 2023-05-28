@@ -294,6 +294,7 @@ const AccompanyBody = () => {
                 style={{
                   color: "gray",
                   fontSize: "14px",
+                  fontFamily: "Happy",
                 }}
               >
                 {calculateAge(post.birthDate)}살 ∙ {post.gender}

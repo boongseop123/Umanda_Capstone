@@ -83,24 +83,16 @@ const PostBody = (post) => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>나만의 일정 만들기</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className={styles.h1}>게시글을 작성해주세요!</h1>
+      <form onSubmit={handleSubmit} className={styles.myForm}>
         <div className={styles.writerBox}>
-          <span className={styles.writer}>작성자</span>
-          <div
-            style={{
-              width: "150px",
-              height: "25px",
-              border: "1px solid gray",
-              borderRadius: "3px",
-              textAlign: "center",
-            }}
-          >
-            {username}
+          <span className={styles.writer}>작성자: </span>
+          <div className={styles.title}>
+            <p>{username}</p>
           </div>
         </div>
         <div className={styles.titleBox}>
-          <span className={styles.span}>제목</span>
+          <span className={styles.span}>제목: </span>
           <input
             type="text"
             className={styles.title}
@@ -118,8 +110,12 @@ const PostBody = (post) => {
             flexDirection: "row",
           }}
         >
-          <span className={styles.span}>출발 날짜</span>
-          <input type="date" onChange={(e) => setDepartDate(e.target.value)} />
+          <span className={styles.span}>출발 날짜:</span>
+          <input
+            type="date"
+            onChange={(e) => setDepartDate(e.target.value)}
+            className={styles.title}
+          />
         </div>
         <div className={styles.contentBox}>
           <span className={styles.span}>내용</span>
@@ -127,6 +123,7 @@ const PostBody = (post) => {
             placeholder={"여행지, 가고싶은 관광지, 코스 등을 입력해주세요."}
             value={content}
             onChange={handleContentChange}
+            className={`${styles.content2} ${styles.textareaPlaceholder}`}
           ></textarea>
         </div>
         <div className={styles.buttonBox}>

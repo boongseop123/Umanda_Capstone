@@ -74,7 +74,7 @@ const MeetBody = ({ receiver }) => {
 
   return (
     <div style={{ minHeight: "650px" }}>
-      <h2 style={{ margin: "30px" }}>Chat</h2>
+      <h2 className={styles.h2}>채팅</h2>
       <div className={styles.container}>
         {filteredChatRooms.map((room) => {
           const receiver = room.participants.find(
