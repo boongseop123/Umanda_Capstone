@@ -1,0 +1,66 @@
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.container {
+  position: absolute;
+  width: 500px;
+  height: 160px;
+  background-color: white;
+  bottom: 70px;
+  left: 25px;
+  border-radius: 15px;
+  animation: slideUp 0.5s ease-out;
+  font-family: "Happy Bold", sans-serif;
+}
+
+.profile {
+  width: 100px;
+  height: 100px;
+  background-image: url("../resources/profile.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.chatButton {
+  background-color: #484f59;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 38px;
+  border: none;
+  margin-left: 160px;
+  font-family: "Happy Bold", sans-serif;
+}
+
+.chatImg {
+  width: 20px;
+  height: 20px;
+  color: white;
+  margin-left: 4px;
+  margin-right: 1px;
+}
+
+.spanChat {
+  color: white;
+  font-family: "Happy Bold", sans-serif;
+  font-size: 13px;
+  margin-right: 1px;
+}
+
+.feature {
+  font-size: 11px;
+  font-family: "Happy Bold", sans-serif;
+  color: #ef455a;
+}

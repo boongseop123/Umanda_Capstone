@@ -1,7 +1,7 @@
 .CategoryDesktop {
   margin-top: 52px;
   // margin-left: 49px;
-  min-height: 650px;
+  height: 100%;
 }
 
 .CategoryMobile {
@@ -231,7 +231,6 @@ input:focus {
 
 .titleBoxDesktop {
   margin-left: 20px;
-  margin-top: 6px;
 }
 
 .titleBoxMobile {
@@ -254,8 +253,7 @@ input:focus {
 .profileBoxDesktop {
   display: flex;
   align-items: center;
-  margin-top: 6px;
-  margin-bottom: 6 px;
+  margin-top: -6px;
 }
 
 .profileBoxMobile {
@@ -351,9 +349,6 @@ input:focus {
   background-repeat: no-repeat;
   background-position: center center;
   background-image: url("../Body/resources/pencil.png");
-}
-.text {
-  font-family: "Happy Bold", sans-serif;
 }
 
 .deleteButton {

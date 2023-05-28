@@ -4,8 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import Header from "../Header/Header";
 import Meetbody from "./Body/MeetBody";
 import Footer from "../Footer/Footer";
-
-const MeetPage = () => {
+const MeetPage = ({ lastMessage, lastMessageTime }) => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   return (
     <div>
@@ -17,7 +16,7 @@ const MeetPage = () => {
           isDesktop ? styles.desktopFrame2 : styles.mobileFrame2
         }`}
       >
-        <Meetbody />
+        <Meetbody lastMessage={lastMessage} lastMessageTime={lastMessageTime} />
         <Footer />
       </div>
     </div>
