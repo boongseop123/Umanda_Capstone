@@ -207,7 +207,7 @@ const PostModal = ({ isOpen, onClose, post }) => {
             </div>
 
             <div style={{ marginLeft: "-14px", marginTop: "20px" }}>
-              <span>출발 날짜 ㅣ</span>
+              <span className={styles.depart}>출발 날짜 ㅣ</span>
               <input
                 style={{ width: "200px" }}
                 type="date"
@@ -246,7 +246,7 @@ const PostModal = ({ isOpen, onClose, post }) => {
                   height: "40px",
                   backgroundColor: "#ef455a",
                   color: "white",
-                  borderRadius: "10px",
+                  borderRadius: "20%",
                   border: "1px solid white",
                 }}
               >
@@ -257,7 +257,7 @@ const PostModal = ({ isOpen, onClose, post }) => {
                   width: "185px",
                   height: "40px",
                   color: "black ",
-                  borderRadius: "10px",
+                  borderRadius: "20px",
                   border: "1px solid white",
                 }}
                 onClick={() => setIsEditing(false)}

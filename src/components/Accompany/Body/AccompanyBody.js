@@ -165,9 +165,15 @@ const AccompanyBody = () => {
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
-              <option value="">성별</option>
-              <option value="male">남성</option>
-              <option value="female">여성</option>
+              <option value="" className={styles.text}>
+                성별
+              </option>
+              <option className={styles.text} value="male">
+                남성
+              </option>
+              <option className={styles.text} value="female">
+                여성
+              </option>
             </select>
 
             <label htmlFor="travelType"></label>
@@ -179,11 +185,22 @@ const AccompanyBody = () => {
               value={travelType}
               onChange={(e) => setTravelType(e.target.value)}
             >
-              <option value="">여행 유형</option>
-              <option value="culture">문화</option>
-              <option value="sports">스포츠</option>
-              <option value="nature">자연</option>
-              <option value="activity"> 엑티비티</option>
+              <option value="" className={styles.text}>
+                여행 유형
+              </option>
+              <option value="culture" className={styles.text}>
+                문화
+              </option>
+              <option value="sports" className={styles.text}>
+                스포츠
+              </option>
+              <option value="nature" className={styles.text}>
+                자연
+              </option>
+              <option value="activity" className={styles.text}>
+                {" "}
+                엑티비티
+              </option>
             </select>
 
             <label for="departureDate">
@@ -217,9 +234,15 @@ const AccompanyBody = () => {
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
           >
-            <option value="">정렬</option>
-            <option value="latest">최신순</option>
-            <option value="popular">인기순</option>
+            <option value="" className={styles.text}>
+              정렬
+            </option>
+            <option value="latest" className={styles.text}>
+              최신순
+            </option>
+            <option value="popular" className={styles.text}>
+              인기순
+            </option>
           </select>
         </form>
         <button
@@ -260,7 +283,8 @@ const AccompanyBody = () => {
               <span
                 style={{
                   color: "gray",
-                  fontSize: "14px",
+                  fontSize: "13px",
+                  fontFamily: "Happy Bold",
                 }}
               >
                 {calculateAge(post.birthDate)}살 ∙ {post.gender}

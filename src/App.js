@@ -16,6 +16,7 @@ import AiTravelPage3 from "./components/AiTravel/Page2/AiTravelPage3";
 import PostPage from "./components/Post/PostPage";
 import ChatPage from "./components/Chatting/ChatPage";
 import MeetPage from "./components/Meet/MeetPage";
+import MyPage from "./components/MyProfile/MyPage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
             <Route path="/main" element={<MainPage />} />
+            <Route path="/myPage" element={<MyPage />} />
             <Route path="/accompany" element={<AccompanyPage />} />
             <Route path="/aitravel" element={<AiTravelPage />} />
             <Route path="/aitravel2" element={<AiTravelPage2 />} />

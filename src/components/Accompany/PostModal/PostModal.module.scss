@@ -8,6 +8,7 @@
   align-items: center;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .modal {
@@ -19,6 +20,7 @@
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: white;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .containerDesktop {
@@ -31,17 +33,20 @@
   border-radius: 100px;
   margin-right: 10px;
   border: 1px solid lightgray;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .Calender {
   display: flex;
   justify-content: center;
+  font-family: "Happy", sans-serif;
 }
 
 .submitButton {
@@ -50,12 +55,14 @@
   border-radius: 20px;
   border: 1px solid lightgray;
   background-color: white;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .contentContainer {
   display: flex;
   align-items: stretch; /* This will ensure the textContent and the image have the same height */
   margin-bottom: 30px;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .textContent {
@@ -63,6 +70,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   margin-left: 30px;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .title {
@@ -72,6 +80,7 @@
   border-radius: 5px;
   padding: 8px;
   margin-bottom: 5px;
+  font-family: "Happy Bolder", sans-serif;
 }
 .departDate {
   font-size: 16px;
@@ -79,12 +88,18 @@
   border-radius: 5px;
   padding: 8px;
   margin-bottom: 5px;
+  font-family: "Happy Bolder", sans-serif;
 }
 .createdBy {
   font-size: 16px;
   border: 1px solid lightgray;
   border-radius: 5px;
   padding: 8px;
+  font-family: "Happy Bolder", sans-serif;
+}
+
+.depart {
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .fieldset {
@@ -92,6 +107,7 @@
   height: 200px;
   margin-top: -15px;
   border-radius: 15px;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .sendMsg {
@@ -104,6 +120,7 @@
   border-radius: 10px;
   border: 1px solid white;
   color: white;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .updateButton {
@@ -114,14 +131,17 @@
   border: 10px;
   border-radius: 5px;
   color: black;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .editTitle {
   width: 300px;
   height: 20px;
+  font-family: "Happy Bolder", sans-serif;
 }
 
 .editContent {
   width: 300px;
   height: 200px;
+  font-family: "Happy Bolder", sans-serif;
 }

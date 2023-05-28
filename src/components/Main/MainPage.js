@@ -9,6 +9,7 @@ import Route30 from "../../resources/Route30.jpeg";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import navIcon from "./resource/hamburger.png";
 import icon from "./resource/airplane_icon.png";
 //import Header from "../Header/Header";
 
@@ -22,6 +23,10 @@ const MainPage = () => {
   };
   const moveToAccompany = () => {
     navigate("/accompany");
+  };
+
+  const moveToMyPage = () => {
+    navigate("/myPage");
   };
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
@@ -65,7 +70,13 @@ const MainPage = () => {
           <div className={styles.home1}>Umanda</div>
           <div className={styles.home}>홈</div>
           <div className={styles.home}>Q&A</div>
-          <div className={styles.home}>지도</div>
+          <div className={styles.home}>채팅</div>
+          <div className={styles.home} onClick={moveToMyPage}>
+            마이페이지
+          </div>
+          <div>
+            <img src={navIcon} alt="123" className={styles.navIcon}></img>
+          </div>
         </div>
         <div className={styles.main}>
           <div className={styles.flex}>
