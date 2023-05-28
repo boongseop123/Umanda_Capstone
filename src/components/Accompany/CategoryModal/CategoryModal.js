@@ -17,7 +17,7 @@ const CategoryModal = ({ isOpen, onClose }) => {
     <div className={styles.modalContainer} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div>
-          <h4>성별</h4>
+          <h4 className={styles.h2}>성별</h4>
           <div className={styles.container}>
             <div
               className={
@@ -36,7 +36,7 @@ const CategoryModal = ({ isOpen, onClose }) => {
           </div>
         </div>
         <div>
-          <h4>나이</h4>
+          <h4 className={styles.h2}>나이</h4>
           <div className={styles.container}>
             <div
               className={

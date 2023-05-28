@@ -107,6 +107,11 @@ const AiTravelModel = () => {
       console.log("Combined array is stored in Recoil.");
     }
 
+    localStorage.setItem(
+      "combinedSelectedSpotsArray",
+      JSON.stringify(updatedSelectedSpotsArray)
+    );
+
     navigate("/aitravelmap");
   };
 

@@ -91,6 +91,12 @@
   text-align: center;
 }
 
+.navIcon {
+  width: 40px;
+  margin-top: 25px;
+  margin-left: 60px;
+}
+
 .icon {
   width: 30px;
   height: 30px;
@@ -199,6 +205,13 @@ button:active {
   box-shadow: 0px 3px 6px #a7999a3e;
   z-index: 1;
   border-radius: 45px 45px 0px 0px;
+}
+
+.Frame1 {
+  width: 550px;
+
+  margin: 0 auto;
+  background-color: #ef455a;
 }
 
 .mobileFrame2 {
