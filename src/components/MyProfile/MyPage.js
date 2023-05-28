@@ -46,9 +46,10 @@ const MyPage = () => {
           >
             <div className={styles.mytext}>내정보</div>
             <div>
-              <div>신지훈</div>
+              <div className={styles.name}>신지훈</div>
+              <div className={styles.detail}>26세 | 남성 | 정보수정</div>
             </div>
-            <div>내 방문지</div>
+            <div className={styles.name1}>내 방문지</div>
             <div className={styles.imageContainer}>
               {selectedCourse.length > 0 ? (
                 selectedCourse.map((spot, index) => (
@@ -64,6 +65,17 @@ const MyPage = () => {
               ) : (
                 <div>방문한 장소가 없습니다.</div>
               )}
+            </div>
+            <div className={styles.feature}>#해외축구 #포토스팟</div>
+            <div className={styles.underline}></div>
+
+            <div className={styles.detail}>내가 작성한 게시글</div>
+            <div className={styles.detail}>채팅방</div>
+            <div className={styles.underline1}></div>
+            <div className={styles.detail}>
+              <div className={styles.detail_margin}>비밀번호 변경</div>
+              <div className={styles.detail_margin}>설정</div>
+              <div className={styles.detail_margin}>로그아웃</div>
             </div>
           </div>
         </div>
