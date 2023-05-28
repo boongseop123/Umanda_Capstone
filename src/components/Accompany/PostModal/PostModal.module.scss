@@ -12,14 +12,15 @@
 }
 
 .modal {
-  background-color: #fff;
+  background-color: #fbf1f1;
   width: 400px;
   height: 400px;
   margin: 0 auto;
   padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  border-radius: 20px;
+  //box-shadow: #ef455a;
+  //box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  //background-color: white;
   font-family: "Happy Bolder", sans-serif;
 }
 
@@ -82,6 +83,11 @@
   margin-bottom: 5px;
   font-family: "Happy Bolder", sans-serif;
 }
+
+.realcontent {
+  margin-left: 10px;
+  font-family: "Happy Bold", sans-serif;
+}
 .departDate {
   font-size: 16px;
   border: 1px solid lightgray;
@@ -103,10 +109,11 @@
 }
 
 .fieldset {
-  width: 370px;
+  width: 350px;
   height: 200px;
-  margin-top: -15px;
+  margin-top: 20px;
   border-radius: 15px;
+  margin-right: 10px;
   font-family: "Happy Bolder", sans-serif;
 }
 
@@ -114,13 +121,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  height: 40px;
+  width: 350px;
+  height: 50px;
   background-color: #ef455a;
-  border-radius: 10px;
-  border: 1px solid white;
+  border-radius: 20px;
+  //border: 1px solid white;
+  box-shadow: #fbf1f1;
   color: white;
-  font-family: "Happy Bolder", sans-serif;
+  font-family: "Happy Bold", sans-serif;
+  opacity: 0.98;
+  font-size: 17px;
+}
+
+.textcontent1 {
+  margin-left: 10px;
 }
 
 .updateButton {
@@ -137,11 +151,13 @@
 .editTitle {
   width: 300px;
   height: 20px;
-  font-family: "Happy Bolder", sans-serif;
+  font-family: "Happy Bold", sans-serif;
+  margin-left: 20px;
 }
 
 .editContent {
   width: 300px;
   height: 200px;
-  font-family: "Happy Bolder", sans-serif;
+  font-family: "Happy Bold", sans-serif;
+  margin-left: 20px;
 }

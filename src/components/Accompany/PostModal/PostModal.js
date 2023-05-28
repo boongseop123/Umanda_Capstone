@@ -197,7 +197,7 @@ const PostModal = ({ isOpen, onClose, post }) => {
             <div
               style={{ display: "flex", marginTop: "10px", marginLeft: "17px" }}
             >
-              <span style={{ marginTop: "3px" }}>제목 ㅣ </span>
+              <span style={{ marginTop: "3px" }}> 제목 ㅣ </span>
               <input
                 className={styles.editTitle}
                 type="text"
@@ -224,7 +224,7 @@ const PostModal = ({ isOpen, onClose, post }) => {
                 marginLeft: "17px",
               }}
             >
-              <span>내용 ㅣ </span>
+              <span className={styles.textcontent1}>내용 ㅣ </span>
               <textarea
                 className={styles.editContent}
                 value={content}
@@ -278,9 +278,9 @@ const PostModal = ({ isOpen, onClose, post }) => {
                 }}
               ></img>
               <div className={styles.textContent}>
-                <div className={styles.title}>제목 ㅣ {post.title}</div>
+                <div className={styles.title}> 게시글 ㅣ {post.title}</div>
                 <div className={styles.departDate}>
-                  출발날짜 ㅣ {post.departDate}
+                  출발일 ㅣ {post.departDate}
                 </div>
                 <div className={styles.createdBy}>
                   작성자 ㅣ {post.createdBy}
@@ -300,18 +300,18 @@ const PostModal = ({ isOpen, onClose, post }) => {
 
             <fieldset className={styles.fieldset}>
               <legend>내용</legend>
-              {post.content}
+              <div className={styles.realcontent}> {post.content}</div>
             </fieldset>
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
-                marginTop: "14px",
+                marginTop: "20px",
               }}
             >
               {userInfo.username !== post.createdBy && (
                 <button className={styles.sendMsg} onClick={handleOpenChatRoom}>
-                  메세지 보내기
+                  채팅 보내기
                 </button>
               )}
             </div>
