@@ -29,7 +29,7 @@
   font-family: "Happy Bold", sans-serif;
   text-align: center;
   font-size: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   margin-top: 50px;
 }
 .imageContainer {
@@ -59,21 +59,49 @@
   font-family: "Happy Bolder", sans-serif;
   font-size: 25px;
   margin-left: 10px;
+  margin-bottom: 20px;
 }
 
 .name1 {
   font-family: "Happy Bolder", sans-serif;
   font-size: 26px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   margin-left: 10px;
+}
+
+.profilecontainer {
+  display: flex;
+  align-items: center;
+}
+
+.profileimgcontainer {
+  margin-right: 30px;
+  margin-bottom: 50px;
+  margin-left: 13px;
+}
+
+.profile_img {
+  width: 90px;
+  height: 90px;
+  border-radius: 30%;
 }
 
 .detail {
   font-family: "Happy Bold", sans-serif;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-bottom: 50px;
   font-size: 18px;
   margin-left: 10px;
+}
+
+.detail2 {
+  font-family: "Happy", sans-serif;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-size: 18px;
+  margin-left: 10px;
+  font-weight: 700;
+  opacity: 0.6;
 }
 
 .spotName {
@@ -100,17 +128,17 @@
   height: 3px;
   background-color: gray;
   opacity: 0.2;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .feature {
   font-family: "Happy Bolder", sans-serif;
   margin-top: 30px;
   font-size: 18px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   margin-left: 10px;
 }
 
 .detail_margin {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
