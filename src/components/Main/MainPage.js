@@ -75,7 +75,9 @@ const MainPage = () => {
           <div className={styles.home1}>Umanda</div>
           <div className={styles.home}>홈</div>
           <div className={styles.home}>Q&A</div>
-          <div className={styles.home}>채팅</div>
+          <div className={styles.home} onClick={moveToMeet}>
+            채팅
+          </div>
           <div className={styles.home} onClick={moveToMyPage}>
             마이페이지
           </div>

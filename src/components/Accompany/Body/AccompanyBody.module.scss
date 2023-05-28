@@ -1,7 +1,23 @@
 .CategoryDesktop {
   margin-top: 52px;
-  // margin-left: 49px;
-  height: 100%;
+  position: relative;
+  height: 80vh;
+
+  // margin-left: 4
+  .postButton {
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    position: absolute;
+    border-radius: 50%;
+    background-size: 30px;
+    background-color: #ef455a;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: url("../Body/resources/pencil.png");
+  }
 }
 
 .CategoryMobile {
@@ -49,6 +65,8 @@
   margin-left: -20px;
   background-color: white;
   color: gray;
+  font-size: 15px;
+  font-family: "Happy Bold";
 }
 
 .GenderMobile {
@@ -64,13 +82,15 @@
 
 .TravelTypeDesktop {
   border-radius: 100px;
-  padding-left: 10px;
+  padding-left: 4px;
   border: 1px solid lightgray;
   width: 100px;
   height: 35px;
   margin-right: 20px;
   background-color: white;
   color: gray;
+  font-size: 15px;
+  font-family: "Happy Bold";
 }
 
 .TravelTypeMobile {
@@ -91,6 +111,8 @@
   height: 35px;
   background-color: white;
   color: gray;
+  font-size: 15px;
+  font-family: "Happy Bold";
 }
 
 .DateMobile {
@@ -104,16 +126,19 @@
 
 .SortOrderDesktop {
   border-radius: 100px;
-  border: 1px solid gray;
   padding-left: 10px;
   margin-top: 20px;
-  margin-left: 28px;
+  margin-left: 33px;
   border: 1px;
   width: 100px;
   height: 35px;
   border: 1px solid lightgray;
   // font-size: 15px;
-  background-color: white;
+  // background-color: white;
+  color: gray;
+
+  font-size: 15px;
+  font-family: "Happy Bold";
 }
 
 .SortOrderMobile {
@@ -231,6 +256,7 @@ input:focus {
 
 .titleBoxDesktop {
   margin-left: 20px;
+  margin-bottom: 10px;
 }
 
 .titleBoxMobile {
@@ -243,6 +269,10 @@ input:focus {
 .titleDesktop {
   font: normal normal 600 18px/4px Noto Sans Myanmar;
   letter-spacing: -0.6px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-family: "Happy";
+  font-size: 20px;
 }
 
 .titleMobile {
@@ -253,7 +283,8 @@ input:focus {
 .profileBoxDesktop {
   display: flex;
   align-items: center;
-  margin-top: -6px;
+  margin-top: 3px;
+  font-family: "Happy";
 }
 
 .profileBoxMobile {
@@ -267,7 +298,7 @@ input:focus {
   height: 20px;
   border-radius: 10px;
   margin-bottom: -8px;
-  margin-top: -10px;
+  margin-top: 10px;
   margin-right: 10px;
   background-size: cover;
   background-image: url("./resources/profile.png");

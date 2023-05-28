@@ -6,6 +6,9 @@
 /* 글쓰기 글자 디자인 */
 .h1 {
   margin-left: -2px;
+  font-family: "Happy Bolder";
+  margin-bottom: 20px;
+  font-size: 25px;
 }
 
 .writerBox {
@@ -15,11 +18,29 @@
   align-items: flex-start;
   margin-left: -14px;
 }
+.myForm {
+  border: #ef455a;
+}
 
+.content2 {
+  width: 400px;
+  height: 20px;
+  border: none;
+}
+.textareaPlaceholder {
+  color: gray;
+  font-style: italic;
+  font-family: "Happy Bolder";
+  font-size: 14px;
+  // 추가적인 스타일 설정
+  // ...
+}
 .writer {
   height: 25px;
   margin-right: 20px;
   font-size: 16px;
+  font-family: "Happy Bolder";
+  //margin-top: 4px;
 }
 
 .titleBox {
@@ -27,16 +48,22 @@
   align-items: flex-start;
   display: flex;
   flex-direction: row;
+  font-family: "Happy Bolder";
 }
 
 .span {
   margin-right: 20px;
   font-size: 16px;
+  font-family: "Happy Bolder";
 }
 
 .title {
   width: 400px;
   height: 20px;
+  border: none;
+  font-family: "Happy Bold";
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 
 .contentBox {
