@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 import styles from "../Body/MeetBody.module.scss";
 import profile from "../resources/profile.png";
 
-const MeetBody = () => {
+const MeetBody = ({ receiver }) => {
   const navigate = useNavigate();
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
 
@@ -23,12 +23,13 @@ const MeetBody = () => {
         query(
           chatRoomsCollection,
           where("participants", "array-contains", username)
-        ) // 수정: 현재 사용자가 참여한 채팅방 필터링
+        )
       );
 
       const fetchedChatRooms = querySnapshot.docs.map((doc) => ({
         chatRoomId: doc.id,
         ...doc.data(),
+        unreadCount: 0,
       }));
 
       setChatRooms(fetchedChatRooms);
@@ -37,7 +38,36 @@ const MeetBody = () => {
     fetchChatRooms();
   }, [username]);
 
-  // Filter the chat rooms that the current user is a participant of
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "messages"), (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          const message = change.doc.data();
+          const chatRoomId = message.chatRoomId;
+          const receiver = message.receiver;
+
+          setChatRooms((prevChatRooms) =>
+            prevChatRooms.map((room) => {
+              if (
+                room.chatRoomId === chatRoomId &&
+                room.participants.includes(receiver)
+              ) {
+                return {
+                  ...room,
+                  unreadCount:
+                    room.unreadCount + (receiver !== username ? 1 : 0),
+                };
+              }
+              return room;
+            })
+          );
+        }
+      });
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const filteredChatRooms = chatRooms.filter((room) =>
     room.participants.includes(username)
   );
@@ -47,7 +77,6 @@ const MeetBody = () => {
       <h2 style={{ margin: "30px" }}>Chat</h2>
       <div className={styles.container}>
         {filteredChatRooms.map((room) => {
-          // 수신자의 이름 추출 (배열의 첫 번째 요소)
           const receiver = room.participants.find(
             (participant) => participant !== username
           );
@@ -70,6 +99,9 @@ const MeetBody = () => {
               <h3 style={{ marginLeft: "20px", marginTop: "30px" }}>
                 {receiver}
               </h3>
+              {room.unreadCount > 0 && (
+                <div className={styles.unreadCount}>{room.unreadCount}</div>
+              )}
             </div>
           );
         })}

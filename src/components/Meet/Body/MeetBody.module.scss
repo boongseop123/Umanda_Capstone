@@ -40,3 +40,10 @@
   border-radius: 100%;
   margin-right: 400px;
 }
+
+.unreadCount {
+  position: absolute; // 메시지 카운트를 원하는 위치에 고정하기 위해 사용
+  right: 10px; // receiver로부터 오른쪽으로 얼마나 떨어져 있는지 지정
+  top: 20px; // receiver로부터 위로 얼마나 떨어져 있는지 지정
+  // 다른 CSS 스타일 속성을 원하는대로 추가/조정하세요.
+}

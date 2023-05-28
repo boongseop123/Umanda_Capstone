@@ -11,9 +11,10 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { API_URL } from "../../Constant";
 import Functions from "./functions";
 import calculateAge from "./cal";
+import { getFirestore } from "firebase/firestore";
 
 const AccompanyBody = () => {
-  const { handleDelete, loadPosts, getBirth, cancel } = Functions();
+  const { handleDelete, loadPosts } = Functions();
 
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const today = new Date().toISOString().slice(0, 10);
@@ -26,6 +27,32 @@ const AccompanyBody = () => {
   const [selectedPost, setSelectedPost] = useState(null);
 
   const posts = useRecoilValue(postState);
+
+  const [posts1, setPosts1] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const db = getFirestore;
+      const postDocs = await db.collection("post1").get();
+
+      const postsWithLikes = await Promise.all(
+        postDocs.docs.map(async (postDoc) => {
+          const postData = postDoc.data();
+          const likeDocs = await db
+            .collection("likes")
+            .where("postId", "==", postData.id)
+            .where("liked", "==", true)
+            .get();
+          return { ...postData, id: postDoc.id, likes: likeDocs.docs.length };
+        })
+      );
+
+      setPosts1(postsWithLikes);
+    };
+
+    fetchPosts();
+  }, []);
+  const [sortOrder, setSortOrder] = useState("");
 
   // PostBody에서 선택한 날짜가 담겨있음
   const selectedDate = useRecoilValue(departDateState);
@@ -56,8 +83,6 @@ const AccompanyBody = () => {
     setIsOpen1(false);
   };
   ////////////////////////////////////////////////////
-
-  const [sortOrder, setSortOrder] = useState("");
 
   const [userInfo, setUserInfo] = useState({
     username: "",
@@ -151,8 +176,12 @@ const AccompanyBody = () => {
       }
     });
 
+  const moveToMap = () => {
+    navigate("/mapchat");
+  };
+
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ overflowY: "auto" }}>
       <div
         className={isDesktop ? styles.CategoryDesktop : styles.CategoryMobile}
       >
@@ -165,15 +194,9 @@ const AccompanyBody = () => {
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
-              <option value="" className={styles.text}>
-                성별
-              </option>
-              <option className={styles.text} value="male">
-                남성
-              </option>
-              <option className={styles.text} value="female">
-                여성
-              </option>
+              <option value="">성별</option>
+              <option value="male">남성</option>
+              <option value="female">여성</option>
             </select>
 
             <label htmlFor="travelType"></label>
@@ -185,22 +208,11 @@ const AccompanyBody = () => {
               value={travelType}
               onChange={(e) => setTravelType(e.target.value)}
             >
-              <option value="" className={styles.text}>
-                여행 유형
-              </option>
-              <option value="culture" className={styles.text}>
-                문화
-              </option>
-              <option value="sports" className={styles.text}>
-                스포츠
-              </option>
-              <option value="nature" className={styles.text}>
-                자연
-              </option>
-              <option value="activity" className={styles.text}>
-                {" "}
-                엑티비티
-              </option>
+              <option value="">여행 유형</option>
+              <option value="culture">문화</option>
+              <option value="sports">스포츠</option>
+              <option value="nature">자연</option>
+              <option value="activity"> 엑티비티</option>
             </select>
 
             <label for="departureDate">
@@ -234,15 +246,9 @@ const AccompanyBody = () => {
             value={sortOrder}
             onChange={(e) => setSortOrder(e.target.value)}
           >
-            <option value="" className={styles.text}>
-              정렬
-            </option>
-            <option value="latest" className={styles.text}>
-              최신순
-            </option>
-            <option value="popular" className={styles.text}>
-              인기순
-            </option>
+            <option value="">정렬</option>
+            <option value="latest">최신순</option>
+            <option value="popular">인기순</option>
           </select>
         </form>
         <button
@@ -268,11 +274,15 @@ const AccompanyBody = () => {
                 isDesktop ? styles.titleBoxDesktop : styles.titleBoxMobile
               }
             >
-              <span
-                className={isDesktop ? styles.titleDesktop : styles.titleMobile}
-              >
-                {post.title}
-              </span>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <p
+                  className={
+                    isDesktop ? styles.titleDesktop : styles.titleMobile
+                  }
+                >
+                  {post.title}
+                </p>
+              </div>
               <div
                 className={
                   isDesktop ? styles.profileBoxDesktop : styles.profileBoxMobile
@@ -283,8 +293,7 @@ const AccompanyBody = () => {
               <span
                 style={{
                   color: "gray",
-                  fontSize: "13px",
-                  fontFamily: "Happy Bold",
+                  fontSize: "14px",
                 }}
               >
                 {calculateAge(post.birthDate)}살 ∙ {post.gender}

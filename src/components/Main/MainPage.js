@@ -28,6 +28,11 @@ const MainPage = () => {
   const moveToMyPage = () => {
     navigate("/myPage");
   };
+
+  const moveToMap = () => {
+    navigate("/mapchat");
+  };
+
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
@@ -190,7 +195,6 @@ const MainPage = () => {
               </div>
             </button>
             <button
-              onClick={moveToMeet}
               className={`${styles.desktopMeet} ${
                 isButtonPressed ? "pressed" : ""
               } ${
@@ -203,6 +207,7 @@ const MainPage = () => {
               onMouseDown={handleButtonPress}
               onMouseUp={handleButtonRelease}
               onMouseLeave={handleButtonRelease}
+              onClick={moveToMap}
             >
               <img
                 src={Meet30}

@@ -42,23 +42,24 @@ const MainHeader = () => {
         동행
       </Link>
       <Link
-        to="/aitravel"
+        to="/ai"
         className={`${styles.ai} ${
           selectedLink === "ai" ? styles.selected : ""
         }`}
         onClick={() => setSelectedLink("ai")}
       >
-        AI경로추천
+        AI 경로추천
       </Link>
       <Link
-        to="/meet"
+        to="/mapchat"
         className={`${styles.meet} ${
-          selectedLink === "meet" ? styles.selected : ""
+          selectedLink === "mapchat" ? styles.selected : ""
         }`}
-        onClick={() => setSelectedLink("meet")}
+        onClick={() => setSelectedLink("mapchat")}
       >
         만남
       </Link>
+
       <img
         src={hamburger}
         className={`${

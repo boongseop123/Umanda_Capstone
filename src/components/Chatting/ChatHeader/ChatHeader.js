@@ -5,13 +5,17 @@ import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router";
 import profile from "./profile.png";
 
-const ChatHeader = ({}) => {
+const ChatHeader = ({ currentUser, postAuthor, receiver }) => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
   const navigate = useNavigate();
   const goBack = () => {
     navigate("/meet");
   };
+  const otherUser = currentUser === postAuthor ? "" : postAuthor;
 
+  const click = () => {
+    console.log("receiver: ", receiver);
+  };
   return (
     <div
       className={`${
@@ -27,7 +31,9 @@ const ChatHeader = ({}) => {
         }}
       >
         <button className={styles.backButtonDesktop} onClick={goBack}></button>
-        <h3 style={{ marginLeft: "20px", marginTop: "30px" }}>{}</h3>
+        <h3 style={{ marginLeft: "20px" }} onClick={click}>
+          {receiver}
+        </h3>
       </div>
     </div>
   );

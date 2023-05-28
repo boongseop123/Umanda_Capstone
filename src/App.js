@@ -17,6 +17,7 @@ import PostPage from "./components/Post/PostPage";
 import ChatPage from "./components/Chatting/ChatPage";
 import MeetPage from "./components/Meet/MeetPage";
 import MyPage from "./components/MyProfile/MyPage";
+import MapChat from "./components/MapChat/MapChat";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="/meet" element={<MeetPage />} />
             <Route path="/chatPage/:username" element={<ChatPage />} />
             <Route path="/post" element={<PostPage />} />
+            <Route path="/mapchat" element={<MapChat />} />
           </Routes>
         </AnimatePresence>
       </BrowserRouter>

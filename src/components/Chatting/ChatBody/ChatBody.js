@@ -4,13 +4,13 @@ import { useRecoilValue } from "recoil";
 import { usernameState } from "../../../recoils/Recoil";
 import { db } from "../../social/firebase"; // Firebase 초기화 및 Firestore 인스턴스 가져오기
 import styles from "../ChatBody/ChatBody.module.scss";
-const ChatBody = ({ currentUser, postAuthor }) => {
-  const [messages, setMessages] = useState([]);
+const ChatBody = ({ currentUser, postAuthor, receiver }) => {
+  const [messages, setLocalMessages] = useState([]);
   const currentUserName = useRecoilValue(usernameState);
 
   useEffect(() => {
     const chatRoomId = generateChatRoomId(currentUser, postAuthor);
-    const unsubscribe = subscribeToMessages(chatRoomId, setMessages);
+    const unsubscribe = subscribeToMessages(chatRoomId, setLocalMessages);
     return () => unsubscribe();
   }, [currentUser, postAuthor]);
 
@@ -18,7 +18,7 @@ const ChatBody = ({ currentUser, postAuthor }) => {
     return postAuthor;
   }
 
-  function subscribeToMessages(chatRoomId, setMessages) {
+  function subscribeToMessages(chatRoomId, setLocalMessages) {
     const messagesQuery = query(
       collection(db, `chatrooms/${chatRoomId}/messages`),
       orderBy("createdAt")
@@ -26,7 +26,7 @@ const ChatBody = ({ currentUser, postAuthor }) => {
 
     return onSnapshot(messagesQuery, (snapshot) => {
       const messages = snapshot.docs.map((doc) => doc.data());
-      setMessages(messages);
+      setLocalMessages(messages);
     });
   }
 
@@ -46,7 +46,7 @@ const ChatBody = ({ currentUser, postAuthor }) => {
       } else if (diffInMinutes === 1) {
         return "1 minute ago";
       } else {
-        return `${diffInMinutes} minutes ago`;
+        return `${diffInMinutes}분 전`;
       }
     } else {
       // 1시간 초과하는 경우
@@ -55,7 +55,7 @@ const ChatBody = ({ currentUser, postAuthor }) => {
       if (diffInHours === 1) {
         return "1 hour ago";
       } else {
-        return `${diffInHours} hours ago`;
+        return `${diffInHours}시간 전`;
       }
     }
   }
@@ -80,13 +80,24 @@ const ChatBody = ({ currentUser, postAuthor }) => {
             <p
               className={
                 message.sender === currentUserName
+                  ? styles.rightName
+                  : styles.leftName
+              }
+            >
+              {message.sender === currentUserName
+                ? `${currentUserName}`
+                : `${message.sender}`}
+            </p>
+            <p
+              className={
+                message.sender === currentUserName
                   ? styles.rightMessage
                   : styles.leftMessage
               }
             >
               {message.sender === currentUserName
-                ? `${currentUserName}: ${message.text}`
-                : `${message.sender}: ${message.text}`}
+                ? ` ${message.text}`
+                : `${message.text}`}
             </p>
             <p
               className={

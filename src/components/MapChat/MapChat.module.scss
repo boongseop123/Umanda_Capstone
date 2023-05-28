@@ -1,0 +1,23 @@
+.container {
+  max-width: 550px;
+  height: 100vh;
+  margin: 0 auto;
+  //   background-color: #ef455a;
+  box-shadow: 0px 3px 6px #a7999a3e;
+  position: relative;
+}
+
+.goBack {
+  width: 40px;
+  height: 40px;
+  background-image: url("../MapChat/resources/goBack.png");
+  background-position: center center;
+  background-size: 30%;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+  border: none;
+  position: absolute;
+  background-color: white;
+  top: 60px;
+  left: 10px;
+}
