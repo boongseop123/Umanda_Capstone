@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { combinedSelectedSpotsArrayState } from "../../recoils/Recoil";
 import Header from "../Header/Header";
 import styles from "./MyPage.module.scss";
+import profile from "../Main/resource/profile.png";
 
 const MyPage = () => {
   const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
@@ -45,9 +46,16 @@ const MyPage = () => {
             }`}
           >
             <div className={styles.mytext}>내정보</div>
-            <div>
-              <div className={styles.name}>신지훈</div>
-              <div className={styles.detail}>26세 | 남성 | 정보수정</div>
+            <div className={styles.profilecontainer}>
+              <div className={styles.profileimgcontainer}>
+                <img src={profile} className={styles.profile_img}></img>
+              </div>
+              <div className={styles.profiletext}>
+                <div className={styles.name}>신지훈</div>
+                <div className={styles.detail2}>
+                  26세 | 남성 | 방문나라: 영국/프랑스
+                </div>
+              </div>
             </div>
             <div className={styles.name1}>내 방문지</div>
             <div className={styles.imageContainer}>
@@ -74,7 +82,7 @@ const MyPage = () => {
             <div className={styles.underline1}></div>
             <div className={styles.detail}>
               <div className={styles.detail_margin}>비밀번호 변경</div>
-              <div className={styles.detail_margin}>설정</div>
+              <div className={styles.detail_margin}>정보수정</div>
               <div className={styles.detail_margin}>로그아웃</div>
             </div>
           </div>
