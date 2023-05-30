@@ -11,10 +11,10 @@
 
 .container {
   position: absolute;
-  width: 500px;
-  height: 160px;
+  width: 490px;
+  height: 170px;
   background-color: white;
-  bottom: 70px;
+  bottom: 50px;
   left: 25px;
   border-radius: 15px;
   animation: slideUp 0.5s ease-out;
@@ -23,7 +23,7 @@
 
 .profile {
   width: 100px;
-  height: 100px;
+  height: 90px;
   background-image: url("../resources/profile.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -37,30 +37,120 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  //width: 100px;
   padding: 15px;
-  border-radius: 38px;
+  border-radius: 40px;
   border: none;
-  margin-left: 160px;
+  margin-left: 80px;
   font-family: "Happy Bold", sans-serif;
+}
+
+.chatButton1 {
+  background-color: #a2c1e9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  //width: 100px;
+  padding: 15px;
+  border-radius: 40px;
+  border: none;
+  margin-left: 80px;
+  font-family: "Happy Bold", sans-serif;
+}
+
+.modal {
+  background-color: #eff1f8;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.detail {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modalContainer {
+  background-color: #484f59;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 40vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  align-items: flex-start;
+  overflow-x: hidden;
+  //overflow-y: hidden;
+  padding-bottom: 10px;
+}
+
+.imageContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: row;
+  align-items: flex-start;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.similar {
+  font-size: 14px;
+}
+
+.imageContainer div {
+  flex-basis: 33.33%;
+  max-width: 33.33%;
+  text-align: center;
+}
+
+.spotimg {
+  height: 120px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
 .chatImg {
   width: 20px;
   height: 20px;
   color: white;
-  margin-left: 4px;
+  margin-left: 2px;
   margin-right: 1px;
 }
 
 .spanChat {
   color: white;
   font-family: "Happy Bold", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
+  margin-right: 1px;
+}
+
+.spanChat1 {
+  color: white;
+  font-family: "Happy Bold", sans-serif;
+  font-size: 14px;
   margin-right: 1px;
 }
 
 .feature {
-  font-size: 11px;
-  font-family: "Happy Bold", sans-serif;
+  font-size: 15px;
+  font-family: "Happy Bolder", sans-serif;
   color: #ef455a;
+}
+
+.name {
+  margin: 20px auto;
+  height: 90px;
+  width: 175px;
 }
