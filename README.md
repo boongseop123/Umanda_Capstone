@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+✈️ Umanda
+개인화 맞춤 여행지 추천 및 커뮤니티를 통한 동행 서비스
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+🍪 프로젝트 소개
+여행자의 취향을 기반으로 유럽의 관광지 경로를 추천해주고 커뮤니티를 통해 동행 서비스를 활성화
 
-### `npm start`
+기능 소개
+동행 버튼을 통해 여행메이트를 찾을 수 있도록 구현
+AI경로 추천을 통해 내 취향의 여행지를 추천받을 수 있도록 구현
+만남 버튼을 통해 주변 여행객들과의 채팅 기능 구현
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+👩‍💻 멤버 구성
+신지훈 (팀장)
+박종훈
+윤덕건
+김준영
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+⏰ 개발 기간
+2023년 3월 ~ 2023년 6월
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🚀 기술 스택
+✔️ Frontend
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+✔️ Backend
+  
+   
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+✔️ AI Model(클릭 시 이동)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+주요 프레임워크/라이브러리
+Java 11
+SpringBoot 2.7.10
+JPA(Spring Data JPA)
+Spring Security
+SwaggerHub
+JwtToken
+Json
+Naver/Kakao/Google API
+Amadeus API
 
-### `npm run eject`
+👍 기능
+3가지 주요 기능
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1️⃣ 서비스 메인 화면
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2️⃣ 로그인 회원가입
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3️⃣ 관광지 추천 서비스
+국가/여행일수 선택
 
-## Learn More
+테마 선택 및 선호 여행지 선택
+ 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+여행 코스 선택(모델이 학습한 3가지 추천 코스)
+ 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+동행 게시판/동행신청(채팅)
 
-### Code Splitting
+만남 기능/마이페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🏗️ 개발 환경 아키텍처
