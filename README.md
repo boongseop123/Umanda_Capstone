@@ -83,10 +83,5 @@
 <img src="https://github.com/euics/Capstone_Umanda/assets/103410386/426f4636-e86a-4789-b915-0fda9db22353.png" width="600" height="400"/>
 <br><br>
 
-# 📹 포로젝트 관련 자료(클릭시 이동)
-## 기획
-### [Umanda 기획안](https://github.com/euics/Capstone_Umanda/files/13197577/default.pdf)
-<br>
-
 ## 발표 영상
 [![Video Label](http://img.youtube.com/vi/xxAZ1-xFDMU/0.jpg)](https://youtu.be/xxAZ1-xFDMU)
